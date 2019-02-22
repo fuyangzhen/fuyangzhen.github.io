@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      LeetCode 523 — DP与鸽巢原理 &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">LeetCode 523 — DP与鸽巢原理</h1>
+  <span class="post-date">23 Nov 2017</span>
+  <h2 id="鸽巢原理">鸽巢原理</h2>
+
+<blockquote>
+  <p>鸽巢原理的一种简单的表述法为：
+若有n个笼子和n+1只鸽子，所有的鸽子都被关在鸽笼里，那么至少有一个笼子有至少2只鸽子。
+另一种为：
+若有n个笼子和kn+1只鸽子，所有的鸽子都被关在鸽笼里，那么至少有一个笼子有至少k+1只鸽子。
+一种推广表达是这样的：
+如果要把<code class="highlighter-rouge">n</code>个物件分配到<code class="highlighter-rouge">m</code>个容器中，必有至少一个容器容纳至少\( \lceil\frac{n}{m}\rceil \)个物件。</p>
+
+  <p>鸽巢原理经常在计算机领域得到真正的应用。比如：哈希表的重复问题（冲突）是不可避免的，因为Keys的数目总是比Indices的数目多，不管是多么高明的算法都不可能解决这个问题。这个原理，还证明任何无损压缩算法，在把一个文件变小的同时，一定有其他文件增大来辅助，否则某些信息必然会丢失。</p>
+</blockquote>
+<p align="right">———维基百科</p>
+
+<p>鸽巢原理的思想很简单，对应于每个具体问题就是每次选择都有<code class="highlighter-rouge">n</code>种情形供选择，若要选择<code class="highlighter-rouge">kn+1</code>次的话，那么必定存在一种选择是被选择了<code class="highlighter-rouge">k+1</code>次的。
+<!--more--></p>
+
+<h2 id="continuous-subarray-sum">Continuous Subarray Sum</h2>
+
+<p><a href="https://leetcode.com/problems/continuous-subarray-sum/#/description">523. Continuous Subarray Sum</a>的问题是：在非负整数列表中寻找是否至少有2个数的和等于n倍的k，k是给定的整数，n是任意整数。</p>
+
+<p>问题看上去就很DP，我在最初设法解的时候，是先固定某一位，再在该位数字的右边寻找可能的解。这样复杂度是<code class="highlighter-rouge">O(n^2)</code>，虽然能AC，但是显然不是出题人想要的解：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">checkSubarraySum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="s">"""
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        Input: [23, 2, 4, 6, 7],  k=6
+        Output: True
+        """</span>
+        <span class="n">k</span> <span class="o">*=</span> <span class="nb">cmp</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+            <span class="n">dp</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">k</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="bp">True</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span> <span class="o">%</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="bp">True</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">dp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">dp</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+<p>在看了评论区的<a href="https://discuss.leetcode.com/topic/80841/python-with-explanation-62ms-time-o-min-n-k-mostly/2">zym_ustc的解法</a>后，才明白这个问题必须明白一些trick才能降低复杂度。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">checkSubarraySum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c"># if two continuous zeros in nums, return True</span>
+            <span class="c"># time O(n)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">*</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="c">#if n &gt;= 2k: return True</span>
+        <span class="c">#if n &lt; 2k:  time O(n) is O(k) &lt;-不明白这里为什么是O(k)···为何不是O(n)?</span>
+
+        <span class="nb">sum</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="nb">sum</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">sum</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">x</span><span class="p">)</span> <span class="o">%</span> <span class="n">k</span><span class="p">)</span>
+
+        <span class="n">Dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="nb">sum</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">Dict</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="nb">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                <span class="c">#若新的和 第一个 相同余数的间距大于1的话就是存在解</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">-</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># 仅在出现新的未见过的余数的时候才更新dic</span>
+                <span class="n">Dict</span><span class="p">[</span><span class="nb">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+<p>这个解法就算没用鸽巢原理也是<code class="highlighter-rouge">O(n)</code>的复杂度：</p>
+
+<p>但鸽巢原理的能直接使长数据的解法为<code class="highlighter-rouge">O(1)</code>：
+若<code class="highlighter-rouge">nums</code>的长度大于<code class="highlighter-rouge">2k</code>的话，那么长度至少为<code class="highlighter-rouge">2k+1</code>的<code class="highlighter-rouge">sum</code>的每个数值对<code class="highlighter-rouge">k</code>取余数的的范围都会在<code class="highlighter-rouge">[0,k-1]</code>之间共<code class="highlighter-rouge">k</code>种。所以应用鸽巢原理知，出现同一种余数的<code class="highlighter-rouge">sum</code>元素至少有\( \lceil\frac{2k+1}{k}\rceil=3 \)个。而这仨<code class="highlighter-rouge">sum</code>的元素（我们假设为<code class="highlighter-rouge">a,b,c</code>）的<code class="highlighter-rouge">a</code>和<code class="highlighter-rouge">c</code>的间距肯定是大于等于2的，而且因为两者的值相等（即对<code class="highlighter-rouge">k</code>的余数相同），所以<code class="highlighter-rouge">c-a = n*k</code>。同理在<code class="highlighter-rouge">len(nums)</code>小于等于<code class="highlighter-rouge">2k</code>的时候也就是在<code class="highlighter-rouge">sum</code>中找相同的数值，且相同的数值的元素间距大于等于2即为所求。</p>
+
+<p>上诉解法的更为简洁的形式如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">checkSubarraySum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">seen</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="c"># 不用处理 k为负数的情形</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">num</span><span class="p">)</span> <span class="o">%</span> <span class="n">k</span> <span class="k">if</span> <span class="n">k</span> <span class="k">else</span> <span class="n">r</span> <span class="o">+</span> <span class="n">num</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="n">seen</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="c">#必须大于1，只有隔了2位，才能保证nums对应元素个数大于等于2</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">-</span> <span class="n">seen</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

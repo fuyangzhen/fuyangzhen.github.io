@@ -1,0 +1,27 @@
+# Permalinks
+#
+# Use of `relative_permalinks` ensures post links from the index work properly.
+permalink:        pretty
+
+#relative_permalinks: true
+
+# Setup
+title:               Young Hook
+tagline:             "Anything I do that may help others, I'll post it here."
+description:         "Have problems? Easy-peasy, just restart ur computer."
+url:                 https://younghook.com
+baseurl:
+gems:                [jekyll-paginate]
+paginate:            5
+paginate_path:       "page:num"
+excerpt_separator:   <!--more-->
+# markdown:            kramdown
+
+# About/contact
+author:
+  name:              'Young Hook'
+  url:               https://www.linkedin.com/in/fuyangzhen
+  email:             fuyangzhen@foxmail.com
+
+# Custom vars
+version:             1.0.0

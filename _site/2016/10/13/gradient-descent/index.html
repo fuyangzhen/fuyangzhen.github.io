@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Gradient descent & logistic regression &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Gradient descent & logistic regression</h1>
+  <span class="post-date">13 Oct 2016</span>
+  <h2 id="1-简介">1 简介</h2>
+<p>这一章的 <a href="http://www.ituring.com.cn/book/1021">机器学习实战(第5章)</a> ，唯一想说的就是里面关于梯度上升算法的细节问题。</p>
+
+<!--more-->
+
+<p>以下程序需要注意<code class="highlighter-rouge">python</code>的<code class="highlighter-rouge">list</code>格式和<code class="highlighter-rouge">numpy</code>的<code class="highlighter-rouge">array</code>及<code class="highlighter-rouge">matrix</code>(矩阵计算时需要使用该格式) 格式的互相转化问题。</p>
+
+<p>数据加载处理函数：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">loadDataSet</span><span class="p">():</span>
+    <span class="n">dataMat</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">labelMat</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fr</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/Users/fuyangzhen/Documents/machinelearninginaction/Ch05/testSet.txt'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fr</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="n">lineArr</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">dataMat</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="nb">float</span><span class="p">(</span><span class="n">lineArr</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">lineArr</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+            <span class="n">labelMat</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">lineArr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="k">except</span> <span class="nb">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"error:"</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="s">"on line"</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dataMat</span><span class="p">,</span> <span class="n">labelMat</span>
+</code></pre></div></div>
+<p>sigmoid函数：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">inX</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">inX</span><span class="p">))</span>
+</code></pre></div></div>
+<p>逻辑回归梯度上升优化算法：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gradAscent</span><span class="p">(</span><span class="n">dataMatIn</span><span class="p">,</span> <span class="n">classLabels</span><span class="p">,</span> <span class="n">Cycles</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+    <span class="n">dataMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">dataMatIn</span><span class="p">)</span>
+    <span class="n">labelMat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mat</span><span class="p">(</span><span class="n">classLabels</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dataMatrix</span><span class="p">)</span><span class="c"># (100, 3)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">maxCycles</span> <span class="o">=</span> <span class="n">Cycles</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxCycles</span><span class="p">):</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">dataMatrix</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="p">(</span><span class="n">labelMat</span> <span class="o">-</span> <span class="n">h</span><span class="p">)</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">dataMatrix</span><span class="o">.</span><span class="n">T</span> <span class="o">*</span> <span class="n">error</span> <span class="c"># 此处的梯度上升算法的数学细节被作者完全省略</span>
+    <span class="k">return</span> <span class="n">weights</span>
+</code></pre></div></div>
+<p>散点图及决策边界绘图函数：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plotBestFit</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="n">dataMat</span><span class="p">,</span> <span class="n">labelMat</span> <span class="o">=</span> <span class="n">loadDataSet</span><span class="p">()</span>
+    <span class="n">dataArr</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="n">dataMat</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dataArr</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">xcord1</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">ycord1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">xcord2</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">ycord2</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">labelMat</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">xcord1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataArr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span> <span class="n">ycord1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataArr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">xcord2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataArr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]);</span> <span class="n">ycord2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dataArr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xcord1</span><span class="p">,</span> <span class="n">ycord1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s">'s'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xcord2</span><span class="p">,</span> <span class="n">ycord2</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s">'blue'</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">weights</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">weights</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s">'g'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'X1'</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'X2'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p>下面就来说一下，这句<code class="highlighter-rouge">weights = weights + alpha * dataMatrix.T * error</code>梯度上升的更新算法的细节。</p>
+<h2 id="2-梯度上升算法">2 梯度上升算法</h2>
+<p>在吴恩达老师的机器学习公开课中，逻辑回归这里使用的是态度下降算法，来求得代价函数的最小值，来达到最小化代价的目的。
+但是他并没有解释cost函数是从何而来，当时我以为是某位数学家巧妙设计而来，后来发现其实是由极大似然估计得来的。细节如下：<br />
+<img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1476359015912.png" alt="0" /></p>
+<h2 id="3-在线学习回归函数">3 在线学习回归函数</h2>
+<p>随机梯度上升算法与梯度上升算法的效果相当，但占用更少的计算资源。因为其一次用一个<code class="highlighter-rouge">sample</code>的特点，所以它还是一个在线算法，可以在新数据到来时进行一次参数更新，而不需要重新读取整个数据集来进行批处理运算。</p>
+
+<ol>
+  <li>随机选取样本来进行更新参数，可以减少参数的周期性波动。</li>
+  <li>学习率<code class="highlighter-rouge">alpha</code>非严格递减，可以在快要收敛的时候，放慢脚步，找到更加精确的收敛值。</li>
+</ol>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">stocGradAscent1</span><span class="p">(</span><span class="n">dataMatrix</span><span class="p">,</span> <span class="n">classLabels</span><span class="p">,</span> <span class="n">Cycles_100times</span><span class="o">=</span><span class="mi">200</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">random</span>
+    
+    <span class="n">dataMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dataMatrix</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dataMatrix</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Cycles_100times</span><span class="p">):</span>
+        <span class="n">randIndex</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">),</span><span class="n">m</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">rand_i</span><span class="o">=</span><span class="n">randIndex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">dataMatrix</span><span class="p">[</span><span class="n">rand_i</span><span class="p">]</span><span class="o">*</span><span class="n">weights</span><span class="p">))</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">classLabels</span><span class="p">[</span><span class="n">rand_i</span><span class="p">]</span> <span class="o">-</span> <span class="n">h</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">dataMatrix</span><span class="p">[</span><span class="n">rand_i</span><span class="p">]</span>
+            
+    <span class="k">return</span> <span class="n">weights</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

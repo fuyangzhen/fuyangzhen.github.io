@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Classic sort &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Classic sort</h1>
+  <span class="post-date">01 Oct 2016</span>
+  <h3 id="先上结果">先上结果</h3>
+<ul>
+  <li>插入排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">insertionSort1</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)):</span>
+        <span class="n">curV</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">curV</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">pos</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">curV</span> <span class="c">#找到正确的位置插入</span>
+    <span class="k">return</span> <span class="n">L</span>
+</code></pre></div></div>
+<!--more-->
+
+<ul>
+  <li>冒泡排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">shortBubbleSort</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">passnum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">passnum</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">exchanges</span><span class="p">:</span>
+        <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c"># 若标记出该轮没有逆序,则冒泡排序就可以提前停止</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">passnum</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">passnum</span> <span class="o">-=</span> <span class="mi">1</span>
+</code></pre></div></div>
+
+<ul>
+  <li>二分归并排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">L</span>
+
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+
+    <span class="n">temp_L</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">start</span><span class="p">:</span> <span class="n">mid</span><span class="p">]</span>
+    <span class="n">local</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">local</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_L</span><span class="p">):</span>  <span class="c"># 不同于start&lt;end，因为相对而言，后者复杂度更高</span>
+        <span class="k">if</span> <span class="n">mid</span> <span class="o">&gt;=</span> <span class="n">end</span> <span class="ow">or</span> <span class="n">temp_L</span><span class="p">[</span><span class="n">local</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_L</span><span class="p">[</span><span class="n">local</span><span class="p">]</span>
+            <span class="n">local</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+            <span class="n">mid</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">L</span><span class="c">#将排好序的list返回，供上一层的递归使用</span>
+
+
+<span class="n">L</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>  
+</code></pre></div></div>
+
+<ul>
+  <li>快速排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">quickSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">begin</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">begin</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span>
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">L</span>
+</code></pre></div></div>
+
+<ul>
+  <li>堆排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">heap_sort</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">siftDown</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">begin</span><span class="p">,</span> <span class="n">begin</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">end</span> <span class="ow">and</span> <span class="n">elems</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">elems</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">e</span> <span class="o">&lt;</span> <span class="n">elems</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="k">break</span>
+            <span class="n">elems</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">elems</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">elems</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
+
+    <span class="n">end</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elems</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">end</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">siftDown</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">elems</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">((</span><span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">elems</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">elems</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">elems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">siftDown</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="冒泡排序">冒泡排序</h1>
+
+<p><img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1473579962793.gif" alt="bubble" /></p>
+<h3 id="简介">简介</h3>
+<p>冒泡排序是一种典型的（也是最简单的）通过反复比较交换元素来消除逆序，实现排序的方法。冒泡排序方法需要多次访问列表，它比较相邻的两个元素，如果次序不对，就交换位置。每次遍历就象气泡上浮到合适的位置一样，把经历的最大的元素放到合适的位置上。
+普通冒泡排序的python代码如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">BubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  <span class="c"># 一共需要进行 n-1 轮比较交换</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span><span class="p">):</span>  <span class="c"># 在第 i 轮中,需要进行 n-i 次比较</span>
+            <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'第</span><span class="si">%</span><span class="s">s轮'</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">alist</span><span class="p">)</span>
+
+
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">BubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+
+<span class="c"># 排序过程如下:</span>
+<span class="c"># 初始状态   [21, 46, 33, 11, 26, 50, 35, 48, 13, 41, 11]</span>
+<span class="c"># 第1轮过后  [21, 33, 11, 26, 46, 35, 48, 13, 41, 11, 50]</span>
+<span class="c"># 第2轮过后  [21, 11, 26, 33, 35, 46, 13, 41, 11, 48, 50]</span>
+<span class="c"># 第3轮过后  [11, 21, 26, 33, 35, 13, 41, 11, 46, 48, 50]</span>
+<span class="c"># 第4轮过后  [11, 21, 26, 33, 13, 35, 11, 41, 46, 48, 50]</span>
+<span class="c"># 第5轮过后  [11, 21, 26, 13, 33, 11, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第6轮过后  [11, 21, 13, 26, 11, 33, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第7轮过后  [11, 13, 21, 11, 26, 33, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第8轮过后  [11, 13, 11, 21, 26, 33, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第9轮过后  [11, 11, 13, 21, 26, 33, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第10轮过后 [11, 11, 13, 21, 26, 33, 35, 41, 46, 48, 50]</span>
+</code></pre></div></div>
+<h3 id="特点与不足">特点与不足</h3>
+<p>观察上面的代码运行过程可知，之所以每次能保证把最大的元素排到正确的位置，是由于需要的list左小右大，并且以从左至右的方向来访问排序的缘故。若是以从右至左的方向来访问排序，则能保证把最小的元素排到正确的位置上。所以其特点总结如下:<br />
+***</p>
+<ul>
+  <li>每一轮检查可以把一个最大元素交换到位，一些较大元素向右移动一段距离，可以移动很远。</li>
+  <li>因为采用从左至右的顺序来比较，导致小元素一次只能左移一位。若list中的小元素距离目标位置很远(既位置很靠右)，可能会延误整个排序过程。</li>
+</ul>
+
+<hr />
+<h3 id="改进-1">改进 1</h3>
+<p>虽然有时冒泡排序确实需要进行<code class="highlighter-rouge">n-1</code>轮比较交换，但那是最小元素恰好在最右时的特例。在其他的情形，扫描就不需要进行那么多轮。若发现排序已经完成，就不需要进行<code class="highlighter-rouge">n-1</code>轮比较交换，可以提前结束排序过程。以此来改进的算法通常称为短冒泡算法，代码如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">shortBubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">passnum</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">passnum</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">exchanges</span><span class="p">:</span>
+        <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">False</span>  <span class="c"># 若标记出该轮没有逆序,则冒泡排序就可以提前停止</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">passnum</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">passnum</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'第</span><span class="si">%</span><span class="s">s轮过后'</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">-</span> <span class="n">passnum</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">alist</span><span class="p">)</span>
+
+
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">]</span>
+<span class="n">shortBubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+
+<span class="c"># 排序过程如下:</span>
+<span class="c"># 初始状态  [21, 46, 11, 33, 11, 26, 50, 35, 48, 13, 41]</span>
+<span class="c"># 第1轮过后 [21, 11, 33, 11, 26, 46, 35, 48, 13, 41, 50]</span>
+<span class="c"># 第2轮过后 [11, 21, 11, 26, 33, 35, 46, 13, 41, 48, 50]</span>
+<span class="c"># 第3轮过后 [11, 11, 21, 26, 33, 35, 13, 41, 46, 48, 50]</span>
+<span class="c"># 第4轮过后 [11, 11, 21, 26, 33, 13, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第5轮过后 [11, 11, 21, 26, 13, 33, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第6轮过后 [11, 11, 21, 13, 26, 33, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第7轮过后 [11, 11, 13, 21, 26, 33, 35, 41, 46, 48, 50]</span>
+<span class="c"># 第8轮过后 [11, 11, 13, 21, 26, 33, 35, 41, 46, 48, 50] </span>
+<span class="c"># 第8轮发现排序已经完成, 就不再进行比较交换操作, 所以结果和第七轮结果一致 </span>
+</code></pre></div></div>
+<h3 id="时间复杂度">时间复杂度</h3>
+<p>一般认为冒泡排序是效率最差的排序方法，因为它在元素最终确定位置之前反复交换。这些浪费的交换操作很费资源。冒泡排序的性质很清楚：最坏的情况(每次比较都引发一次交换)，及最好的情况下(如果列表是有序的，一次交换也没有)，时间复杂度都是<code class="highlighter-rouge">O(n^2)</code>。</p>
+<h3 id="改进-2">改进 2</h3>
+<p>冒泡排序的低效率，究其原因，有以下两个方面：<br />
+***</p>
+<ul>
+  <li>反复交换中，做的赋值操作较多，累积起来的代价也较大。</li>
+  <li>距离最终位置很远的元素拉低了整个算法的效率。</li>
+</ul>
+
+<hr />
+<p>其中，为了解决上述的第二个问题，我们可以采用快速排序算法。
+另一种简单的解决方法是交错冒泡排序：从左至右、从右至左，这两种比较交换的顺序交替进行，以便把小元素快速移向左方(从右至左的时候)。以此来改进的算法通常称为交替冒泡算法，代码如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">interlaceBubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">first</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+    <span class="n">positive</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  <span class="c"># 一共需要进行 n-1 轮比较交换</span>
+        <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">if</span> <span class="n">positive</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>  <span class="c"># 在第 i 轮中,需要进行 n-i 次比较</span>
+                <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">first</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">last</span> <span class="o">-=</span> <span class="mi">2</span>
+            <span class="n">positive</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">positive</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c"># 在第 i 轮中,需要进行 n-i 次比较</span>
+                <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">exchanges</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">first</span> <span class="o">+=</span> <span class="mi">2</span>
+            <span class="n">last</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">positive</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">positive</span>
+        <span class="k">if</span> <span class="n">exchanges</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+            <span class="k">break</span>
+            <span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">interlaceBubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+
+<span class="c"># 排序过程如下:</span>
+<span class="c"># 初始状态  [21, 46, 33, 11, 26, 50, 35, 48, 13, 41, 11]</span>
+<span class="c"># 第1轮过后 [21, 33, 11, 26, 46, 35, 48, 13, 41, 11, 50]</span>
+<span class="c"># 第2轮过后 [11, 21, 33, 11, 26, 46, 35, 48, 13, 41, 50]</span>
+<span class="c"># 第3轮过后 [11, 21, 11, 26, 33, 35, 46, 13, 41, 48, 50]</span>
+<span class="c"># 第4轮过后 [11, 11, 21, 13, 26, 33, 35, 46, 41, 48, 50]</span>
+<span class="c"># 第5轮过后 [11, 11, 13, 21, 26, 33, 35, 41, 46, 48, 50]</span>
+</code></pre></div></div>
+<h3 id="总结">总结</h3>
+<p>针对两种改进方式，我进行了运行时间的计算实验，在ipython环境下的实验代码及结果如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'BubbleSort:'</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">BubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'shortBubbleSort:'</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">shortBubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'interlaceBubbleSort:'</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">interlaceBubbleSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+
+<span class="c">#结果：</span>
+<span class="n">BubbleSort</span><span class="p">:</span>
+<span class="mi">100000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">12.1</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+<span class="n">shortBubbleSort</span><span class="p">:</span>
+<span class="mi">1000000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">1.92</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+<span class="n">interlaceBubbleSort</span><span class="p">:</span>
+<span class="mi">100000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">2.6</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+</code></pre></div></div>
+<p>观察可见，交错算法的改进效果并没有像想象中的那样比短冒泡排序的效果更好。在加大数列的长度到几百时，效果也仅仅略微优于短冒泡排序。我觉得应该是我的算法实现的过于复杂，应该有更为精简的程序，可以达到理想中的效果。</p>
+
+<h1 id="选择排序">选择排序</h1>
+
+<p><img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474009916977.gif" alt="selection" /></p>
+<h3 id="简介-1">简介</h3>
+<p>选择排序是冒泡排序的改进，一次遍历只做一次交换。它在一次遍历中找到最大的元素，结束时放到合适的位置，正如冒泡排序一样，一次遍历后最大的元素就位。第二次遍历后，第二小的元素就位，这样持续进行，需要n-1个遍历来为n个元素排序。</p>
+<h3 id="代码实现">代码实现</h3>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">selectionHeavySort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">positionOfMax</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">positionOfMax</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">positionOfMax</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="n">alist</span><span class="p">[</span><span class="n">positionOfMax</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">positionOfMax</span><span class="p">]</span>
+
+
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">selectionHeavySort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+</code></pre></div></div>
+<h3 id="另一种实现方式">另一种实现方式</h3>
+<p>也可以在每次遍历中寻找最小的元素，找到后放在合适的位置上，然后下一轮遍历结束后，大小排第二的元素就位，这样持续进行，同样需要n-1个遍历来为n个元素排序。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">selectionLightSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)):</span>
+        <span class="n">positionOfMin</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">positionOfMin</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">positionOfMin</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="n">alist</span><span class="p">[</span><span class="n">positionOfMin</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">alist</span><span class="p">[</span><span class="n">positionOfMin</span><span class="p">]</span>
+
+
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">selectionLightSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>可以看出，选择排序和冒泡排序一样多的比较次数，所以它的性能依然是<code class="highlighter-rouge">O(n^2)</code>。不过，因为交换次数的减少，选择排序一般运行得比冒泡要快。</p>
+
+<h1 id="插入排序">插入排序</h1>
+
+<p><img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474189813433.gif" alt="" /></p>
+<h3 id="1-简介">1 简介</h3>
+<p>插入排序虽然仍然是<code class="highlighter-rouge">O(n^2)</code>，但工作模式就有稍微不同。它总是在列表的低端保持一个有序的子列表，后面的元素被逐个“插入”到前面的有序子表，这样有序的子表就逐渐变大。图4是插入排序的过程，阴影部分是排好序的子列表。</p>
+
+<p>开始的时候我们假设一个只有一个元素（在0位上）的列表而且是有序的，每次遍历的时候，从1到n-1的每个元素，与有序的子列表进行比较。当回顾已经排序的子表时候，比当前元素大的向前移，当遇到一个比它小的元素或到达子表的终点时，当前元素就插在这个位置上。</p>
+
+<h3 id="2-代码实现">2 代码实现</h3>
+<p>实现的时关于循环语句一点细节体会，while相较于for：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">优点</code>：while可以在循环语句的地方进行条件判断结束时机，而for需要内部写if、break来判断，不优雅。</li>
+  <li><code class="highlighter-rouge">缺点</code>：while计数的话需要单独写一个变量自增或自减，而if的变量增减是自动进行的，虽然底层实现都一样，但是后者更优雅。</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">insertionSort1</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)):</span>
+        <span class="n">currentvalue</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="c"># while相较于for的 优点 是可以在循环语句的地方进行条件判断,而for需要内部写if来break</span>
+        <span class="c"># while相较于for的 缺点 是计数的话需要单独写一个变量</span>
+        <span class="k">while</span> <span class="n">position</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">currentvalue</span> <span class="o">&lt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentvalue</span>
+
+    <span class="k">return</span> <span class="n">alist</span>
+
+<span class="err">＃以下是用</span><span class="k">for</span><span class="err">来写的形式，实现原理同上面是一样的</span>
+<span class="k">def</span> <span class="nf">insertionSort2</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)):</span>
+        <span class="n">currentvalue</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+
+            <span class="c"># 同样需要两个判断条件</span>
+            <span class="k">if</span> <span class="n">currentvalue</span> <span class="o">&lt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentvalue</span>
+                <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">alist</span>
+</code></pre></div></div>
+<p>值得一提的是，我又利用python自带的list数据结构的方法（可以使用pop和insert）实现了该排序，不过算法细节上不同之处是，每一轮插入，没有将元素一个个的对比左移，而是直接从开头向右一个个移动，对比插入，这样的好处是可以不写else分支，充分利用pop和insert方法，使语句最简化。虽然简洁，但相较于上面的<code class="highlighter-rouge">insertionSort1 </code>，该实现方式性能很差，这大概也是python高简洁、低性能的体现：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">insertionSort3</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="c"># 用了python自带的数据结构方法实现,虽然看上去更为简洁,但性能很差</span>
+                <span class="n">alist</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">alist</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">alist</span>
+</code></pre></div></div>
+<blockquote>
+  <p>此处的时间复杂度性能仍有待深入讨论，文中内容待考证</p>
+</blockquote>
+
+<h3 id="3-性能测试">3 性能测试</h3>
+<p>利用ipython的环境来对上面3个函数进行时间上的性能测试：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">alist3</span><span class="o">=</span><span class="n">alist2</span><span class="p">[:]</span><span class="o">=</span><span class="n">alist1</span><span class="p">[:]</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'insertionSort1:'</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">insertionSort1</span><span class="p">(</span><span class="n">alist1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'insertionSort2:'</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">insertionSort2</span><span class="p">(</span><span class="n">alist2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'insertionSort3:'</span><span class="p">)</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="n">insertionSort3</span><span class="p">(</span><span class="n">alist3</span><span class="p">)</span>
+
+<span class="c">#测试结果如下：</span>
+<span class="n">insertionSort1</span><span class="p">:</span>
+<span class="n">The</span> <span class="n">slowest</span> <span class="n">run</span> <span class="n">took</span> <span class="mf">24.02</span> <span class="n">times</span> <span class="n">longer</span> <span class="n">than</span> <span class="n">the</span> <span class="n">fastest</span><span class="o">.</span> <span class="n">This</span> <span class="n">could</span> <span class="n">mean</span> <span class="n">that</span> <span class="n">an</span> <span class="n">intermediate</span> <span class="n">result</span> <span class="ow">is</span> <span class="n">being</span> <span class="n">cached</span><span class="o">.</span>
+<span class="mi">10000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">20.7</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+<span class="n">insertionSort2</span><span class="p">:</span>
+<span class="n">The</span> <span class="n">slowest</span> <span class="n">run</span> <span class="n">took</span> <span class="mf">7.40</span> <span class="n">times</span> <span class="n">longer</span> <span class="n">than</span> <span class="n">the</span> <span class="n">fastest</span><span class="o">.</span> <span class="n">This</span> <span class="n">could</span> <span class="n">mean</span> <span class="n">that</span> <span class="n">an</span> <span class="n">intermediate</span> <span class="n">result</span> <span class="ow">is</span> <span class="n">being</span> <span class="n">cached</span><span class="o">.</span>
+<span class="mi">10000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mf">63.3</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+<span class="n">insertionSort3</span><span class="p">:</span>
+<span class="mi">1000</span> <span class="n">loops</span><span class="p">,</span> <span class="n">best</span> <span class="n">of</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">468</span> <span class="err">µ</span><span class="n">s</span> <span class="n">per</span> <span class="n">loop</span>
+</code></pre></div></div>
+<p>经过以上测试可知，利用最基本的语法实现的插入排序算法，性能最优。</p>
+
+<p>Ps.总结一下，实现生成随机整数list的方式：</p>
+
+<ul>
+  <li>允许元素重复：<br />
+<code class="highlighter-rouge">[radom.randint(a,b) for i in range(c,d)]</code></li>
+  <li>不允许元素重复：<br />
+<code class="highlighter-rouge">random.sample(range(a,b),c)</code></li>
+</ul>
+
+<h1 id="希尔排序">希尔排序</h1>
+
+<h2 id="1-简介-1">1 简介</h2>
+<p>希尔排序，有时称为递减增量排序，是在插入排序基础上，把列表拆成几个较小的子表，然后对每个子表使用插入排序的方法。选出子表的方法是希尔排序的关键，它并不是把列表的中相近的元素取出来组成子表，而是使用了一个增量值I，有时也叫做“间隔”，然后每隔一个间隔选中一个元素来组成子表。每个子表单独做插入排序。完成之后虽然没有完全排序，但对子表排序后，元素已经很接近它们的最终位置。</p>
+<h2 id="2-代码实现-1">2 代码实现</h2>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">shellSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="n">sublistcount</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="k">while</span> <span class="n">sublistcount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">startposition</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sublistcount</span><span class="p">):</span>
+            <span class="n">gapInsertionSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">startposition</span><span class="p">,</span> <span class="n">sublistcount</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">'After increments of size'</span><span class="p">,</span> <span class="n">sublistcount</span><span class="p">,</span> <span class="s">'The list is'</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
+        <span class="n">sublistcount</span> <span class="o">=</span> <span class="n">sublistcount</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Finish:'</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
+
+<span class="c">#这里用到的是以一定间隔为跨度的插入排序：</span>
+<span class="k">def</span> <span class="nf">gapInsertionSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">gap</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">),</span> <span class="n">gap</span><span class="p">):</span>
+        <span class="n">currentvalue</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="k">while</span> <span class="n">position</span> <span class="o">&gt;=</span> <span class="n">gap</span> <span class="ow">and</span> <span class="n">currentvalue</span> <span class="o">&lt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="n">gap</span><span class="p">]:</span>
+            <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">position</span> <span class="o">-</span> <span class="n">gap</span><span class="p">]</span>
+            <span class="n">position</span> <span class="o">-=</span> <span class="n">gap</span>
+
+        <span class="n">alist</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">=</span> <span class="n">currentvalue</span>
+</code></pre></div></div>
+<h2 id="3-算法性能">3 算法性能</h2>
+<p>乍看起来，希尔排序不见得比插入排序更好，因为最后一步就完全是一个插入排序。但是，最后一步的插入排序，不需要很多步骤来完成比较和移动，因为通过前面的增量插入排序，列表已经做了“预排序”，也就是说，这个列表已经比普通列表“更有序”，所以在效率上有很大的不同。<br />
+本文不对希尔排序的时间性能进行详细分析，不过我们可以说，它趋向于<code class="highlighter-rouge">O(n)</code>和<code class="highlighter-rouge">O(n^2)</code>之间。对于上面代码中的增量，性能是O(n^2)，变更增量，例如使用<code class="highlighter-rouge">2k−1</code>(1, 3, 7,15, 31等)，性能可达到<code class="highlighter-rouge">O(n^(3/2))</code>。</p>
+
+<h1 id="归并排序">归并排序</h1>
+
+<p><img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1475049168116.gif" alt="1" /></p>
+<h2 id="1-简介-2">1 简介</h2>
+<p>在提高排序算法性能的方法中，有一类叫做分而治之。我们先研究其中第一种叫做归并排序。归并排序使用递归的方法，不停地把列表一分为二。如果列表是空或只有一个元素，那么就是排好序的（递归基点），如果列表有超过1个的元素，那么切分列表并对两个子列表递归使用归并排序。一旦这两个列表排序完成，称为“归并”的基本操作开始执行。归并是把两个有序列表合并成一个新的有序列表的过程。</p>
+<h2 id="2-算法实现">2 算法实现</h2>
+<p>函数开始查询基点，如果列表长度小于等于1，那么已经是有序的不需要进一步处理，否则，长度大于1，就要用列表的切片操作分拆成左半部和右半部。注意列表的元素数量未必是个偶数，那没关系，长度相关最大也不超过1个。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env python3</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">'Fu Yangzhen'</span>
+
+
+<span class="c"># Created on 2016/9/25</span>
+
+<span class="k">def</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Splitting'</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># 递归结束的判断条件</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">leftHalf</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[:</span><span class="n">mid</span><span class="p">]</span>
+        <span class="n">rightHalf</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">mid</span><span class="p">:]</span>
+
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">leftHalf</span><span class="p">)</span>
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">rightHalf</span><span class="p">)</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">leftHalf</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">rightHalf</span><span class="p">):</span>  <span class="c"># 循环条件保证可以遍历完至少一个Half</span>
+            <span class="k">if</span> <span class="n">leftHalf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">rightHalf</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">leftHalf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rightHalf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">leftHalf</span><span class="p">):</span>  <span class="c"># 若还有没遍历完的Half，就继续遍历</span>
+            <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">leftHalf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c"># 不需要再进行比较，因为只会多出一个最大的元素未排入alist</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">rightHalf</span><span class="p">):</span>  <span class="c"># 右半边同理</span>
+            <span class="n">alist</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">rightHalf</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Merging'</span><span class="p">,</span> <span class="n">alist</span><span class="p">)</span>
+
+
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+</code></pre></div></div>
+<p>程序运行结果如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Splitting</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">21</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">21</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">46</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">46</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">33</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">33</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">26</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">33</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">46</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">35</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">35</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">48</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">48</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">41</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">41</span><span class="p">]</span>
+<span class="n">Splitting</span> <span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">41</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="n">Merging</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+</code></pre></div></div>
+<h2 id="3-性能分析">3 性能分析</h2>
+<p>要分析mergeSort函数，需要考虑函数中两个分立的过程。第一个，把列表一分为二，我们已经在二分查找中计算过了，对于长为<code class="highlighter-rouge">n</code>的列表，需要<code class="highlighter-rouge">logn</code>的时间来切分。第二个是归并过程。列表中每个元素都要被处理并放在有序表中，所有归并操作<code class="highlighter-rouge">n</code>个元素的列表，需要n步操作。这样结果就是，<code class="highlighter-rouge">logn</code>步操作，每步操作包括<code class="highlighter-rouge">n</code>步归并，所以最终为<code class="highlighter-rouge">nlogn</code>。</p>
+
+<p>要注意的是，<code class="highlighter-rouge">mergeSort</code>函数需要额外的内存来保存切出的两个子表，当数据集很大时，问题会变得很严重。</p>
+
+<p>回想列表切片的操作，如果切片大小是k，那么这个操作的性能是<code class="highlighter-rouge">O(k)</code>，为了保证<code class="highlighter-rouge">mergeSort</code>的性能是<code class="highlighter-rouge">O(nlogn)</code> ，我们需要清除切片操作。这样，我们需要简单地将开始和结束的索引值连同列表一起传递给递归过程：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Splitting'</span><span class="p">,</span> <span class="n">alist</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">end</span><span class="o">&gt;</span><span class="n">start</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">leftHalfEnd</span> <span class="o">=</span> <span class="n">start</span><span class="o">+</span><span class="n">mid</span><span class="o">-</span><span class="mi">1</span>
+        <span class="n">rightHalfStart</span> <span class="o">=</span> <span class="n">start</span><span class="o">+</span><span class="n">mid</span>
+
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span><span class="n">start</span><span class="p">,</span><span class="n">leftHalfEnd</span><span class="p">)</span>
+        <span class="n">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span><span class="n">rightHalfStart</span><span class="p">,</span><span class="n">end</span><span class="p">)</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">rightHalfStart</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">tempList</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">start</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">leftHalfEnd</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>  <span class="c"># 循环条件保证可以遍历完至少一个Half</span>
+            <span class="k">if</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+                <span class="n">tempList</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tempList</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">leftHalfEnd</span><span class="p">:</span>  <span class="c"># 若还有没遍历完的Half，就继续遍历</span>
+            <span class="n">tempList</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c"># 不需要再进行比较，因为只会多出一个最大的元素未排入alist</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>  <span class="c"># 右半边同理</span>
+            <span class="n">tempList</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&gt;=</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">alist</span><span class="p">[</span><span class="n">start</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">tempList</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">k</span><span class="o">-=</span><span class="mi">1</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'Merging'</span><span class="p">,</span> <span class="n">alist</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="n">alist</span> <span class="o">=</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+<span class="n">mergeSort</span><span class="p">(</span><span class="n">alist</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">alist</span><span class="p">)</span>
+</code></pre></div></div>
+<blockquote>
+  <p>这里虽然传递了列表的索引来进行递归，免去了切片操作，但是在归并的操作中，还是利用了一个中间列表<code class="highlighter-rouge">tempList</code>来储存排序结果，并在排序后逐个地替换原表的数值，这其实还是增加了时间复杂度，实在是想不到有更好的方法来高效地进行排序操作……</p>
+</blockquote>
+
+<h3 id="31-最优版本">3.1 最优版本</h3>
+<p>下面是墨灵大哥写的申请内存最小的版本，每次申请空间都只有要排序的1/2。优化的关键点是，递归之前别用切片来截半，切片是要申请内存的行为(排序的时候借助<code class="highlighter-rouge">temp list</code>的动作是无法避免的，<code class="highlighter-rouge">temp list</code>只用<code class="highlighter-rouge">排序list</code>的一半长度是极限方法了)，要尽可能地减少这个操作：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">L</span>
+
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+
+    <span class="n">temp_L</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">start</span><span class="p">:</span> <span class="n">mid</span><span class="p">]</span>
+    <span class="n">local</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="n">local</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">temp_L</span><span class="p">):</span>  <span class="c"># 不同于start&lt;end，因为相对而言，后者复杂度更高</span>
+        <span class="k">if</span> <span class="n">mid</span> <span class="o">&gt;=</span> <span class="n">end</span> <span class="ow">or</span> <span class="n">temp_L</span><span class="p">[</span><span class="n">local</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">[</span><span class="n">mid</span><span class="p">]:</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_L</span><span class="p">[</span><span class="n">local</span><span class="p">]</span>
+            <span class="n">local</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span>
+            <span class="n">mid</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">L</span><span class="c">#将排好序的list返回，供上一层的递归使用</span>
+
+
+<span class="n">L</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">mergeSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h1 id="快速排序">快速排序</h1>
+
+<p><img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1475462377205.gif" alt="1" /></p>
+<h2 id="1-简介-3">1 简介</h2>
+<p>快速排序也使用了分而治之的策略来提高性能，而且不需要额外的内存，但是这么做的代价就是，列表不是对半切分的，因而，性能上就有所下降。
+快速排序选择一个数值，一般称为“轴点”，虽然有很多选取轴点的方法，我们还是简单地把列表中第一个元素做为轴点了。轴点的作用是帮助把列表分为两个部分。列表完成后，轴点所在的位置叫做“切分点”，从这一点上把列表分成两部分供后续调用。</p>
+<h2 id="2-算法实现-1">2 算法实现</h2>
+<h3 id="21-一般方式实现">2.1 一般方式实现</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">quickSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">begin</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span>
+        <span class="n">leftMark</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">rightMark</span> <span class="o">=</span> <span class="n">end</span>
+
+        <span class="k">while</span> <span class="n">leftMark</span> <span class="o">&lt;=</span> <span class="n">rightMark</span><span class="p">:</span>
+
+            <span class="k">while</span> <span class="n">leftMark</span> <span class="o">&lt;=</span> <span class="n">rightMark</span> <span class="ow">and</span> <span class="n">L</span><span class="p">[</span><span class="n">leftMark</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">pivot</span><span class="p">:</span>
+                <span class="n">leftMark</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="k">while</span> <span class="n">leftMark</span> <span class="o">&lt;=</span> <span class="n">rightMark</span> <span class="ow">and</span> <span class="n">L</span><span class="p">[</span><span class="n">rightMark</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pivot</span><span class="p">:</span>
+                <span class="n">rightMark</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="k">if</span> <span class="n">leftMark</span> <span class="o">&lt;</span> <span class="n">rightMark</span><span class="p">:</span>  <span class="c"># lM和rM如果交错或者对齐了的话，就没必要互相交换了</span>
+                <span class="n">L</span><span class="p">[</span><span class="n">rightMark</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">leftMark</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">leftMark</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">rightMark</span><span class="p">]</span>
+
+        <span class="n">L</span><span class="p">[</span><span class="n">rightMark</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">rightMark</span><span class="p">]</span>
+
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">rightMark</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">quickSort</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">rightMark</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">L</span>
+</code></pre></div></div>
+<h3 id="22-另一种简单实现">2.2 另一种简单实现</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">quickSort2</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">begin</span> <span class="o">&lt;</span> <span class="n">end</span><span class="p">:</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">begin</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="n">begin</span><span class="p">]</span>
+        <span class="n">quickSort2</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">begin</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">quickSort2</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">L</span>
+</code></pre></div></div>
+<h2 id="3-性能分析-1">3 性能分析</h2>
+<p>为了分析快速排序函数性能，要注意到一个长度为n的列表，如果切分点总是在列表的中间，那么就是要<code class="highlighter-rouge">logn</code>次切分。为了找到切分点，<code class="highlighter-rouge">n</code>个元素都要与轴点作一次比较，结果需要<code class="highlighter-rouge">nlogn</code>。另外，也不需要象归并排序一样消耗额外的内存。不幸的是，在最怀的情况下，切分点不在中间，而是偏左或偏右，生成很不均匀的子表，这种情况下，生成的子表是一个<code class="highlighter-rouge">0</code>个元素，一个<code class="highlighter-rouge">n-1</code>个元素，然后再切分，却生成一个子表是<code class="highlighter-rouge">0</code>个元素，另一个是<code class="highlighter-rouge">n-2</code>个元素等等。结果需要的开销就是<code class="highlighter-rouge">O(n^2)</code>。</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

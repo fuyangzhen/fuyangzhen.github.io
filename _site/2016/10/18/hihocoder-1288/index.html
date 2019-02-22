@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      hihocoder 1288 — font size &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">hihocoder 1288 — font size</h1>
+  <span class="post-date">18 Oct 2016</span>
+  <h2 id="1-描述">1 描述</h2>
+<p>Steven loves reading book on his phone. The book he reads now consists of N paragraphs and the i-th paragraph contains ai characters.</p>
+
+<p>Steven wants to make the characters easier to read, so he decides to increase the font size of characters. But the size of Steven’s phone screen is limited. Its width is W and height is H. As a result, if the font size of characters is S then it can only show ⌊W / S⌋ characters in a line and ⌊H / S⌋ lines in a page. (⌊x⌋ is the largest integer no more than x)</p>
+
+<p>So here’s the question, if Steven wants to control the number of pages no more than P, what’s the maximum font size he can set? Note that paragraphs must start in a new line and there is no empty line between paragraphs.</p>
+
+<!--more-->
+
+<h2 id="2-输入">2 输入</h2>
+<p>Input may contain multiple test cases.</p>
+
+<p>The first line is an integer TASKS, representing the number of test cases.</p>
+
+<p>For each test case, the first line contains four integers N, P, W and H, as described above.</p>
+
+<p>The second line contains N integers a1, a2, … aN, indicating the number of characters in each paragraph.</p>
+
+<p>For all test cases,</p>
+
+<p>1 &lt;= N &lt;= 10^3,</p>
+
+<p>1 &lt;= W, H, ai &lt;= 10^3,</p>
+
+<p>1 &lt;= P &lt;= 10^6,</p>
+
+<p>There is always a way to control the number of pages no more than P.</p>
+
+<h2 id="3-输出">3 输出</h2>
+<p>For each testcase, output a line with an integer Ans, indicating the maximum font size Steven can set.</p>
+
+<h3 id="样例输入">样例输入</h3>
+<p>2<br />
+1 10 4 3<br />
+10<br />
+2 10 4 3<br />
+10 10</p>
+<h3 id="样例输出">样例输出</h3>
+<p>3<br />
+2</p>
+<h2 id="4-实现">4 实现</h2>
+<h3 id="41-暴力">4.1 暴力</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">max_S</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="p">[</span><span class="n">N</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+
+            <span class="k">for</span> <span class="n">S</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">W</span> <span class="o">/</span> <span class="n">S</span><span class="p">)</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">H</span> <span class="o">/</span> <span class="n">S</span><span class="p">)</span>
+                <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">ceil</span><span class="p">(</span><span class="n">ai</span> <span class="o">/</span> <span class="n">cols</span><span class="p">)</span> <span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+                <span class="n">rows</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+                <span class="n">pages</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">rows</span> <span class="o">/</span> <span class="n">row</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">pages</span> <span class="o">&lt;=</span> <span class="n">P</span> <span class="ow">and</span> <span class="n">S</span> <span class="o">&gt;</span> <span class="n">max_S</span><span class="p">:</span>
+                    <span class="n">max_S</span> <span class="o">=</span> <span class="n">S</span>
+            <span class="k">print</span> <span class="n">max_S</span>
+            
+    <span class="k">except</span> <span class="nb">EOFError</span><span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+<h3 id="42-二分">4.2 二分</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+
+            <span class="p">[</span><span class="n">N</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+            <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="nb">raw_input</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()]</span>
+
+
+            <span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">w</span><span class="o">=</span><span class="n">W</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="n">H</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">A</span><span class="p">):</span>
+                <span class="n">cols</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">w</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span>  <span class="c"># 屏幕的宽最多能容纳的字符个数(即屏幕的最多列数)</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">h</span> <span class="o">/</span> <span class="n">s</span><span class="p">)</span>  <span class="c"># 屏幕的高最多能容纳的字符个数(即屏幕的最多行数)</span>
+                <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">ai</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+                    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ceil</span><span class="p">(</span><span class="n">ai</span> <span class="o">/</span> <span class="n">cols</span><span class="p">))</span>  <span class="c"># 各段需要的行数</span>
+                <span class="n">rows</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>  <span class="c"># 需要的总行数</span>
+                <span class="n">pages</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">rows</span> <span class="o">/</span> <span class="n">row</span><span class="p">)</span>  <span class="c"># 需要的页数</span>
+                <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+
+
+            <span class="n">l_S</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">r_S</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">H</span><span class="p">)</span>
+            <span class="n">l_P</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">l_S</span><span class="p">)</span>
+            <span class="n">r_P</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">r_S</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">l_P</span> <span class="o">&gt;</span> <span class="n">P</span><span class="p">:</span>
+                <span class="k">print</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">r_P</span> <span class="o">&gt;</span> <span class="n">P</span> <span class="ow">and</span> <span class="p">(</span><span class="n">l_S</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">r_S</span><span class="p">:</span>
+                    <span class="n">mid_S</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">floor</span><span class="p">((</span><span class="n">l_S</span> <span class="o">+</span> <span class="n">r_S</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+                    <span class="n">mid_P</span> <span class="o">=</span> <span class="n">F</span><span class="p">(</span><span class="n">mid_S</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">mid_P</span> <span class="o">&lt;</span> <span class="n">P</span><span class="p">:</span>
+                        <span class="n">l_S</span> <span class="o">=</span> <span class="n">mid_S</span>
+                        <span class="n">l_P</span> <span class="o">=</span> <span class="n">mid_P</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">r_S</span> <span class="o">=</span> <span class="n">mid_S</span>
+                        <span class="n">r_P</span> <span class="o">=</span> <span class="n">mid_P</span>
+                <span class="k">if</span> <span class="n">r_P</span> <span class="o">&lt;=</span> <span class="n">P</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="n">r_S</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span> <span class="n">l_S</span>
+
+    <span class="k">except</span> <span class="nb">EOFError</span><span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+<h1 id="总结">总结</h1>
+<ol>
+  <li>为了快速AC，应该先尝试下暴力算法，这一题给的<code class="highlighter-rouge">P</code>的范围不超过<code class="highlighter-rouge">10^6</code>,并不大，所以能暴力则暴力，考试不是项目，没必要给出最优解！</li>
+  <li>在二分的时候，没必要设计得特别精巧，把所有情况考虑完全了，可以多写点逻辑流程。思考最精巧的逻辑循环判断是完全浪费时间，考试就是为了能快速实现！</li>
+</ol>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Unorder list &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Unorder list</h1>
+  <span class="post-date">26 Jul 2016</span>
+  <!--more-->
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env python3</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">'Fu Yangzhen'</span>
+
+
+<span class="c"># python的list类是一种无序列表,表中的元素只包含其相对其他元素的位置信息</span>
+<span class="c"># 节点（Node）是实现链表的基本模块，每个节点至少包括两个重要部分。</span>
+<span class="c"># 首先，包含节点自身的数据，称为“数据域”。其次，包括对下一个节点的“引用”</span>
+<span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initdata</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">initdata</span>
+		<span class="bp">self</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="bp">None</span>
+
+	<span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+
+	<span class="k">def</span> <span class="nf">getNext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="nb">next</span>
+
+	<span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newdata</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">newdata</span>
+
+	<span class="k">def</span> <span class="nf">setNext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newnext</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="nb">next</span> <span class="o">=</span> <span class="n">newnext</span>
+
+
+<span class="k">class</span> <span class="nc">UnorderList</span><span class="p">:</span>
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="bp">None</span>
+
+	<span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">==</span> <span class="bp">None</span>
+
+	<span class="k">def</span> <span class="nf">append</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+		<span class="n">temp</span><span class="o">.</span><span class="n">setNext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head</span><span class="p">)</span>  <span class="c"># temp的next索引交给旧的head索引</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">temp</span>  <span class="c"># 再把新head索引指向temp</span>
+
+	<span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+		<span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+			<span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+		<span class="k">return</span> <span class="n">count</span>
+
+	<span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+		<span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+		<span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span> <span class="o">==</span> <span class="n">num</span><span class="p">:</span>
+				<span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+				<span class="k">break</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+		<span class="k">return</span> <span class="n">found</span>
+
+	<span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+		<span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+		<span class="n">previous</span> <span class="o">=</span> <span class="bp">None</span>
+		<span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span> <span class="o">==</span> <span class="n">num</span><span class="p">:</span>
+				<span class="k">if</span> <span class="n">previous</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+					<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">previous</span><span class="o">.</span><span class="n">setNext</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">())</span>
+				<span class="k">break</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+				<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+
+	<span class="k">def</span> <span class="nf">show_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+		<span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+			<span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">getData</span><span class="p">())</span>
+			<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+		<span class="k">return</span> <span class="n">l</span>
+
+	<span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+		<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">previous</span> <span class="o">=</span> <span class="bp">None</span>
+		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+		<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">index</span><span class="p">:</span>
+			<span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+			<span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+			<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+		<span class="k">if</span> <span class="n">previous</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">temp</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+			<span class="n">temp</span><span class="o">.</span><span class="n">setNext</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+			<span class="n">previous</span><span class="o">.</span><span class="n">setNext</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+		<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+		<span class="k">while</span> <span class="n">current</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">current</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span> <span class="o">==</span> <span class="n">num</span><span class="p">:</span>
+				<span class="k">return</span> <span class="n">count</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+				<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+		<span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">'</span><span class="si">%</span><span class="s">s is not in list'</span> <span class="o">%</span> <span class="n">num</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+		<span class="n">size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+		<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">head</span>
+		<span class="n">previous</span> <span class="o">=</span> <span class="bp">None</span>
+		<span class="k">if</span> <span class="o">-</span><span class="n">size</span> <span class="o">&lt;=</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+			<span class="n">site</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">index</span><span class="p">)</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">index</span>
+			<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="n">site</span><span class="p">:</span>
+				<span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+				<span class="n">previous</span> <span class="o">=</span> <span class="n">current</span>
+				<span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+			<span class="k">if</span> <span class="n">previous</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">()</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="n">previous</span><span class="o">.</span><span class="n">setNext</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">getNext</span><span class="p">())</span>
+			<span class="k">return</span> <span class="n">current</span><span class="o">.</span><span class="n">getData</span><span class="p">()</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="nb">IndexError</span><span class="p">(</span><span class="s">'pop index out of range'</span><span class="p">)</span>
+
+
+<span class="c"># 链表类不包括任何节点对象，相反，它只包括对列表第一个元素的引用。</span>
+<span class="n">mylist</span> <span class="o">=</span> <span class="n">UnorderList</span><span class="p">()</span>
+
+<span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">77</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'size:'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'search 93:'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">93</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'search 100:'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'========================='</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'append and search 100:'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'size:'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'========================='</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'remove 100:'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'remove 31:'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="c"># insert,index和pop留为练习</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">666</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'insert(2, 666):'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">233</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'insert(0, 233)'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'========================='</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'pop(0):'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'pop():'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mylist</span><span class="o">.</span><span class="n">show_list</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'========================='</span><span class="p">)</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">93</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'index(93):'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">93</span><span class="p">))</span>
+<span class="n">mylist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'index(17):'</span><span class="p">,</span> <span class="n">mylist</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">17</span><span class="p">))</span>
+
+<span class="c"># [93, 26, 93, 17, 77, 31]</span>
+<span class="c"># size: 6</span>
+<span class="c"># search 93: True</span>
+<span class="c"># search 100: False</span>
+<span class="c"># =========================</span>
+<span class="c"># append and search 100: True</span>
+<span class="c"># [100, 93, 26, 93, 17, 77, 31]</span>
+<span class="c"># size: 7</span>
+<span class="c"># =========================</span>
+<span class="c"># remove 100: [93, 26, 93, 17, 77, 31]</span>
+<span class="c"># remove 31: [93, 26, 93, 17, 77]</span>
+<span class="c"># insert(2, 666): [93, 26, 666, 93, 17, 77]</span>
+<span class="c"># insert(0, 233) [233, 93, 26, 666, 93, 17, 77]</span>
+<span class="c"># =========================</span>
+<span class="c"># pop(0): 233</span>
+<span class="c"># [93, 26, 666, 93, 17, 77]</span>
+<span class="c"># pop(): 77</span>
+<span class="c"># [93, 26, 666, 93, 17]</span>
+<span class="c"># =========================</span>
+<span class="c"># index(93): 0</span>
+<span class="c"># index(17): 4</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

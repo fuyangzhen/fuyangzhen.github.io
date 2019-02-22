@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Young Hook &middot; Anything I do that may help others, I'll post it here.
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/24/kaggle-mnist/">
+        Kaggle - MNIST手写体识别
+      </a>
+    </h1>
+
+    <span class="post-date">24 Oct 2016</span>
+
+    <h2 id="0-加载所需用的库">0 加载所需用的库</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/24/kaggle-mnist/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/24/hihocoder-1037/">
+        hihocoder 1037 — 数字三角形
+      </a>
+    </h1>
+
+    <span class="post-date">24 Oct 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<h3 id="问题描述">问题描述</h3>
+<p>一个被称为“数字三角形”的n(n不超过200)层迷宫，这个迷宫的第i层有i个房间，分别编号为1..i。除去最后一层的房间，每一个房间都会有一些通往下一层的房间的楼梯，用符号来表示的话，就是从第i层的编号为j的房间出发会有两条路，一条通向第i+1层的编号为j的房间，另一条会通向第i+1层的编号为j+1的房间，而最后一层的所有房间都只有一条离开迷宫的道路。这样的道路都是单向的，也就是说当沿着这些道路前往下一层的房间或者离开迷宫之后，小Ho没有办法再次回到这个房间。迷宫里同时只会有一个参与者，而在每个参与者进入这个迷宫的时候，每个房间里都会生成一定数量的奖券，这些奖券可以在通过迷宫之后兑换各种奖品。小Ho的起点在第1层的编号为1的房间，现在小Ho悄悄向其他参与者弄清楚了每个房间里的奖券数量，希望小Hi帮他计算出他最多能获得多少奖券。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/24/hihocoder-1037/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/24/hihocoder-1399/">
+        hihocoder 1399 - shortening sequence
+      </a>
+    </h1>
+
+    <span class="post-date">24 Oct 2016</span>
+
+    <h2 id="1-描述">1 描述</h2>
+<p>There is an integer array A1, A2 …AN. Each round you may choose two adjacent integers. If their sum is an odd number, the two adjacent integers can be deleted.</p>
+
+<p>Can you work out the minimum length of the final array after elaborate deletions?</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/24/hihocoder-1399/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/18/hihocoder-1288/">
+        hihocoder 1288 — font size
+      </a>
+    </h1>
+
+    <span class="post-date">18 Oct 2016</span>
+
+    <h2 id="1-描述">1 描述</h2>
+<p>Steven loves reading book on his phone. The book he reads now consists of N paragraphs and the i-th paragraph contains ai characters.</p>
+
+<p>Steven wants to make the characters easier to read, so he decides to increase the font size of characters. But the size of Steven’s phone screen is limited. Its width is W and height is H. As a result, if the font size of characters is S then it can only show ⌊W / S⌋ characters in a line and ⌊H / S⌋ lines in a page. (⌊x⌋ is the largest integer no more than x)</p>
+
+<p>So here’s the question, if Steven wants to control the number of pages no more than P, what’s the maximum font size he can set? Note that paragraphs must start in a new line and there is no empty line between paragraphs.</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/18/hihocoder-1288/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/16/hihocoder-1148/">
+        hihocoder 1148 — 2月29日
+      </a>
+    </h1>
+
+    <span class="post-date">16 Oct 2016</span>
+
+    <h2 id="1-描述">1 描述</h2>
+<p>给定两个日期，计算这两个日期之间有多少个2月29日（包括起始日期）。</p>
+
+<p>只有闰年有2月29日，满足以下一个条件的年份为闰年：</p>
+
+<ol>
+  <li>
+    <p>年份能被4整除但不能被100整除</p>
+  </li>
+  <li>
+    <p>年份能被400整除</p>
+  </li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/16/hihocoder-1148/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page4">Older</a>
+  
+  
+    
+      <a class="pagination-item newer" href="/page2">Newer</a>
+    
+  
+</div>
+
+        
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

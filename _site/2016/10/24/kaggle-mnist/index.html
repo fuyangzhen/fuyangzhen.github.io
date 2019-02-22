@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Kaggle - MNIST手写体识别 &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Kaggle - MNIST手写体识别</h1>
+  <span class="post-date">24 Oct 2016</span>
+  <h2 id="0-加载所需用的库">0 加载所需用的库</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+<!--more-->
+
+<h2 id="1-数据整理">1 数据整理</h2>
+<p>label的<code class="highlighter-rouge">one_hot</code>编码、归一化并将train数据集后20%作为测试集：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">### data ###</span>
+
+<span class="n">train_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"/Volumes/X-leisure/Kaggle/MNIST识别/train.csv"</span><span class="p">)</span>
+
+<span class="c"># normalization</span>
+<span class="c"># normal_train = train_df.ix[:,1:].apply(lambda x:x/255,axis=0) # more elegent</span>
+<span class="n">normal_train</span> <span class="o">=</span> <span class="n">train_df</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+
+<span class="c"># label's one-hot encoding</span>
+<span class="n">train_dummies_label</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">train_df</span><span class="p">[</span><span class="s">'label'</span><span class="p">])</span>
+<span class="n">train_oneHot_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_df</span><span class="p">[</span><span class="s">'label'</span><span class="p">],</span><span class="n">train_dummies_label</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">new_train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">train_dummies_label</span><span class="p">,</span><span class="n">normal_train</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s">'float32'</span><span class="p">)</span>
+<span class="c"># save the one-hot label and normalized data</span>
+<span class="c"># new_train_data.to_csv('/Volumes/X-leisure/Kaggle/MNIST识别/new_train_data.csv', index=False)</span>
+<span class="c"># new_train_data = pd.read_csv('/Volumes/X-leisure/Kaggle/MNIST识别/new_train_data.csv')</span>
+
+<span class="c"># dataframe to ndarray</span>
+<span class="n">test_images</span> <span class="o">=</span> <span class="n">new_train_data</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">33900</span><span class="p">:,</span><span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">new_train_data</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">33900</span><span class="p">:,:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</code></pre></div></div>
+<h2 id="2-tensorflow模型建立">2 tensorflow模型建立</h2>
+<p>假设函数采用softmax，loss采用cross_entropy：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">### model ###</span>
+<span class="k">def</span> <span class="nf">add_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">in_size</span><span class="p">,</span> <span class="n">out_size</span><span class="p">,</span> <span class="n">activaton_function</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span><span class="n">name_W</span><span class="o">=</span><span class="s">'Weights'</span><span class="p">,</span><span class="n">name_b</span><span class="o">=</span><span class="s">'biases'</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">W</span><span class="p">,</span> <span class="n">b</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">random_normal</span><span class="p">([</span><span class="n">in_size</span><span class="p">,</span> <span class="n">out_size</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name_W</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_size</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name_b</span><span class="p">)</span>
+    <span class="n">Wx_plus_b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">if</span> <span class="n">activaton_function</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">Wx_plus_b</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">activaton_function</span><span class="p">(</span><span class="n">Wx_plus_b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">outputs</span>
+
+
+<span class="k">def</span> <span class="nf">calc_accuracy</span><span class="p">(</span><span class="n">v_xs</span><span class="p">,</span> <span class="n">v_ys</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">y_pre</span>
+    <span class="n">y_pre_value</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">y_pre</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">v_xs</span><span class="p">})</span>
+    <span class="n">correct_prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_pre_value</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">v_ys</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">correct_prediction</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">v_xs</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">v_ys</span><span class="p">})</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="c"># define placeholder</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">784</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">y_pre</span> <span class="o">=</span> <span class="n">add_layer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">784</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">activaton_function</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax</span><span class="p">)</span>
+
+<span class="c"># the error between prediction and real data</span>
+<span class="n">cross_entropy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="o">-</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">y</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">y_pre</span><span class="p">),</span> <span class="n">reduction_indices</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">train_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cross_entropy</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="3-模型的训练及保存">3 模型的训练及保存</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">time</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">initialize_all_variables</span><span class="p">())</span>
+<span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">340</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">batch_xs</span> <span class="o">=</span> <span class="n">new_train_data</span><span class="o">.</span><span class="n">ix</span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">340</span><span class="o">*</span><span class="mi">100</span><span class="p">:</span><span class="n">i</span><span class="o">%</span><span class="mi">340</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">batch_ys</span> <span class="o">=</span> <span class="n">new_train_data</span><span class="o">.</span><span class="n">ix</span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">340</span><span class="o">*</span><span class="mi">100</span><span class="p">:</span><span class="n">i</span><span class="o">%</span><span class="mi">340</span><span class="o">*</span><span class="mi">100</span><span class="p">,:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="c">#     if i%421 == 0:</span>
+<span class="c">#         continue</span>
+<span class="c">#     else:</span>
+<span class="c">#         batch_xs = new_train_data.ix[(i-1)%421*100:i%421*100,10:].values</span>
+<span class="c">#         batch_ys = new_train_data.ix[(i-1)%421*100:i%421*100,:10].values</span>
+        <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_step</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">batch_xs</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">batch_ys</span><span class="p">})</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">now_accuracy</span> <span class="o">=</span> <span class="n">calc_accuracy</span><span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'train_step: </span><span class="si">%</span><span class="s">s   now_accuracy: </span><span class="si">%</span><span class="s">s'</span><span class="o">%</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">now_accuracy</span><span class="p">))</span>
+
+
+<span class="n">save_path</span> <span class="o">=</span> <span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s">'/Users/fuyangzhen/Desktop/kaggle_MNIST_net.ckpt'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'Save file to path:'</span><span class="p">,</span> <span class="n">save_path</span><span class="p">)</span>
+</code></pre></div></div>
+<p>结果如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">train_step</span><span class="p">:</span> <span class="mi">1000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.877901</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">2000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.897284</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">3000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.906173</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">4000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.912099</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">5000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.917531</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">6000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.915309</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">7000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.917531</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">8000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.92284</span>
+<span class="n">train_step</span><span class="p">:</span> <span class="mi">9000</span>   <span class="n">now_accuracy</span><span class="p">:</span> <span class="mf">0.923951</span>
+<span class="n">Save</span> <span class="nb">file</span> <span class="n">to</span> <span class="n">path</span><span class="p">:</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">fuyangzhen</span><span class="o">/</span><span class="n">Desktop</span><span class="o">/</span><span class="n">kaggle_MNIST_net</span><span class="o">.</span><span class="n">ckpt</span>
+<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mf">35.3</span> <span class="n">s</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mf">3.22</span> <span class="n">s</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mf">38.5</span> <span class="n">s</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">29.1</span> <span class="n">s</span>
+</code></pre></div></div>
+<h2 id="4-预测test集合">4 预测test集合</h2>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">### test ###</span>
+<span class="n">test_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"/Volumes/X-leisure/Kaggle/MNIST识别/test.csv"</span><span class="p">)</span>
+<span class="n">test_val</span> <span class="o">=</span> <span class="n">test_df</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">y_pre</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="n">test_val</span><span class="p">})</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">result_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">28001</span><span class="p">),</span><span class="n">result</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s">'ImageId'</span><span class="p">,</span><span class="s">'Label'</span><span class="p">])</span>
+<span class="n">result_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">result_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s">'/Volumes/X-leisure/Kaggle/MNIST识别/result1.csv'</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+<h3 id="ps加载已保存模型继续使用">Ps.加载已保存模型继续使用</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">### saver restore ### </span>
+<span class="c"># W = tf.Variable(tf.zeros([784, 10]), dtype=tf.float32, name='Weights')</span>
+<span class="c"># b = tf.Variable(tf.zeros([1, 10]), dtype=tf.float32, name='biases')</span>
+<span class="c"># saver = tf.train.Saver()</span>
+<span class="c"># with tf.Session() as sess:</span>
+<span class="c">#     saver.restore(sess,'/Users/fuyangzhen/Desktop/kaggle_MNIST_net.ckpt')</span>
+<span class="c">#     print('W:',sess.run(W))</span>
+<span class="c">#     print('b:',sess.run(b))</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

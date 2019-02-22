@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      hihocoder 1148 — trie &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">hihocoder 1148 — trie</h1>
+  <span class="post-date">12 Oct 2016</span>
+  <h2 id="1-trie树">1 Trie树</h2>
+<p>trie，又称前缀树或字典树。它利用字符串的公共前缀来节约存储空间。
+性质:</p>
+
+<ol>
+  <li>根节点不包含字符，除根节点外的每个节点只包含一个字符。</li>
+  <li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串。</li>
+  <li>每个节点的所有子节点包含的字符串不相同。</li>
+</ol>
+
+<p>应用:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">词频统计</code>:比直接用hash节省空间</li>
+  <li><code class="highlighter-rouge">搜索提示</code>:输入前缀的时候提示可以构成的词</li>
+  <li><code class="highlighter-rouge">作为辅助结构</code>:如后缀树，AC自动机等的辅助结构</li>
+</ol>
+
+<!--more-->
+<h2 id="2-hihocode题目">2 hihocode题目</h2>
+<p>以下题目来自：<a href="http://hihocoder.com/problemset/problem/1148">hihocode</a></p>
+<h3 id="输入">输入</h3>
+<p>输入的第一行为一个正整数n，表示词典的大小，其后n行，每一行一个单词（不保证是英文单词，也有可能是火星文单词哦），单词由不超过10个的小写英文字母组成，可能存在相同的单词，此时应将其视作不同的单词。接下来的一行为一个正整数m，表示小Hi询问的次数，其后m行，每一行一个字符串，该字符串由不超过10个的小写英文字母组成，表示小Hi的一个询问。</p>
+
+<p>在20%的数据中n, m&lt;=10，词典的字母表大小&lt;=2.</p>
+
+<p>在60%的数据中n, m&lt;=1000，词典的字母表大小&lt;=5.</p>
+
+<p>在100%的数据中n, m&lt;=100000，词典的字母表大小&lt;=26.</p>
+
+<h3 id="输出">输出</h3>
+<p>对于小Hi的每一个询问，输出一个整数Ans,表示词典中以小Hi给出的字符串为前缀的单词的个数。</p>
+
+<h3 id="样例输入">样例输入</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">5</span>
+<span class="n">babaab</span>
+<span class="n">babbbaaaa</span>
+<span class="n">abba</span>
+<span class="n">aaaaabaa</span>
+<span class="n">babaababb</span>
+<span class="mi">5</span>
+<span class="n">babb</span>
+<span class="n">baabaaa</span>
+<span class="n">bab</span>
+<span class="n">bb</span>
+<span class="n">bbabbaab</span>
+</code></pre></div></div>
+<h3 id="样例输出">样例输出</h3>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span>
+<span class="mi">0</span>
+<span class="mi">3</span>
+<span class="mi">0</span>
+<span class="mi">0</span>
+</code></pre></div></div>
+<h2 id="算法实现">算法实现</h2>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TrieNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isWord</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="k">class</span> <span class="nc">Trie</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">child</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">TrieNode</span><span class="p">()</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">child</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">child</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">size</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">isWord</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">isWord</span>
+
+    <span class="k">def</span> <span class="nf">startsWith</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">prefix</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">cum_startsWith</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s">''</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">prefix</span> <span class="o">==</span> <span class="s">''</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">size</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+            <span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">prefix</span><span class="p">:</span>
+                <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">size</span>
+            
+<span class="c"># hihocode 规定的测试输入输出结构：            </span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
+        <span class="n">myTrie</span> <span class="o">=</span> <span class="n">Trie</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+            <span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">print</span> <span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">())</span>
+    <span class="k">except</span> <span class="nb">EOFError</span><span class="p">:</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+<h2 id="4-测试">4 测试</h2>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">'hello'</span><span class="p">)</span>
+<span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">'have'</span><span class="p">)</span>
+<span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">'z'</span><span class="p">)</span>
+<span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">'fun'</span><span class="p">)</span>
+<span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">'function'</span><span class="p">)</span>
+<span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">'func'</span><span class="p">)</span>
+<span class="n">myTrie</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">'func'</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">(</span><span class="s">'fun'</span><span class="p">))</span><span class="c">#4</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">(</span><span class="s">'fu'</span><span class="p">))</span><span class="c">#4</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">(</span><span class="s">'f'</span><span class="p">))</span><span class="c">#4</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">(</span><span class="s">'z'</span><span class="p">))</span><span class="c">#1</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">(</span><span class="s">'xx'</span><span class="p">))</span><span class="c">#0</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">())</span><span class="c">#7</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">cum_startsWith</span><span class="p">(</span><span class="s">''</span><span class="p">))</span><span class="c">#7</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">startsWith</span><span class="p">(</span><span class="s">'x'</span><span class="p">))</span><span class="c">#False</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'x'</span><span class="p">))</span><span class="c">#False</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">startsWith</span><span class="p">(</span><span class="s">'ha'</span><span class="p">))</span><span class="c">#True</span>
+<span class="k">print</span><span class="p">(</span><span class="n">myTrie</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">'ha'</span><span class="p">))</span><span class="c">#False</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

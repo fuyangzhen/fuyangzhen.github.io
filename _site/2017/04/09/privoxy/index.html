@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理 &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理</h1>
+  <span class="post-date">09 Apr 2017</span>
+  <p><strong><em>环境：OS X + Shadowsocks</em></strong><br />
+<strong><em>问题：虽然装有Shadowsocks，但是Twitter的pythonAPI仍无法使用</em></strong></p>
+
+<p>在使用Twitter的pythonAPI时，发现在Shadowsocks开启的情况下，python的爬虫无法访问使用Twitter，此处整合了几个零散方法，分别在终端内全局代理和脚本内单独代理：</p>
+
+<!--more-->
+<h2 id="1-终端内代理">1 终端内代理</h2>
+<p>方法来自<a href="https://segmentfault.com/a/1190000008848001">Fish</a></p>
+
+<ul>
+  <li>下载安装<a href="http://www.privoxy.org">privoxy</a></li>
+  <li>修改<code class="highlighter-rouge">/usr/local/etc/privoxy/config</code>路径下的配置文件：打开config文件，直接在最末尾加上</li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listen-address 0.0.0.0:8118
+forward-socks5 / 127.0.0.1:1080 .
+</code></pre></div></div>
+<blockquote>
+  <p>1080是Shadowsocks代理的端口（也不一定是1080），8118是开启http代理的端口。使用0.0.0.0即可在局域网内使用此代理，如只想本机使用，使用127.0.0.1</p>
+</blockquote>
+
+<ul>
+  <li>打开终端，启动Privoxy：<code class="highlighter-rouge">sudo /usr/local/sbin/privoxy /usr/local/etc/privoxy/config</code></li>
+  <li>验证是否成功，在终端中输入<code class="highlighter-rouge">netstat -an | grep 8118</code>，如出现如下结果表示已经成功:<code class="highlighter-rouge">tcp4 0 0 *.8118 *.* LISTEN</code></li>
+  <li>终端内执行</li>
+</ul>
+
+<blockquote>
+  <p>export http_proxy=’http://127.0.0.1:8118’<br />
+export https_proxy=’http://127.0.0.1:8118’</p>
+</blockquote>
+
+<ul>
+  <li>终端内输入<code class="highlighter-rouge"> http www.youtube.com</code>测试代理效果</li>
+  <li>用完如需关闭，方法如下：<code class="highlighter-rouge">sudo /Applications/Privoxy/stopPrivoxy.sh</code></li>
+</ul>
+
+<p>💡Ps.如果按此流程，爬虫仍然无法访问的话，可能是<code class="highlighter-rouge">config</code>配置文件仍有问题，可以点击下载 <a href="http://localhost:4000/assets/Privoxy_config">我的config</a> 直接替换掉你电脑中上诉路径下Privoxy的<code class="highlighter-rouge">config</code>(注意:文件名字要修改保持为<code class="highlighter-rouge">config</code>不变)</p>
+<h2 id="2-py脚本内代理">2 py脚本内代理</h2>
+<p>方法来自<a href="https://segmentfault.com/q/1010000008986220">techstay</a>:</p>
+<blockquote>
+  <p>第一种方式是使用Python3的urllib标准库。第二种是利用非常好用的requests库。headers必须加，因为不加谷歌返回来的不知道什么编码，没办法用UTF8解码</p>
+</blockquote>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="n">request</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'https'</span><span class="p">:</span> <span class="s">'https://127.0.0.1:1080'</span><span class="p">,</span>
+    <span class="s">'http'</span><span class="p">:</span> <span class="s">'http://127.0.0.1:1080'</span>
+<span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'user-agent'</span><span class="p">:</span> <span class="s">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'</span>
+<span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'--------------使用urllib--------------'</span><span class="p">)</span>
+<span class="n">google_url</span> <span class="o">=</span> <span class="s">'https://www.google.com'</span>
+<span class="n">opener</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">(</span><span class="n">proxies</span><span class="p">))</span>
+<span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
+
+<span class="n">req</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">google_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'--------------使用requests--------------'</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">google_url</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

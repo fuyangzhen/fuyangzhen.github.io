@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Decision tree - ID3 &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Decision tree - ID3</h1>
+  <span class="post-date">17 Sep 2016</span>
+  <h2 id="1-简介">1 简介</h2>
+
+<blockquote>
+  <p>ID3算法（Iterative Dichotomiser 3 迭代二叉树3代)是一个由Ross Quinlan发明的用于<a href="https://zh.wikipedia.org/wiki/决策树">决策树</a>的算法。<br />
+这个算法是建立在<a href="https://zh.wikipedia.org/wiki/奥卡姆剃刀">奥卡姆剃刀</a>的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个<a href="https://zh.wikipedia.org/wiki/启发法">启发式算法</a>。奥卡姆剃刀阐述了一个信息熵的概念：</p>
+</blockquote>
+<div align="center">
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/df2cbb3a4327afabc4ecca75e9a2db379a35be73" alt="1469499283270" />
+</div>
+<p>这个ID3算法可以归纳为以下几点:</p>
+
+<blockquote>
+  <ul>
+    <li>使用所有没有使用的属性并计算与之相关的样本熵值</li>
+    <li>选取其中熵值最小的属性</li>
+    <li>生成包含该属性的节点</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>还有其他决策树的构造算法，最流行的是CART和C4.5。关于ID3算法的实现可以参考C4.5算法，它同时也是ID3的升级版。</p>
+</blockquote>
+
+<p>以上介绍来自维基百科。</p>
+
+<!--more-->
+<h2 id="2-代码实现">2 代码实现</h2>
+<p>源码来自[<机器学习实战>](https://book.douban.com/subject/24703171/)ch03,本文对其进行必要的整理、注释及修订。</机器学习实战></p>
+<h3 id="21-计算信息熵">2.1 计算信息熵</h3>
+<p>信息熵计算函数：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#=======================================================================计算信息熵</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+
+<span class="k">def</span> <span class="nf">calcShannonEnt</span><span class="p">(</span><span class="n">dataSet</span><span class="p">):</span>
+    <span class="n">numEntries</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataSet</span><span class="p">)</span>
+    <span class="n">labelCounts</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">featVec</span> <span class="ow">in</span> <span class="n">dataSet</span><span class="p">:</span>
+        <span class="n">currentLabel</span><span class="o">=</span><span class="n">featVec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">labelCounts</span><span class="p">[</span><span class="n">currentLabel</span><span class="p">]</span><span class="o">=</span><span class="n">labelCounts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">currentLabel</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">shannonEnt</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">labelCounts</span><span class="p">:</span>
+        <span class="n">prob</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">labelCounts</span><span class="p">[</span><span class="n">key</span><span class="p">])</span><span class="o">/</span><span class="n">numEntries</span>
+        <span class="n">shannonEnt</span><span class="o">-=</span><span class="n">prob</span><span class="o">*</span><span class="n">log</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">shannonEnt</span>
+</code></pre></div></div>
+<p>测试信息熵计算函数：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#================================================================测试用数据生成函数</span>
+<span class="k">def</span> <span class="nf">createDataSet</span><span class="p">():</span>
+    <span class="n">dataSet</span><span class="o">=</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">'yes'</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">'yes'</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">'no'</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">'no'</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">'no'</span><span class="p">]]</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s">'no surfacing'</span><span class="p">,</span><span class="s">'flippers'</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">dataSet</span><span class="p">,</span><span class="n">labels</span>
+
+<span class="n">myDat</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">createDataSet</span><span class="p">()</span>
+<span class="n">calcShannonEnt</span><span class="p">(</span><span class="n">myDat</span><span class="p">)</span><span class="c">#0.9709505944546686</span>
+</code></pre></div></div>
+<h3 id="22-选择最好的数据集划分方式">2.2 选择最好的数据集划分方式</h3>
+<p>按照指定的特征索引划分样本：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#=============================================================按照指定特征划分数据集</span>
+<span class="k">def</span> <span class="nf">splitDataSet</span><span class="p">(</span><span class="n">dataSet</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">retDataSet</span><span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">featVec</span> <span class="ow">in</span> <span class="n">dataSet</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">featVec</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span><span class="o">==</span><span class="n">value</span><span class="p">:</span>
+            <span class="n">readucedFeatVec</span><span class="o">=</span><span class="n">featVec</span><span class="p">[:</span><span class="n">axis</span><span class="p">]</span>
+            <span class="n">readucedFeatVec</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">featVec</span><span class="p">[</span><span class="n">axis</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="n">retDataSet</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">readucedFeatVec</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">retDataSet</span>
+
+<span class="n">splitDataSet</span><span class="p">(</span><span class="n">myDat</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="c">#[[1, 'yes'], [1, 'yes'], [0, 'no']]</span>
+</code></pre></div></div>
+<p>选出在当前样本集的各个特征中能最使<code class="highlighter-rouge">初始的信息</code>增益达到最高的那个特征：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#===========================================================选择最好的数据集划分方式</span>
+<span class="k">def</span> <span class="nf">chooseBestFeatureToSplit</span><span class="p">(</span><span class="n">dataSet</span><span class="p">):</span>
+    <span class="n">numFeatures</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dataSet</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">baseEntropy</span><span class="o">=</span><span class="n">calcShannonEnt</span><span class="p">(</span><span class="n">dataSet</span><span class="p">)</span>
+    <span class="n">baseInfoGain</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span><span class="n">bestFeature</span><span class="o">=-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numFeatures</span><span class="p">):</span>
+        <span class="n">featList</span><span class="o">=</span><span class="p">[</span><span class="n">example</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">dataSet</span><span class="p">]</span>
+        <span class="n">uniqueVals</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">featList</span><span class="p">)</span><span class="c">#Ps.从列表创建集合是python中得到列表唯一元素的 最快方法</span>
+        <span class="n">newEntropy</span><span class="o">=</span><span class="mf">0.0</span>
+        <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">uniqueVals</span><span class="p">:</span>
+            <span class="n">subDatSet</span><span class="o">=</span><span class="n">splitDataSet</span><span class="p">(</span><span class="n">dataSet</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">prob</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">subDatSet</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataSet</span><span class="p">))</span>
+            <span class="n">newEntropy</span><span class="o">+=</span><span class="n">prob</span><span class="o">*</span><span class="n">calcShannonEnt</span><span class="p">(</span><span class="n">subDatSet</span><span class="p">)</span>
+        <span class="n">infoGain</span><span class="o">=</span><span class="n">baseEntropy</span><span class="o">-</span><span class="n">newEntropy</span>
+        <span class="k">if</span> <span class="n">infoGain</span><span class="o">&gt;</span><span class="n">baseInfoGain</span><span class="p">:</span><span class="c">#信息增益是熵的减少，即数据无序度的减少。减少得越多越好</span>
+            <span class="n">baseInfoGain</span><span class="o">=</span><span class="n">infoGain</span>
+            <span class="n">bestFeature</span><span class="o">=</span><span class="n">i</span>
+    <span class="k">return</span> <span class="n">bestFeature</span>
+</code></pre></div></div>
+<h3 id="23-递归构建决策树">2.3 递归构建决策树</h3>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#===================================================================递归构建决策树</span>
+<span class="kn">import</span> <span class="nn">operator</span>
+<span class="k">def</span> <span class="nf">majorityCnt</span><span class="p">(</span><span class="n">classList</span><span class="p">):</span><span class="c">#各类型的样本都有时，个数多的决定当前样本集的类型</span>
+    <span class="n">classCount</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">vote</span> <span class="ow">in</span> <span class="n">classList</span><span class="p">:</span>
+        <span class="n">classCount</span><span class="p">[</span><span class="n">vote</span><span class="p">]</span><span class="o">=</span><span class="n">classList</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">vote</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">sortedClassCount</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">classCount</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                            <span class="n">key</span><span class="o">=</span><span class="n">operator</span><span class="o">.</span><span class="n">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sortedClassCount</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">createTree</span><span class="p">(</span><span class="n">dataSet</span><span class="p">,</span><span class="n">labels</span><span class="p">):</span>
+    <span class="n">classList</span><span class="o">=</span><span class="p">[</span><span class="n">example</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">dataSet</span><span class="p">]</span><span class="c">#收集当前的class种类名称</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">classList</span><span class="p">))</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span><span class="c">#只有一个种类时，就返回该种类名称，停止递归</span>
+        <span class="k">return</span> <span class="n">classList</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataSet</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span><span class="c">#遍历完所有的特征了,只剩下class列，返回最多的种类名字，停止递归</span>
+        <span class="k">return</span> <span class="n">majorityCnt</span><span class="p">(</span><span class="n">classList</span><span class="p">)</span>
+    <span class="n">bestFeat</span><span class="o">=</span><span class="n">chooseBestFeatureToSplit</span><span class="p">(</span><span class="n">dataSet</span><span class="p">)</span><span class="c">#先找到信息增益最优的特征</span>
+    <span class="n">bestFeatLabel</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">bestFeat</span><span class="p">]</span><span class="c">#该最优特征的名字</span>
+    <span class="n">myTree</span><span class="o">=</span><span class="p">{</span><span class="n">bestFeatLabel</span><span class="p">:{}}</span><span class="c">#以此特征来划分</span>
+    <span class="k">del</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">bestFeat</span><span class="p">])</span>
+    <span class="n">featValues</span><span class="o">=</span><span class="p">[</span><span class="n">example</span><span class="p">[</span><span class="n">bestFeat</span><span class="p">]</span> <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">dataSet</span><span class="p">]</span><span class="c">#收集所有样本该特征对应的数据</span>
+    <span class="n">uniqueVals</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">featValues</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">uniqueVals</span><span class="p">:</span>
+        <span class="n">subLabels</span><span class="o">=</span><span class="n">labels</span><span class="p">[:]</span>
+        <span class="c">#以当前最优特征划分出的各部分，继续向下递归：</span>
+        <span class="n">myTree</span><span class="p">[</span><span class="n">bestFeatLabel</span><span class="p">][</span><span class="n">value</span><span class="p">]</span><span class="o">=</span><span class="n">createTree</span><span class="p">(</span><span class="n">splitDataSet</span>
+                                                <span class="p">(</span><span class="n">dataSet</span><span class="p">,</span><span class="n">bestFeat</span><span class="p">,</span><span class="n">value</span><span class="p">),</span><span class="n">subLabels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">myTree</span>
+
+<span class="n">myDat</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">createDataSet</span><span class="p">()</span>
+<span class="n">createTree</span><span class="p">(</span><span class="n">myDat</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
+<span class="c">#{'no surfacing': {0: 'no', 1: {'flippers': {0: 'no', 1: 'yes'}}}}</span>
+</code></pre></div></div>
+<h3 id="24-绘图展示">2.4 绘图展示</h3>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#====================================================================绘图构造注解树</span>
+<span class="n">decisionNode</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">'sawtooth'</span><span class="p">,</span><span class="n">fc</span><span class="o">=</span><span class="s">'0.8'</span><span class="p">)</span><span class="c">#决策节点的格式</span>
+<span class="n">leafNode</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s">'round4'</span><span class="p">,</span><span class="n">fc</span><span class="o">=</span><span class="s">'0.8'</span><span class="p">)</span><span class="c">#叶节点的格式</span>
+<span class="n">arrow_args</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s">'&lt;-'</span><span class="p">)</span><span class="c">#箭头的格式</span>
+
+<span class="k">def</span> <span class="nf">plotNode</span><span class="p">(</span><span class="n">nodeTxt</span><span class="p">,</span><span class="n">centerPt</span><span class="p">,</span><span class="n">parentPt</span><span class="p">,</span><span class="n">nodeType</span><span class="p">):</span>
+    <span class="n">createPlot</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">nodeTxt</span><span class="p">,</span><span class="n">xy</span><span class="o">=</span><span class="n">parentPt</span><span class="p">,</span><span class="n">xycoords</span><span class="o">=</span><span class="s">'axes fraction'</span><span class="p">,</span>
+                            <span class="n">xytext</span><span class="o">=</span><span class="n">centerPt</span><span class="p">,</span><span class="n">textcoords</span><span class="o">=</span><span class="s">'axes fraction'</span><span class="p">,</span>
+                            <span class="n">va</span><span class="o">=</span><span class="s">'center'</span><span class="p">,</span><span class="n">ha</span><span class="o">=</span><span class="s">'center'</span><span class="p">,</span><span class="n">bbox</span><span class="o">=</span><span class="n">nodeType</span><span class="p">,</span>
+                            <span class="n">arrowprops</span><span class="o">=</span><span class="n">arrow_args</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">getNumLeafs</span><span class="p">(</span><span class="n">myTree</span><span class="p">):</span>
+    <span class="n">numLeafs</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">firstStr</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">myTree</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">secondDict</span><span class="o">=</span><span class="n">myTree</span><span class="p">[</span><span class="n">firstStr</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">secondDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span><span class="o">.</span><span class="n">__name__</span><span class="o">==</span><span class="s">'dict'</span><span class="p">:</span>
+            <span class="n">numLeafs</span><span class="o">+=</span><span class="n">getNumLeafs</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">numLeafs</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">numLeafs</span>
+
+<span class="k">def</span> <span class="nf">getTreeDepth</span><span class="p">(</span><span class="n">myTree</span><span class="p">):</span>
+    <span class="n">maxDepth</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">firstStr</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">myTree</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">secondDict</span><span class="o">=</span><span class="n">myTree</span><span class="p">[</span><span class="n">firstStr</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">secondDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span><span class="o">.</span><span class="n">__name__</span><span class="o">==</span><span class="s">'dict'</span><span class="p">:</span>
+            <span class="n">thisDepth</span><span class="o">=</span><span class="mi">1</span><span class="o">+</span><span class="n">getTreeDepth</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">thisDepth</span><span class="o">=</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">thisDepth</span><span class="o">&gt;</span><span class="n">maxDepth</span><span class="p">:</span>
+            <span class="n">maxDepth</span><span class="o">=</span><span class="n">thisDepth</span>
+    <span class="k">return</span> <span class="n">maxDepth</span>
+<span class="c">#str(retrieveTree(1)).count('}')//2#这个数树深度的方式更取巧</span>
+
+<span class="k">def</span> <span class="nf">plotMidText</span><span class="p">(</span><span class="n">cntrPt</span><span class="p">,</span> <span class="n">parentPt</span><span class="p">,</span> <span class="n">txtString</span><span class="p">):</span>
+    <span class="n">xMid</span> <span class="o">=</span> <span class="p">(</span><span class="n">parentPt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">cntrPt</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">cntrPt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">yMid</span> <span class="o">=</span> <span class="p">(</span><span class="n">parentPt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">cntrPt</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">cntrPt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">createPlot</span><span class="o">.</span><span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xMid</span><span class="p">,</span> <span class="n">yMid</span><span class="p">,</span> <span class="n">txtString</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s">"center"</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s">"center"</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plotTree</span><span class="p">(</span><span class="n">myTree</span><span class="p">,</span> <span class="n">parentPt</span><span class="p">,</span> <span class="n">nodeTxt</span><span class="p">):</span>
+    <span class="n">numLeafs</span> <span class="o">=</span> <span class="n">getNumLeafs</span><span class="p">(</span><span class="n">myTree</span><span class="p">)</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="n">getTreeDepth</span><span class="p">(</span><span class="n">myTree</span><span class="p">)</span>
+    <span class="n">firstStr</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">myTree</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c">#下面这个计算cntrPt的方式书中没有解释，看上去让人很费解。</span>
+    <span class="c">#其实这个cntrPt就是label的坐标，以一个起始叶子的坐标＋移动的距离（就是那个1+numLeafs／2/totalW）</span>
+    <span class="c">#为什么移动距离是这样计算的呢？</span>
+    <span class="c">#那是一个叶子距离(1/totalW)加上由该label生长出的叶子们的中心距离((numLeafs-1)/totals/2)</span>
+    <span class="n">cntrPt</span> <span class="o">=</span> <span class="p">(</span><span class="n">plotTree</span><span class="o">.</span><span class="n">xOff</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">numLeafs</span><span class="p">))</span><span class="o">/</span><span class="mf">2.0</span><span class="o">/</span><span class="n">plotTree</span><span class="o">.</span><span class="n">totalW</span><span class="p">,</span> <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span><span class="p">)</span>
+    <span class="c">#画节点和线的标签</span>
+    <span class="n">plotMidText</span><span class="p">(</span><span class="n">cntrPt</span><span class="p">,</span> <span class="n">parentPt</span><span class="p">,</span> <span class="n">nodeTxt</span><span class="p">)</span>
+    <span class="n">plotNode</span><span class="p">(</span><span class="n">firstStr</span><span class="p">,</span> <span class="n">cntrPt</span><span class="p">,</span> <span class="n">parentPt</span><span class="p">,</span> <span class="n">decisionNode</span><span class="p">)</span>
+    
+    <span class="n">secondDict</span> <span class="o">=</span> <span class="n">myTree</span><span class="p">[</span><span class="n">firstStr</span><span class="p">]</span>
+    <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span> <span class="o">=</span> <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span> <span class="o">-</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">plotTree</span><span class="o">.</span><span class="n">totalD</span>
+    
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">secondDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">key</span><span class="p">])</span><span class="o">.</span><span class="n">__name__</span><span class="o">==</span><span class="s">'dict'</span><span class="p">:</span>
+            <span class="n">plotTree</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">key</span><span class="p">],</span><span class="n">cntrPt</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>        <span class="c">#recursion</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">plotTree</span><span class="o">.</span><span class="n">xOff</span> <span class="o">=</span> <span class="n">plotTree</span><span class="o">.</span><span class="n">xOff</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">plotTree</span><span class="o">.</span><span class="n">totalW</span>
+            <span class="n">plotNode</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="p">(</span><span class="n">plotTree</span><span class="o">.</span><span class="n">xOff</span><span class="p">,</span> <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span><span class="p">),</span> <span class="n">cntrPt</span><span class="p">,</span> <span class="n">leafNode</span><span class="p">)</span>
+            <span class="n">plotMidText</span><span class="p">((</span><span class="n">plotTree</span><span class="o">.</span><span class="n">xOff</span><span class="p">,</span> <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span><span class="p">),</span> <span class="n">cntrPt</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+    <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span> <span class="o">=</span> <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span> <span class="o">+</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">plotTree</span><span class="o">.</span><span class="n">totalD</span><span class="c">#递归返回上级时，恢复yOff的坐标，以便继续绘图</span>
+
+<span class="k">def</span> <span class="nf">createPlot</span><span class="p">(</span><span class="n">inTree</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">'white'</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+    <span class="n">axprops</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span><span class="c">#指定刻度的可选参数</span>
+    <span class="n">createPlot</span><span class="o">.</span><span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">axprops</span><span class="p">)</span>    <span class="c">#no ticks</span>
+    <span class="c">#createPlot.ax1 = plt.subplot(111, frameon=False) #ticks for demo puropses </span>
+    <span class="n">plotTree</span><span class="o">.</span><span class="n">totalW</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">getNumLeafs</span><span class="p">(</span><span class="n">inTree</span><span class="p">))</span>
+    <span class="n">plotTree</span><span class="o">.</span><span class="n">totalD</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">getTreeDepth</span><span class="p">(</span><span class="n">inTree</span><span class="p">))</span>
+    <span class="n">plotTree</span><span class="o">.</span><span class="n">xOff</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">/</span><span class="n">plotTree</span><span class="o">.</span><span class="n">totalW</span><span class="c">#起始位置是按照将1均分成(总宽度)份，然后左右就各自多出一份的一半</span>
+    <span class="n">plotTree</span><span class="o">.</span><span class="n">yOff</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+    <span class="n">plotTree</span><span class="p">(</span><span class="n">inTree</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p>用决策树字典<code class="highlighter-rouge">{'no surfacing':{0:'no',1:{'flippers':{0:'no',1:'yes'}}}}</code>测试该绘图函数，结果如下：<br />
+<img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474158973548.png" alt="sample" /></p>
+<h3 id="25-预测新样本类别">2.5 预测新样本类别</h3>
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#===================================================利用训练好的决策树进行新样本的分类</span>
+    <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">inputTree</span><span class="p">,</span><span class="n">featLabels</span><span class="p">,</span><span class="n">testVec</span><span class="p">):</span><span class="c">#后两个参数的属性顺序要一一对应</span>
+    <span class="n">firstStr</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">inputTree</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">secondDict</span><span class="o">=</span><span class="n">inputTree</span><span class="p">[</span><span class="n">firstStr</span><span class="p">]</span>
+    <span class="n">featIndex</span><span class="o">=</span><span class="n">featLabels</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">firstStr</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">secondDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">testVec</span><span class="p">[</span><span class="n">featIndex</span><span class="p">]</span><span class="o">==</span><span class="n">k</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">k</span><span class="p">])</span><span class="o">.</span><span class="n">__name__</span><span class="o">==</span><span class="s">'dict'</span><span class="p">:</span>
+                <span class="n">classLabel</span><span class="o">=</span><span class="n">classify</span><span class="p">(</span><span class="n">secondDict</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">featLabels</span><span class="p">,</span><span class="n">testVec</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">classLabel</span><span class="o">=</span><span class="n">secondDict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">classLabel</span>
+</code></pre></div></div>
+<p>Ps.可使用pickle模块存储决策树，以便训练完以后再次使用。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#==========================================================使用pickle模块存储决策树</span>
+<span class="k">def</span> <span class="nf">storeTree</span><span class="p">(</span><span class="n">inputTree</span><span class="p">,</span><span class="n">filename</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">pickle</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fw</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">inputTree</span><span class="p">,</span><span class="n">fw</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">grabTree</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="kn">import</span> <span class="nn">pickle</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">fr</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fr</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="3-示例">3 示例</h2>
+<p>以书中第3章给出的隐形眼镜数据集来展示算法的效果：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#=======================================================示例:使用ID3预测隐形眼镜类型</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/Users/fuyangzhen/Documents/machinelearninginaction/Ch03/lenses.txt'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fr</span><span class="p">:</span>
+    <span class="n">lenses</span><span class="o">=</span><span class="p">[</span><span class="n">inst</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">fr</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+<span class="n">lensesLabels</span><span class="o">=</span><span class="p">[</span><span class="s">'age'</span><span class="p">,</span><span class="s">'prescript'</span><span class="p">,</span><span class="s">'astigmatic'</span><span class="p">,</span><span class="s">'tearRate'</span><span class="p">]</span>
+<span class="n">lensesTree</span><span class="o">=</span><span class="n">createTree</span><span class="p">(</span><span class="n">lenses</span><span class="p">,</span><span class="n">lensesLabels</span><span class="p">)</span>
+<span class="n">createPlot</span><span class="p">(</span><span class="n">lensesTree</span><span class="p">)</span>
+</code></pre></div></div>
+<p>得出的决策树的字典如下：<br />
+<code class="highlighter-rouge">{'tearRate':  {'normal': {'astigmatic': {'no': {'age': {'pre': 'soft',
+      'presbyopic': {'prescript': {'hyper': 'soft', 'myope': 'no lenses'}},
+      'young': 'soft'}},
+    'yes': {'prescript': {'hyper': {'age': {'pre': 'no lenses',
+        'presbyopic': 'no lenses',
+        'young': 'hard'}},
+      'myope': 'hard'}}}},
+  'reduced': 'no lenses'}}</code><br />
+  得出的决策树的注解树如下：<br />
+<img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474158708244.png" alt="示例" /></p>
+<h2 id="4-小结">4 小结</h2>
+<p>决策树能非常好地匹配<code class="highlighter-rouge">标称型</code>实验数据，但可能存在匹配选项过多地现象，即<code class="highlighter-rouge">过度匹配(overfitting)</code>。为了减少过度匹配问题，可以裁剪决策树，去掉一些不必要的叶节点：若叶节点智能增加少许信息，则可以删除该节点，将它并入导其他叶节点中。<br />
+决策树分类器就像带有终止块的流程图，终止块表示分类结果。开始处理数据集时，我们先需要测量集合中数据整体的不一致性（熵），然后寻找最优特征来划分数据集，直到数据集中所有数据属于同一分类。</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

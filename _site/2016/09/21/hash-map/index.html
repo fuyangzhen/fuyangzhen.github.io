@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Hash map &middot; Young Hook
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
+      All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young Hook</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Hash map</h1>
+  <span class="post-date">21 Sep 2016</span>
+  <h2 id="1-简介">1 简介</h2>
+<p>字曲是python里最有用的数据集合之一。字典是一对键值-数据的组合，键值是用来查找相应的数据，我们把这种思想称为“映射”。</p>
+
+<p>映射的抽象数据类型定义如下，这是一个无序的键-值对集合，键值总是唯一的以便建立与数据的对应关系。映射的操作方法如下：<br />
+***</p>
+<ul>
+  <li><code class="highlighter-rouge">Map()</code>创建一个新的空的映射，返回一个空集合。</li>
+  <li><code class="highlighter-rouge">put(key,val)</code>在映射中增加一对新的键-值对，如果键值已经存在，用新的数据值代替原来的。</li>
+  <li><code class="highlighter-rouge">get(key)</code>根据给定的键值，返回对应的数值，找不到时返回None。</li>
+  <li><code class="highlighter-rouge">Del</code>从映射中删除键-值对，形式del map[key]</li>
+  <li><code class="highlighter-rouge">len()</code>返回映射中键-值对的数量</li>
+  <li><code class="highlighter-rouge">In</code>如果key值在映射中，key in map返回True，否则返回False</li>
+</ul>
+
+<hr />
+<p>字典的好处之一，是给一个键值可以很快返回相关的数据，为了提供这样快速查询的能力，我们需要引入一个高效的查找功能。</p>
+
+<p>可以对列表使用顺序或二分查找，但是最好是用 哈希表，因为它能提供接近<code class="highlighter-rouge">O(1)</code>的性能。</p>
+
+<!--more-->
+
+<h2 id="2-代码实现">2 代码实现</h2>
+<p>我们用两个列表创建HashTable类来实现映射的抽象数据类型。
+一个列表，名为slots来保存键值元素，另一个平行的列表，名为data，保存数据。<br />
+当查询键值的时候，data列表相应的位置上就保存有数据。
+我们将键值列表处理成哈希表，注意哈希表的初始大小为是11，
+虽然这个大小是随意的，但是选择为<code class="highlighter-rouge">质数</code>特别重要，因为这样一来后面处理冲突的效率就比较高。</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">HashTable</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">11</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slots</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
+
+    <span class="c"># Hashfunction函数是简单地用了余数法，冲突解决采用了+1线性探测再哈希函数</span>
+    <span class="c"># put函数约定：除非self.slots中包括这个键值，否则这个槽位就认为是空的。</span>
+    <span class="c"># 它计算出的哈希值如果非空，就迭代rehash函数，直到找到一个空槽位。</span>
+    <span class="c"># 如果一个非空的槽位上已经有键值，就用新数据代替原数据。</span>
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">hashvalue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hashfunction</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>  <span class="c"># 覆盖更新原数据</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">nextslot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rehash</span><span class="p">(</span><span class="n">hashvalue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>  <span class="c"># 被先来的key占槽了,就向后就后找槽</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">nextslot</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">nextslot</span><span class="p">]</span> <span class="o">!=</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">nextslot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rehash</span><span class="p">(</span><span class="n">nextslot</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">nextslot</span> <span class="o">==</span> <span class="n">hashvalue</span><span class="p">:</span>  <span class="c"># 若超过(self.size)个数字继续写入,就break,不允许写入</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'no available slot'</span><span class="p">)</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">nextslot</span><span class="p">]</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>  <span class="c"># 只有空槽和原来存入过该数字这两种情况才写入data</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">nextslot</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">nextslot</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">nextslot</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">nextslot</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>  <span class="c"># 覆盖更新原数据</span>
+
+    <span class="k">def</span> <span class="nf">hashfunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">rehash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">oldhash</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">oldhash</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">size</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">startslot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hashfunction</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">startslot</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">stop</span><span class="p">:</span>  <span class="c"># 有空槽位没放这个key,一开始就put过,可以停止get了</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rehash</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>  <span class="c"># 被其他数字占了槽,就rehash继续找</span>
+                <span class="k">if</span> <span class="n">position</span> <span class="o">==</span> <span class="n">startslot</span><span class="p">:</span>
+                    <span class="n">stop</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c"># 找了一圈,槽都被其他先来的数字占了,就不找了。也就是说最多存放(self.size)个数字</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="c"># 我们重载了__getitem__和__setitem__方法来实现“[]”符号的使用。</span>
+    <span class="c"># 这也意味着，一旦HashTable对象创建，熟悉的索引方法就可用了。</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>  <span class="c"># 只有该key存在于slots中时,才会去查找删除,所以下面的查找就简化了</span>
+            <span class="n">hashvalue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hashfunction</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">!=</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">hashvalue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rehash</span><span class="p">(</span><span class="n">hashvalue</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">hashvalue</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">position</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">num</span>
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">while</span> <span class="n">position</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">[</span><span class="n">position</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">found</span>
+</code></pre></div></div>
+<h2 id="3-测试">3 测试</h2>
+<p>由以上代码可知：</p>
+
+<ul>
+  <li>操作符<code class="highlighter-rouge">[]</code>由<code class="highlighter-rouge">__getitem__ </code>和<code class="highlighter-rouge">__setitem__</code>重载</li>
+  <li>操作符<code class="highlighter-rouge">del</code>由<code class="highlighter-rouge">__delitem__</code>重载</li>
+  <li>操作符<code class="highlighter-rouge">len</code>由<code class="highlighter-rouge">__len__</code>重载</li>
+  <li>操作符<code class="highlighter-rouge">in</code>由<code class="highlighter-rouge">__contains__ </code>重载</li>
+</ul>
+
+<p>现对简介中需求的功能测试如下：</p>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">H</span> <span class="o">=</span> <span class="n">HashTable</span><span class="p">()</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">54</span><span class="p">]</span> <span class="o">=</span> <span class="s">"cat"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span> <span class="o">=</span> <span class="s">"dog"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">93</span><span class="p">]</span> <span class="o">=</span> <span class="s">"lion"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span> <span class="o">=</span> <span class="s">"tiger"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">77</span><span class="p">]</span> <span class="o">=</span> <span class="s">"bird"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span> <span class="o">=</span> <span class="s">"cow"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">44</span><span class="p">]</span> <span class="o">=</span> <span class="s">"goat"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">55</span><span class="p">]</span> <span class="o">=</span> <span class="s">"pig"</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s">"chicken"</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">slots</span><span class="p">)</span><span class="c">#[77, 44, 55, 20, 26, 93, 17, None, None, 31, 54]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="c">#['bird', 'goat', 'pig', 'chicken', 'dog', 'lion', 'tiger', None, None, 'cow', 'cat']</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">20</span><span class="p">])</span><span class="c">#chicken</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span><span class="c">#tiger</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">99</span><span class="p">])</span><span class="c">#None</span>
+
+<span class="n">H</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s">'duck'</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="mi">20</span><span class="p">])</span><span class="c">#duck</span>
+
+
+<span class="k">del</span> <span class="n">H</span><span class="p">[</span><span class="mi">77</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">slots</span><span class="p">)</span><span class="c">#[None, 44, 55, 20, 26, 93, 17, None, None, 31, 54]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="c">#[None, 'goat', 'pig', 'duck', 'dog', 'lion', 'tiger', None, None, 'cow', 'cat']</span>
+<span class="c">#塞满空余的三个槽位：</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span><span class="c">#8</span>
+
+<span class="n">H</span><span class="p">[</span><span class="mi">99</span><span class="p">]</span> <span class="o">=</span> <span class="s">'99'</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="s">'100'</span>
+<span class="n">H</span><span class="p">[</span><span class="mi">101</span><span class="p">]</span> <span class="o">=</span> <span class="s">'101'</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">slots</span><span class="p">)</span><span class="c">#[99, 44, 55, 20, 26, 93, 17, 100, 101, 31, 54]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="c">#['99', 'goat', 'pig', 'duck', 'dog', 'lion', 'tiger', '100', '101', 'cow', 'cat']</span>
+
+<span class="n">H</span><span class="p">[</span><span class="mi">22</span><span class="p">]</span> <span class="o">=</span> <span class="s">'redundant'</span><span class="c">#no available slot</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">slots</span><span class="p">)</span><span class="c">#[99, 44, 55, 20, 26, 93, 17, 100, 101, 31, 54]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="c">#['99', 'goat', 'pig', 'duck', 'dog', 'lion', 'tiger', '100', '101', 'cow', 'cat']</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">H</span><span class="p">))</span>
+
+<span class="k">del</span> <span class="n">H</span><span class="p">[</span><span class="mi">99</span><span class="p">],</span><span class="n">H</span><span class="p">[</span><span class="mi">100</span><span class="p">],</span><span class="n">H</span><span class="p">[</span><span class="mi">101</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">slots</span><span class="p">)</span><span class="c">#[None, 44, 55, 20, 26, 93, 17, None, 101, 31, 54]</span>
+<span class="k">print</span><span class="p">((</span><span class="mi">44</span> <span class="ow">in</span> <span class="n">H</span><span class="p">))</span><span class="c">#True</span>
+<span class="k">print</span><span class="p">((</span><span class="mi">100</span> <span class="ow">in</span> <span class="n">H</span><span class="p">))</span><span class="c">#False</span>
+</code></pre></div></div>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+            设计模式
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/29/C++/">
+            C++笔记
+            <small>29 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/04/22/deploy/">
+            Linux deploy of WeRoBot's search engine
+            <small>22 Apr 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
