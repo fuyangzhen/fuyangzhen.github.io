@@ -24,7 +24,7 @@
 
   <title>
     
-      C++笔记 &middot; Young Hook
+      C++笔记 &middot; Young
     
   </title>
 
@@ -64,7 +64,7 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
   </div>
 
   <nav class="sidebar-nav">
@@ -74,65 +74,73 @@
 
     
     
-      
-        
-      
     
-      
-        
-      
     
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
@@ -143,12 +151,8 @@
 
   <div class="sidebar-item">
     <p>
-      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
-      All rights reserved.
-    </p>
-  </div>
-</div>
-
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
 
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
@@ -156,7 +160,7 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">Young Hook</a>
+            <a href="/" title="Home">Young</a>
             <small>Anything I do that may help others, I'll post it here.</small>
           </h3>
         </div>
@@ -181,7 +185,7 @@
 </ol>
 
 <h2 id="c-变量类型">C++ 变量类型</h2>
-<p><strong>&lt;font color=#CD5C5C&gt;变量其实只不过是程序可操作的存储区的名称。&lt;/font&gt;</strong>C++ 中每个变量都有指定的类型，类型决定了变量存储的大小和布局，该范围内的值都可以存储在内存中，运算符可应用于变量上。<br />
+<p><strong>&lt;font color=#CD5C5C&gt; 变量其实只不过是程序可操作的存储区的名称。&lt;/font&gt;</strong>C++ 中每个变量都有指定的类型，类型决定了变量存储的大小和布局，该范围内的值都可以存储在内存中，运算符可应用于变量上。<br />
 <!--more-->
 每种数据类型的字节长度和具体编译器有关：<br />
 <img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1522226011545.png" alt="1" /><br />
@@ -203,7 +207,7 @@
   <li>auto：编译器通过初始值自动推断变量类型</li>
   <li>decltype：定义一个变量j与某一表达式i的类型相同，但并不用i初始化。
     <ul>
-      <li><code class="highlighter-rouge">decltype(i)j = 2; //j以2作为初始值，类型与一致。</code></li>
+      <li><code class="highlighter-rouge">decltype(i)j = 2; //j以2作为初始值，类型与i一致。</code></li>
     </ul>
   </li>
 </ul>
@@ -319,8 +323,211 @@
 <p>所谓动态构造对象，是操作运算符<code class="highlighter-rouge">new</code>和<code class="highlighter-rouge">delete</code>分配（分配后可用指针访问该内存地址）或删除相应对象的内存空间。</p>
 
 <ul>
-  <li><code class="highlighter-rouge">new</code>运算符返回的是内存地址</li>
+  <li><code class="highlighter-rouge">new</code>运算符返回的是内存地址；</li>
+  <li><code class="highlighter-rouge">delete</code>声明的时候定义了多个<code class="highlighter-rouge">student *r = new Student[10];</code>，delete的时候就要带上<code class="highlighter-rouge">[]</code>:<code class="highlighter-rouge">delete[] r;</code>先调用r内每个元素的析构，然后回收掉每个元素的空间；</li>
+  <li><code class="highlighter-rouge">delete</code>之前必须有对应的<code class="highlighter-rouge">new</code>，每个对象只能使用一次<code class="highlighter-rouge">delete</code>；</li>
+  <li><code class="highlighter-rouge">delete</code>可以安全用在null pointer。</li>
 </ul>
+
+<h2 id="访问限制">访问限制</h2>
+
+<ul>
+  <li>同一个类的对象之间可以访问private成员变量；</li>
+  <li>class的成员变量默认属性为private，struct默认的为public；</li>
+  <li>尽量使用class；</li>
+</ul>
+
+<h2 id="初始化列表">初始化列表</h2>
+
+<ol>
+  <li>类里面的所有成员变量都用initialzation list初始化：<code class="highlighter-rouge">Student::Student(string s):name(s){}</code></li>
+  <li>父类的构造函数初始化也要放到initialzation list。</li>
+  <li></li>
+</ol>
+
+<h2 id="组合与继承">组合与继承</h2>
+
+<ol>
+  <li>
+    <p>对象可以作为private的成员变量放到其他的对象之中。而继承是类的层面的构造。</p>
+  </li>
+  <li>
+    <p>父类的private内容可以使用，但不能被修改。</p>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">protected</span><span class="o">:</span>
+    	<span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">ii</span><span class="p">){</span><span class="n">i</span> <span class="o">=</span> <span class="n">ii</span><span class="p">;}</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">()</span><span class="o">:</span><span class="n">i</span><span class="p">(</span><span class="mi">0</span><span class="p">){}</span>
+        <span class="o">~</span><span class="n">A</span><span class="p">(){}</span>
+        <span class="kt">void</span> <span class="n">print</span><span class="p">(){}</span>
+<span class="p">};</span>
+   
+<span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">f</span><span class="p">(){</span>
+        <span class="n">set</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span><span class="c1">//父类protected的（public的也可以），所以可以用
+</span>        <span class="n">i</span><span class="o">=</span><span class="mi">30</span><span class="p">;</span><span class="c1">//错了。父类private，所以不可以用
+</span>        <span class="n">print</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+   
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="c1">//client class
+</span><span class="p">{</span>
+    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="c1">//错了，因为是protected的，所以非A子类是不可以用的
+</span>    <span class="n">b</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>3.如果父类有<code class="highlighter-rouge">overload</code>函数（函数同名，但参数不同），那么子类再写同名函数，父类所有相关同名函数全部被屏蔽掉；其他OOP语言此时的子类函数就是对父类中该函数的<code class="highlighter-rouge">override</code>。</p>
+
+<h2 id="const">const</h2>
+
+<ol>
+  <li>必须让编译器在编译时知道const的初始值。</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span> <span class="k">const</span> <span class="n">q</span> <span class="o">=</span> <span class="s">"haha"</span><span class="p">;</span> <span class="c1">//指针q是const
+</span><span class="o">*</span><span class="n">q</span> <span class="o">=</span> <span class="sc">'a'</span><span class="p">;</span> <span class="c1">//ok
+</span><span class="n">q</span><span class="o">++</span><span class="p">;</span>      <span class="c1">//error
+</span>
+<span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="s">"haha"</span><span class="p">;</span> <span class="c1">//(*p)这块内存空间表示的变量是const
+</span><span class="kt">char</span> <span class="k">const</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="s">"haha"</span><span class="p">;</span> <span class="c1">//(*p)这块内存空间表示的变量是const
+</span><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="sc">'a'</span><span class="p">;</span> <span class="c1">//error
+</span><span class="n">p</span><span class="o">++</span><span class="p">;</span>      <span class="c1">//ok
+</span></code></pre></div></div>
+
+<ol>
+  <li>
+    <p>类的函数不会修改成员变量的话，需要在<code class="highlighter-rouge">.h和.cpp</code>函数名的后面写上<code class="highlighter-rouge">const</code></p>
+  </li>
+  <li>
+    <p>对象声明前加cosnt说明整个对象的成员变量无法被修改。</p>
+
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="k">const</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="c1">//const的成员变量必须在此处初始化列表中初始化
+</span>    <span class="c1">//而且不能这样用：int array[i]!
+</span>    <span class="n">A</span><span class="p">()</span><span class="o">:</span><span class="n">i</span><span class="p">(</span><span class="mi">0</span><span class="p">){}</span>
+    <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="p">{}</span> <span class="c1">//== f(A* this)
+</span>    <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span> <span class="p">{}</span><span class="c1">//== f(const A* this)也是一种overload
+</span><span class="p">};</span>
+   
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">f</span><span class="p">();</span><span class="c1">//执行这个： void f() const {}
+</span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h2 id="多态性">多态性</h2>
+
+<p>任何一个类如果有<code class="highlighter-rouge">virtual</code>函数，那这个类的对象就会比正常的大一点，<strong>该类的析构函数必须也是<code class="highlighter-rouge">virtual</code>的，不然析构对象的时候会调用其父类的析构函数</strong>。</p>
+
+<p>含有虚函数的类的对象在内存中，第一位存放的是<code class="highlighter-rouge">virtual table</code>，它指向的是内存另外一个地方虚函数表，虚函数是<code class="highlighter-rouge">override</code>自己的虚函数和没有<code class="highlighter-rouge">override</code>的父类的虚函数。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="n">a</span><span class="p">();</span>
+<span class="n">B</span> <span class="n">b</span><span class="p">();</span><span class="c1">//B是Ade subclass
+</span><span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span><span class="c1">//只有子类中的共有的数据部分会被复制，虚函数还是保留了a自己的
+</span><span class="o">----------------------------------</span>
+<span class="n">A</span><span class="o">*</span> <span class="n">a</span><span class="o">=</span><span class="k">new</span> <span class="n">A</span><span class="p">();</span>
+<span class="n">B</span><span class="o">*</span> <span class="n">b</span><span class="o">=</span><span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+<span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span><span class="c1">//这时候a和b指向完全相同的B的对象
+</span><span class="o">----------------------------------</span>
+<span class="kt">void</span> <span class="n">func</span><span class="p">(</span><span class="n">A</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span><span class="c1">//指针可以提现多态，指针会找到应该使用的函数
+</span><span class="p">{</span>
+    <span class="n">p</span><span class="o">-&gt;</span><span class="n">render</span><span class="p">();</span><span class="c1">//render是A类及其子类中定义的虚函数
+</span><span class="p">}</span>    
+<span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">func</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+    
+<span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="n">A</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">)</span><span class="c1">//引用也可以提现多态，引用其实也是指针
+</span><span class="p">{</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">render</span><span class="p">();</span><span class="c1">//render是A类及其子类中定义的虚函数
+</span><span class="p">}</span>
+<span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">func</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> 
+</code></pre></div></div>
+
+<h2 id="静态">静态</h2>
+
+<ol>
+  <li>
+    <p>静态局部变量就是全局变量；</p>
+  </li>
+  <li>静态的成员函数内部使用的变量必须全部是静态的。</li>
+  <li>如果一个类有静态的成员变量声明，那么就要在一个CPP文件中进行定义。</li>
+</ol>
+
+<h2 id="拷贝构造">拷贝构造</h2>
+
+<p>用对象来初始化构造对象。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="c1">//默认会自动有一个拷贝构造，会拷贝传入对象所有的成员变量！
+</span>    <span class="n">A</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span><span class="n">a</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">//blabla;
+</span>    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">A</span> <span class="n">func</span><span class="p">(</span><span class="n">A</span> <span class="n">a</span><span class="p">)</span><span class="c1">//此处会拷贝构造一个函数内局部作用的A对象！
+</span><span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>拷贝构造和赋值运算符：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//以下是拷贝构造
+</span><span class="n">A</span> <span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>
+<span class="n">A</span> <span class="n">a</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+
+<span class="c1">//以下是赋值运算
+</span><span class="n">a</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>
+<span class="c1">//赋值运算符的重载
+</span><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+<span class="k">public</span><span class="err">：</span>
+    <span class="n">A</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span><span class="p">){</span>
+    
+<span class="p">}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="运算符重载">运算符重载</h2>
+
+<h2 id="q">Q</h2>
+
+<ol>
+  <li>null pointer？<code class="highlighter-rouge">int *p(null pointer) = int 0;</code></li>
+  <li><code class="highlighter-rouge"> p=new int;</code></li>
+  <li>类有定义吗？</li>
+</ol>
+
+<h2 id="细节">细节</h2>
+
+<ol>
+  <li>
+    <p><code class="highlighter-rouge">A a=1; == A a(1);</code></p>
+  </li>
+  <li>
+    <p>一切常数、字符和字符串都是右值； 简单理解左值就是有变量名。</p>
+  </li>
+  <li>
+    <p>类的成员函数：<code class="highlighter-rouge">const func(int a) const{}</code>最后这个const指的是this。</p>
+  </li>
+</ol>
 
 
 </div>
@@ -331,27 +538,27 @@
     
       <li>
         <h3>
-          <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-            设计模式
-            <small>29 Apr 2018</small>
+          <a href="/2019/01/25/C/">
+            C# Memo
+            <small>25 Jan 2019</small>
           </a>
         </h3>
       </li>
     
       <li>
         <h3>
-          <a href="/2018/04/22/deploy/">
-            Linux deploy of WeRoBot's search engine
-            <small>22 Apr 2018</small>
+          <a href="/2018/07/24/docker-private-registry/">
+            Build a docker private registry with Harbor
+            <small>24 Jul 2018</small>
           </a>
         </h3>
       </li>
     
       <li>
         <h3>
-          <a href="/2018/04/07/Essence-of-linear-algebra/">
-            Essence of linear algebra
-            <small>07 Apr 2018</small>
+          <a href="/2018/06/23/k8s/">
+            JS Note
+            <small>23 Jun 2018</small>
           </a>
         </h3>
       </li>

@@ -24,7 +24,7 @@
 
   <title>
     
-      设计模式 &middot; Young Hook
+      设计模式 &middot; Young
     
   </title>
 
@@ -64,7 +64,7 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
   </div>
 
   <nav class="sidebar-nav">
@@ -74,65 +74,73 @@
 
     
     
-      
-        
-      
     
-      
-        
-      
     
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
@@ -143,12 +151,8 @@
 
   <div class="sidebar-item">
     <p>
-      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
-      All rights reserved.
-    </p>
-  </div>
-</div>
-
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
 
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
@@ -156,7 +160,7 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">Young Hook</a>
+            <a href="/" title="Home">Young</a>
             <small>Anything I do that may help others, I'll post it here.</small>
           </h3>
         </div>
@@ -166,66 +170,212 @@
         <div class="post">
   <h1 class="post-title">设计模式</h1>
   <span class="post-date">29 Apr 2018</span>
-  <h2 id="1-模板方法模式">1 模板方法模式</h2>
+  <h2 id="1-工厂模式">1 工厂模式</h2>
+<p>客户端代码调用工厂类，让工厂类的内部方法逻辑选择判断该实例化哪个具体类。</p>
+
 <ol>
-  <li>继承的意义是为了子类的能使用通用的模板，所有重复的代码都应该上升到父类中去。</li>
-  <li>抽象类是自底而上抽象出来的，接口是自顶向下设计出来的</li>
+  <li>简单工厂模式的最大优点是工厂类中包含的必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，对于客户端，去除了与具体产品的依赖；</li>
+  <li>简单工厂模式是把创建对象的判断逻辑放到了工厂类的静态方法里面了，后续增加工厂功能的话，就需要改动里面的逻辑代码，不符合开闭原则。客户端代码的逻辑要上升到工厂类中去修改具体方法逻辑，这样太过耦合。</li>
 </ol>
 
 <h2 id="2-迪米特法则松耦合">2 迪米特法则（松耦合）</h2>
 <ol>
   <li>类之间应该松耦合，耦合越弱，越有利于复用，处于弱耦合的类被修改，不会对有关系的类造成波及。</li>
   <li>如果两类不必彼此直接通信，那这两个类就不应该发生直接的相互作用。如果一个类需要调用另一个类的某一个方法，可通过第三者转发该调用。<br />
-<!--more--></li>
+  <!--more--></li>
 </ol>
 
-<h2 id="3-工厂模式">3 工厂模式</h2>
-<p>Mathematical Contest in Modeling - Comap</p>
+<h2 id="3-单一职责原则">3 单一职责原则</h2>
 
-<p>Participated in the North American Mathematical Contest in Modeling(MCM 2014) and won Meritorious Winner; participated in the Mathematical Contest for Chinese Undergraduate Students several times during the university and won several awards</p>
+<p>在类的职责上多思考，发现职责并把那些职责相互分离。如果你能想到多于一个的动机去改变一个类，那这个类就具有多于一个的职责，就该考虑类的职责分离了；窗口只负责窗口的逻辑，算法类只负责算法的逻辑。不应该揉在一起。</p>
 
-<h2 id="面向对象特性">面向对象特性</h2>
+<h2 id="4-开放-封闭原则">4 开放-封闭原则</h2>
+
+<ul>
+  <li>重构代码可以达到面对需求时，对程序的改动是通过新增代码进行的，而不是更改现有代码；</li>
+  <li>查明可能发生的变化需要的时间越长，创建正确的抽象就越困难（未抽象的部分应用到了太多地方，对其重构抽象分离就越困难）；</li>
+  <li>开发人员应该对程序中呈现出频繁变化的部分做出抽象；</li>
+  <li>拒绝不该抽象的地方抽象；</li>
+  <li><strong>对扩展开放，对更改封闭</strong>。多扩充少修改，变化发生时，就立即创建抽象来隔离发生的变化；</li>
+</ul>
+
+<h2 id="5-依赖倒转原则">5 依赖倒转原则</h2>
+
+<ul>
+  <li>高层模块不应该依赖底层模块，两个都应该依赖抽象；</li>
+  <li>对接口编程，不要对实现编程；</li>
+  <li><strong><em>里氏代换原则</em></strong>：使用父类的地方替换为子类，程序的行为不会变化，<strong>子类的属性方法应该是父类的超集</strong>；</li>
+  <li>依赖倒转就是模块之间谁也不要依赖谁，全部<strong>通过约定的接口连接</strong>。</li>
+  <li>强内聚，松耦合：模块内部各成分关联程度尽可能高，模块间应该尽可能少依赖；</li>
+</ul>
+
+<h2 id="6-装饰模式">6 装饰模式</h2>
+
+<p>动态地给一个对象添加格外的职责，就增加功能来说，比生成子类更为灵活。</p>
+
+<ol>
+  <li>装饰类实现的装饰功能往往是特殊的，不是通用的，为了特殊，没必要改动通用的代码；</li>
+  <li>类中的装饰功能从类中搬移出去，简化原有的类。类的核心职责和装饰功能区分开，可以去除相关类中的重复装饰逻辑；</li>
+  <li><strong>通过各种装饰类一层层地包装传递实例化的对象</strong>。</li>
+</ol>
+
+<h2 id="7-代理模式">7 代理模式</h2>
+
+<p>代理类和主体类<strong><em>采用相同的接口，保存引用使得代理能访问到被代理实体</em></strong>。代理类的使用场合：</p>
+
+<ol>
+  <li>远程代理，使不同地址空间的对象提供局部代表，隐藏其来自不同地址空间的事实，看上去来自本地；</li>
+  <li>虚拟代理，对象创建开销太大，代理存放实例化需要过长时间的对象，适当的时候再逐步实例化；</li>
+  <li>安全代理，控制正式对象的访问权限；</li>
+  <li>只能指引，访问对象时附加一些内务处理。</li>
+</ol>
+
+<h2 id="8-工厂方法模式">8 工厂方法模式</h2>
+
+<p>对简单工厂进一步抽象推广。后续追加需求，只需扩展，不需要修改。具体做法是：</p>
+
+<ul>
+  <li>定义一个用于创建对象实例的接口，在其接口的子类中实现不同的实例的创建，然后在客户端代码中选择具体创建哪种实例；</li>
+  <li>这是一种对对象创建过程的封装（封装在接口的子类中，封装也就是后续不用改动逻辑代码），降低了客户程序与产品对象的耦合；</li>
+  <li><strong>依赖倒转原则</strong>的体现，高层的类和底层的类都通过抽象的接口类连接；</li>
+  <li>简单工厂模式的最大优点是工厂类中包含的必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，对于客户端，去除了与具体产品的依赖；</li>
+  <li>简单工厂模式是把创建对象的判断逻辑放到了工厂类的静态方法里面了，后续增加工厂功能的话，就需要改动里面的逻辑代码，不符合<strong>开闭原则</strong>。客户端代码的逻辑要上升到工厂类中去修改具体方法逻辑，这样太过耦合。</li>
+</ul>
+
+<h2 id="10-模板方法模式">10 模板方法模式</h2>
+
+<ol>
+  <li>继承的意义是为了子类的能使用通用的模板，所有重复的代码都应该上升到父类中去；</li>
+  <li>抽象类是自底而上抽象出来的，接口是自顶向下设计出来的。</li>
+</ol>
+
+<h2 id="c面向对象特性">C#面向对象特性</h2>
+<ol>
+  <li>字段和属性：</li>
+</ol>
+
+<ul>
+  <li>一般字段通常是类内部私有，属性是公有的对字段的控制方法。</li>
+</ul>
+
+<ol>
+  <li>方法重载：</li>
+</ol>
+
+<ul>
+  <li>方法重载提供了创建多个同名方法的能力，但是这些方法需要使用不同的参数类型</li>
+</ul>
+
+<ol>
+  <li>多态：</li>
+</ol>
+
+<ul>
+  <li>简单来说就是可以重写父类的虚方法，然后在使用的时候需要声明改为父类：
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Dad aKid = new Child();
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<ol>
+  <li>抽象类:</li>
+</ol>
+
+<ul>
+  <li>不能实例化</li>
+  <li>抽象方法必须被自雷重写</li>
+  <li>只要类中有抽象方法，那么此类就必须定义为抽象类</li>
+  <li>应包含尽可能多的共同代码，拥有尽可能少的数据</li>
+  <li>子孙类回溯之前的所有祖宗类都应该是抽象类</li>
+</ul>
+
+<ol>
+  <li>事件和委托：</li>
+</ol>
+
+<ul>
+  <li>委托是一种对具体事件的检测，委托把 <em>需要进一步发生的事件B</em> 绑定到 <em>当前类的指定事件A</em>上，委托检测A的发生，然后触发B的发生。</li>
+</ul>
+
 <ol>
   <li>
-    <p>字段和属性：</p>
+    <p>关键字：</p>
 
     <ul>
-      <li>一般字段通常是类内部私有，属性是公有的对字段的控制方法。</li>
+      <li>virtual/abstract：父类中使用虚方法供子类override覆写。abstract在父类中没有具体实现，必须在子类中实现，而virtual在父子类中都有实现；</li>
+      <li>static：？？？？？</li>
+      <li>public/private：？？？</li>
+      <li>protected/private：protected是当前类和其派生类都可访问，private是只有当前类的代码可以访问该字段；</li>
+      <li>public class/abstract class：？？？</li>
+      <li>base/this：？？？</li>
     </ul>
   </li>
   <li>
-    <p>方法重载：</p>
+    <p><code class="highlighter-rouge">base</code>关键字主要用于两个地方：</p>
 
     <ul>
-      <li>方法重载提供了创建多个同名方法的能力，但是这些方法需要使用不同的参数类型</li>
-    </ul>
-  </li>
-  <li>
-    <p>多态：</p>
+      <li>
+        <p>子类构造方法处内使用，可以显式调用一下父类的构造方法。子类若不显式的调用父类的构造函数时，编译器会自动调用父类的无参构造函数：</p>
 
-    <ul>
-      <li>简单来说就是可以重写父类的虚方法，然后在使用的时候需要声明改为父类：
-        <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Dad aKid = new Child();
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Father</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nf">Father</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"im father."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="nf">Father</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"im father:{0}"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Chlid</span><span class="p">:</span> <span class="n">Father</span>
+<span class="p">{</span>
+	<span class="k">public</span> <span class="nf">Chlid</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"im son."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="nf">Chlid</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">):</span><span class="k">base</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+    	<span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"im son:{0}"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">void</span> <span class="nf">main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="s">"jake"</span><span class="p">;</span>
+    <span class="n">Chlid</span> <span class="n">c</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Chlid</span><span class="p">(</span><span class="n">name</span><span class="p">);</span> <span class="c1">//父类带参构造方法先用一次，再是子类的构造</span>
+    <span class="c1">// 采用无参数的构造方法会自动触发父类的无参构造</span>
+    <span class="c1">// 若是子类带参的方法去掉base,实例化也同样触发父类无参构造</span>
+    <span class="c1">//Chlid c = new Chlid();</span>
+<span class="p">}</span>
 </code></pre></div>        </div>
       </li>
-    </ul>
-  </li>
-  <li>
-    <p>抽象类:</p>
+      <li>
+        <p>第二种就是可以帮助子类调用父类上已被重写的方法：</p>
 
-    <ul>
-      <li>不能实例化</li>
-      <li>抽象方法必须被自雷重写</li>
-      <li>只要类中有抽象方法，那么此类就必须定义为抽象类</li>
-      <li>应包含尽可能多的共同代码，拥有尽可能少的数据</li>
-      <li>子孙类回溯之前的所有祖宗类都应该是抽象类</li>
-    </ul>
-  </li>
-  <li>
-    <p>事件和委托：</p>
+        <div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">class</span> <span class="nc">Father</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="s">"WuKong"</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">ShowName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Father's name is {0}"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-    <ul>
-      <li>委托是一种对具体事件的检测，委托把 <em>需要进一步发生的事件B</em> 绑定到 <em>当前类的指定事件A</em>上，委托检测A的发生，然后触发B的发生。</li>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Chlid</span><span class="p">:</span> <span class="n">Father</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="s">"WuFan"</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">ShowName</span><span class="p">()</span>
+    <span class="p">{</span>
+    	<span class="k">base</span><span class="p">.</span><span class="nf">ShowName</span><span class="p">();</span> <span class="c1">//显式执行父类抽象/虚方法！</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="s">"Chlid's name is {0}"</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>        </div>
+
+        <p>​</p>
+      </li>
     </ul>
   </li>
 </ol>
@@ -238,27 +388,27 @@
     
       <li>
         <h3>
-          <a href="/2018/04/29/C++/">
-            C++笔记
-            <small>29 Apr 2018</small>
+          <a href="/2019/01/25/C/">
+            C# Memo
+            <small>25 Jan 2019</small>
           </a>
         </h3>
       </li>
     
       <li>
         <h3>
-          <a href="/2018/04/22/deploy/">
-            Linux deploy of WeRoBot's search engine
-            <small>22 Apr 2018</small>
+          <a href="/2018/07/24/docker-private-registry/">
+            Build a docker private registry with Harbor
+            <small>24 Jul 2018</small>
           </a>
         </h3>
       </li>
     
       <li>
         <h3>
-          <a href="/2018/04/07/Essence-of-linear-algebra/">
-            Essence of linear algebra
-            <small>07 Apr 2018</small>
+          <a href="/2018/06/23/k8s/">
+            JS Note
+            <small>23 Jun 2018</small>
           </a>
         </h3>
       </li>

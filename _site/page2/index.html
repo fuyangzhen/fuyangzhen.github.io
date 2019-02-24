@@ -24,7 +24,7 @@
 
   <title>
     
-      Young Hook &middot; Anything I do that may help others, I'll post it here.
+      Young &middot; Anything I do that may help others, I'll post it here.
     
   </title>
 
@@ -64,7 +64,7 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>Have problems? Easy-peasy, just restart ur computer.</p>
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
   </div>
 
   <nav class="sidebar-nav">
@@ -74,65 +74,73 @@
 
     
     
-      
-        
-      
     
-      
-        
-      
     
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-Math/">Math</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
-        
-      
     
-      
-        
-          <a class="sidebar-nav-item" href="/list-Other/">Other</a>
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
     
-      
-        
-      
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
@@ -143,12 +151,8 @@
 
   <div class="sidebar-item">
     <p>
-      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Hook 2018</a>
-      All rights reserved.
-    </p>
-  </div>
-</div>
-
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
 
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
@@ -156,7 +160,7 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">Young Hook</a>
+            <a href="/" title="Home">Young</a>
             <small>Anything I do that may help others, I'll post it here.</small>
           </h3>
         </div>
@@ -167,18 +171,18 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/12/15/useful-essential-cheat-sheets/">
-        Some useful essential cheat sheets
+      <a href="/2018/06/23/JavaScript/">
+        JS Note
       </a>
     </h1>
 
-    <span class="post-date">15 Dec 2017</span>
+    <span class="post-date">23 Jun 2018</span>
 
-    <p>Post some useful essential cheat sheets for machine learning and deep learning engineers that all reprinted from <a href="https://startupsventurecapital.com/essential-cheat-sheets-for-machine-learning-and-deep-learning-researchers-efb6a8ebd2e5">Kailash Ahirwar</a>.</p>
+    <h2 id="syntax-note">Syntax Note</h2>
 
 ...
     <div style="text-align:center">
-      <a href="/2017/12/15/useful-essential-cheat-sheets/">
+      <a href="/2018/06/23/JavaScript/">
         <font size="5">more »</font>
       </a>
     </div>
@@ -187,24 +191,32 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/12/12/encoding-problem/">
-        Encoding problem
+      <a href="/2018/05/10/elasticsearch/">
+        ElasticSearch Note
       </a>
     </h1>
 
-    <span class="post-date">12 Dec 2017</span>
+    <span class="post-date">10 May 2018</span>
 
-    <h2 id="encoding-problem">Encoding problem</h2>
+    <h2 id="score-formula">Score formula</h2>
 
-<p>Some stackoverflow OG give us a little advices:</p>
-<ul>
-  <li><a href="https://stackoverflow.com/q/436220/8586273">OG1</a></li>
-  <li><a href="https://stackoverflow.com/questions/19699367/unicodedecodeerror-utf-8-codec-cant-decode-byte">OG2</a></li>
-</ul>
+<p>ES版本跟新迭代的很快，截止到今天（2018.7.10) master的版本为6.3，打分公式一直都在微调，当前版本每个doc的对query的得分计算公式如下（就是最普通的BM25），其中n为query的term和当前doc的term的交集的大小：</p>
+
+<script type="math/tex; mode=display">score_d=\sum_{t=0}^ntfNorm_t*idf_t</script>
+
+<p>idf计算公式如下，其中docCount为index中doc总数，docFreq为曾出现当前计算的term的doc频数：</p>
+
+<script type="math/tex; mode=display">idf=log(1+\frac{docCount-docFreq+0.5}{docFreq+0.5})</script>
+
+<p>tfNorm的计算公式如下，其中fieldLength为当前doc的term的个数，avgFieldLength为index内所有doc的平均term个数，freq为当前计算的term的频数，$k_1$和b为参数，其默认值分别为1.2和0.75：</p>
+
+<script type="math/tex; mode=display">tfNorm=\frac{freq*(k_1+1)}{freq+k_1*(1-b+b*fieldLength/avgFieldLength)}</script>
+
+<p>注意：ES 为了分布式index和search的性能，<code class="highlighter-rouge">docFreq</code> , <code class="highlighter-rouge">docCount</code> and <code class="highlighter-rouge">avgFieldLength</code>are computed per shard.</p>
 
 ...
     <div style="text-align:center">
-      <a href="/2017/12/12/encoding-problem/">
+      <a href="/2018/05/10/elasticsearch/">
         <font size="5">more »</font>
       </a>
     </div>
@@ -213,32 +225,26 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/11/23/pigeonhole-principle/">
-        LeetCode 523 — DP与鸽巢原理
+      <a href="/2018/05/09/NLP/">
+        NLP Memo Note
       </a>
     </h1>
 
-    <span class="post-date">23 Nov 2017</span>
+    <span class="post-date">09 May 2018</span>
 
-    <h2 id="鸽巢原理">鸽巢原理</h2>
+    <h2 id="nlp">NLP</h2>
 
-<blockquote>
-  <p>鸽巢原理的一种简单的表述法为：
-若有n个笼子和n+1只鸽子，所有的鸽子都被关在鸽笼里，那么至少有一个笼子有至少2只鸽子。
-另一种为：
-若有n个笼子和kn+1只鸽子，所有的鸽子都被关在鸽笼里，那么至少有一个笼子有至少k+1只鸽子。
-一种推广表达是这样的：
-如果要把<code class="highlighter-rouge">n</code>个物件分配到<code class="highlighter-rouge">m</code>个容器中，必有至少一个容器容纳至少\( \lceil\frac{n}{m}\rceil \)个物件。</p>
+<h4 id="虚词">虚词</h4>
 
-  <p>鸽巢原理经常在计算机领域得到真正的应用。比如：哈希表的重复问题（冲突）是不可避免的，因为Keys的数目总是比Indices的数目多，不管是多么高明的算法都不可能解决这个问题。这个原理，还证明任何无损压缩算法，在把一个文件变小的同时，一定有其他文件增大来辅助，否则某些信息必然会丢失。</p>
-</blockquote>
-<p align="right">———维基百科</p>
+<p>对短语的语义不起决定作用，对QA的查询贡献也小，这些词一般作为停用词表（stop list）</p>
 
-<p>鸽巢原理的思想很简单，对应于每个具体问题就是每次选择都有<code class="highlighter-rouge">n</code>种情形供选择，若要选择<code class="highlighter-rouge">kn+1</code>次的话，那么必定存在一种选择是被选择了<code class="highlighter-rouge">k+1</code>次的。</p>
+<p>语法词：can, go, say, he;</p>
+
+<p>功能词：介词of, about;</p>
 
 ...
     <div style="text-align:center">
-      <a href="/2017/11/23/pigeonhole-principle/">
+      <a href="/2018/05/09/NLP/">
         <font size="5">more »</font>
       </a>
     </div>
@@ -247,80 +253,65 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2017/04/09/privoxy/">
-        OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理
+      <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+        设计模式
       </a>
     </h1>
 
-    <span class="post-date">09 Apr 2017</span>
+    <span class="post-date">29 Apr 2018</span>
 
-    <p><strong><em>环境：OS X + Shadowsocks</em></strong><br />
-<strong><em>问题：虽然装有Shadowsocks，但是Twitter的pythonAPI仍无法使用</em></strong></p>
-
-<p>在使用Twitter的pythonAPI时，发现在Shadowsocks开启的情况下，python的爬虫无法访问使用Twitter，此处整合了几个零散方法，分别在终端内全局代理和脚本内单独代理：</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2017/04/09/privoxy/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/24/%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BE%8E-%E8%B4%9F%E6%95%B0%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
-        编程之美 - 负数的二进制转换
-      </a>
-    </h1>
-
-    <span class="post-date">24 Oct 2016</span>
-
-    <h2 id="1-简介">1 简介</h2>
-<p>int型整数有4个字节，每个字节8个bit，所以一共32位。</p>
+    <h2 id="1-工厂模式">1 工厂模式</h2>
+<p>客户端代码调用工厂类，让工厂类的内部方法逻辑选择判断该实例化哪个具体类。</p>
 
 <ol>
-  <li>负十进制整数计算二进制：去掉符号，转为二进制，取反，加1</li>
-  <li>负二进制整数计算十进制：取反，加1，转为十进制</li>
+  <li>简单工厂模式的最大优点是工厂类中包含的必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，对于客户端，去除了与具体产品的依赖；</li>
+  <li>简单工厂模式是把创建对象的判断逻辑放到了工厂类的静态方法里面了，后续增加工厂功能的话，就需要改动里面的逻辑代码，不符合开闭原则。客户端代码的逻辑要上升到工厂类中去修改具体方法逻辑，这样太过耦合。</li>
 </ol>
 
-<table>
-  <thead>
-    <tr>
-      <th>二进制 &lt;–</th>
-      <th style="text-align: center">负整数</th>
-      <th style="text-align: center">正整数</th>
-      <th style="text-align: center">–&gt; 二进制</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">1111 1111 1111 1111</code></td>
-      <td style="text-align: center">-1</td>
-      <td style="text-align: center">0</td>
-      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0000</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">1111 1111 1111 1110</code></td>
-      <td style="text-align: center">-2</td>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0001</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">1111 1111 1111 1101</code></td>
-      <td style="text-align: center">-3</td>
-      <td style="text-align: center">2</td>
-      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0010</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>观察上表可知，<strong><em>可将负整数去掉符号后，减去1，再计算二进制后取反</em></strong>。</p>
+<h2 id="2-迪米特法则松耦合">2 迪米特法则（松耦合）</h2>
+<ol>
+  <li>类之间应该松耦合，耦合越弱，越有利于复用，处于弱耦合的类被修改，不会对有关系的类造成波及。</li>
+  <li>如果两类不必彼此直接通信，那这两个类就不应该发生直接的相互作用。如果一个类需要调用另一个类的某一个方法，可通过第三者转发该调用。</li>
+</ol>
 
 ...
     <div style="text-align:center">
-      <a href="/2016/10/24/%E7%BC%96%E7%A8%8B%E4%B9%8B%E7%BE%8E-%E8%B4%9F%E6%95%B0%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
+      <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/04/29/C++/">
+        C++笔记
+      </a>
+    </h1>
+
+    <span class="post-date">29 Apr 2018</span>
+
+    <h2 id="编码和二进制">编码和二进制</h2>
+
+<ol>
+  <li>十进制小数转为二进制,要不断地乘以2直到为整数：<br />
+<img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1522118636367.png" alt="" /></li>
+  <li>3个二进制位为一个8进制位，4个二进制位为一个16进制位。</li>
+  <li><strong><em>原码</em></strong>：用0,1来表示正负号。其缺点：1.零的表示不唯一，四则运算符号位要单独处理，运算规则复杂。</li>
+  <li><strong><em>补码</em></strong>：0的表示唯一，符号位可以作为数值参与运算。一般只考虑负数的原码转换方式：
+    <ul>
+      <li>原码 -&gt; 反码 -&gt; 补码：负数的原码最高符号位不变，其他位全部取反，最后整体加1。<strong>这个过程叫做求补</strong>，补码转回原码只需要再次求补即可。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="c-变量类型">C++ 变量类型</h2>
+<p><strong>&lt;font color=#CD5C5C&gt; 变量其实只不过是程序可操作的存储区的名称。&lt;/font&gt;</strong>C++ 中每个变量都有指定的类型，类型决定了变量存储的大小和布局，该范围内的值都可以存储在内存中，运算符可应用于变量上。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/04/29/C++/">
         <font size="5">more »</font>
       </a>
     </div>
