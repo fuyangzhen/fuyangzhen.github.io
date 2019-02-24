@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      My Memo Note &middot; Young
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">My Memo Note</h1>
+  <span class="post-date">23 Jun 2018</span>
+  <h2 id="tmux-操作">tmux 操作</h2>
+
+<p>“start”: “webpack-dev-server –mode development –config ./webpack.dev.js –https –cert ./certs/server.crt –key ./certs/server.key”,</p>
+
+<!--more-->
+
+<h2 id="sql-server">SQL server</h2>
+
+<ul>
+  <li>
+    <p>copy table：<code class="highlighter-rouge">select * into CacheTemp from Cache</code></p>
+  </li>
+  <li>
+    <p>copy column: <code class="highlighter-rouge">update CacheTemp set </code></p>
+  </li>
+</ul>
+
+<h2 id="visual-studio-快捷键">visual studio 快捷键</h2>
+
+<ul>
+  <li>格式化：<code class="highlighter-rouge">ctrl + k -&gt; ctrl + d</code></li>
+  <li>注释： <code class="highlighter-rouge">ctrl + k -&gt; ctrl + c </code></li>
+  <li>取消注释： <code class="highlighter-rouge">ctrl + k -&gt; ctrl + u </code></li>
+</ul>
+
+<h2 id="aspnet-命令行编译">ASP.NET 命令行编译</h2>
+
+<pre><code class="language-power">dotnet publish -c Release -o out
+dotnet out/XXX.dll
+</code></pre>
+
+<h2 id="gits-best-practice">git’s best practice</h2>
+
+<ol>
+  <li><code class="highlighter-rouge">git stash</code></li>
+  <li><code class="highlighter-rouge"> git fetch origin master &amp;&amp; git reset --hard origin/master</code></li>
+  <li><code class="highlighter-rouge">git stash pop</code></li>
+  <li><code class="highlighter-rouge">git commit -am "add&amp;change blabla"</code></li>
+  <li><code class="highlighter-rouge">git push -u origin -f HEAD:user/yanfu</code></li>
+</ol>
+
+<ul>
+  <li><code class="highlighter-rouge">git status</code></li>
+  <li><code class="highlighter-rouge">git log --oneline --graph</code></li>
+  <li><code class="highlighter-rouge">git push -f origin master</code>把远端master（新版本）强行改为本地master旧版本</li>
+  <li><code class="highlighter-rouge">git diff master..origin/master</code>对比远端和本地的分支不同之处</li>
+  <li><code class="highlighter-rouge">git checkout -- file_path</code>取消单文件的修改</li>
+</ul>
+
+<p>如何在review的时候同步master代码同时修改commit:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">git reset HEAD~1</code></li>
+  <li><code class="highlighter-rouge">git stash</code></li>
+  <li><code class="highlighter-rouge">git pull</code></li>
+  <li><code class="highlighter-rouge">git stash pop</code></li>
+  <li><code class="highlighter-rouge">git commit -am "bla bla"</code></li>
+  <li><code class="highlighter-rouge">git push -u origin -f HEAD:user/yanfu</code></li>
+</ol>
+
+<h2 id="docker-相关操作">docker 相关操作</h2>
+
+<h5 id="build-映射进入container内部挂载外部文件夹">build 、映射进入container内部、挂载外部文件夹</h5>
+
+<ul>
+  <li>
+    <p><code class="highlighter-rouge">docker build -m 262144 -t es_rescore_with_obj:v0 .</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">chown -R 1000:1000 path/to/data </code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">sudo docker run --privileged -p 9200:9200 --entrypoint "/bin/bash" -it es_rescore:1.0</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">sudo docker run --privileged -p 9200:9200 -v /home/yanfu/make_docker_image/MakePureImage/data:/usr/share/elasticsearch/data -it es_rescore:2.0</code></p>
+
+    <h5 id="彻底删除container">彻底删除container</h5>
+
+    <p>先删container，才能彻底删除（docker rmi）image</p>
+  </li>
+  <li>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker rm <span class="sb">`</span>docker ps <span class="nt">-aq</span><span class="sb">`</span>
+</code></pre></div>    </div>
+
+    <h5 id="为es提升虚拟内存上线">为ES提升虚拟内存上线</h5>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo sysctl -w vm.max_map_count=262144
+</code></pre></div>    </div>
+
+    <h5 id="push到azure的docker仓库">push到Azure的docker仓库</h5>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">docker tag es_rescore:2.0 skillbot.azurecr.io/es_rescore:v0</code></p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">docker login skillot.azurecr.io</code></p>
+
+    <ul>
+      <li><code class="highlighter-rouge">username: skillot </code></li>
+      <li><code class="highlighter-rouge">paasword : 661EZGBW+ZZ5lSsWBjFgZZWh+IXjqgyxk</code></li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">docker push skillbot.azurecr.io/es_rescore:v0</code></li>
+</ul>
+
+<h2 id="iptables主机内部的端口重定向">iptables主机内部的端口重定向</h2>
+
+<p>我们可能需要将访问主机的7979端口映射到8080端口。也可以iptables重定向完成</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iptables -t nat -A PREROUTING -p tcp --dport 7979 -j REDIRECT --to-ports 8080
+</code></pre></div></div>
+
+<h5 id="注意问题">注意问题</h5>
+
+<p>需要打开ip_forward功能。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo '1' &gt; /proc/sys/net/ipv4/ip_forward  
+</code></pre></div></div>
+
+<h2 id="iptables跨网络跨主机的映射full-nat">iptables跨网络、跨主机的映射Full-Nat</h2>
+
+<p>我们想到达主机B的80端口，但是由于网络限制可能无法直接完成。但是我们可以到达主机A的8080端口，而主机A可以直接到达B的80端口。
+这时候可以使用iptables，将主机B的80端口映射到主机A的8080端口，通过访问A的8080相当于访问B的80。实现如下： 
+在主机A上直接如下命令，实现端口映射的Full-Nat</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">pro</span><span class="o">=</span><span class="s1">'tcp'</span>
+<span class="nv">NAT_Host</span><span class="o">=</span><span class="s1">'Host_A'</span>
+<span class="nv">NAT_Port</span><span class="o">=</span>8080
+<span class="nv">Dst_Host</span><span class="o">=</span><span class="s1">'Host_B'</span>
+<span class="nv">Dst_Port</span><span class="o">=</span>80
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> PREROUTING  <span class="nt">-m</span> <span class="nv">$pro</span> <span class="nt">-p</span> <span class="nv">$pro</span> <span class="nt">--dport</span> <span class="nv">$NAT_Port</span> <span class="nt">-j</span> DNAT <span class="nt">--to-destination</span> <span class="nv">$Dst_Host</span>:<span class="nv">$Dst_Port</span>
+iptables <span class="nt">-t</span> nat <span class="nt">-A</span> POSTROUTING <span class="nt">-m</span> <span class="nv">$pro</span> <span class="nt">-p</span> <span class="nv">$pro</span> <span class="nt">--dport</span> <span class="nv">$Dst_Port</span> <span class="nt">-d</span> <span class="nv">$Dst_Host</span> <span class="nt">-j</span> SNAT <span class="nt">--to-source</span> <span class="nv">$NAT_Host</span>
+</code></pre></div></div>
+
+<p>说明：</p>
+
+<ol>
+  <li>NAT_Pro表示NAT的协议，可以是tcp或udp</li>
+  <li>NAT_Host表示中间做端口映射的主机。这里也就是主机A</li>
+  <li>NAT_Port表示中间做端口映射的端口。这里也就是主机A的8080口</li>
+  <li>Dst_Host表示被NAT的主机。这里也就是主机B</li>
+  <li>Dst_Host表示被NAT的端口。这里也就是主机B的80口</li>
+</ol>
+
+<h2 id="配置-nginx的端口重定向复杂可以直接用iptables">配置 Nginx的端口重定向（复杂，可以直接用iptables）</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo /etc/init.d/nginx start	#启动nginx
+
+$ sudo rm /etc/nginx/sites-enabled/default	#删除默认配置
+$ sudo touch /etc/nginx/sites-available/test	#建立项目文件
+$ sudo ln -s /etc/nginx/sites-available/test /etc/nginx/sites-enabled/test	#设置软链接
+
+$ sudo vim /etc/nginx/sites-enabled/test	#编辑项目文件
+</code></pre></div></div>
+
+<p>添加：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server {
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+    }
+}
+</code></pre></div></div>
+
+<p>当HTTP请求得到<code class="highlighter-rouge">/</code>，便会反向代理到<code class="highlighter-rouge">127.0.0.1</code>8000端口。 重启 nginx:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo /etc/init.d/nginx restart
+</code></pre></div></div>
+
+<h2 id="sudo-情景下无法识别部分命令">sudo 情景下无法识别部分命令</h2>
+
+<p>把<code class="highlighter-rouge">psudo() { sudo env PATH="$PATH" "$@"; } </code>加入到~/.bashrc，然后使用<code class="highlighter-rouge">psudo</code></p>
+
+<h2 id="netstat">netstat</h2>
+
+<p><code class="highlighter-rouge">netstat -anp|grep 80 </code>or<code class="highlighter-rouge">lsof -i:端口号 </code>查看端口占用情况</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/01/25/C/">
+            C# Memo
+            <small>25 Jan 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/07/24/docker-private-registry/">
+            Build a docker private registry with Harbor
+            <small>24 Jul 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/06/23/k8s/">
+            JS Note
+            <small>23 Jun 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

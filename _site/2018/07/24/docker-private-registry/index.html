@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Build a docker private registry with Harbor &middot; Young
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Build a docker private registry with Harbor</h1>
+  <span class="post-date">24 Jul 2018</span>
+  <p><code class="highlighter-rouge">Harbor</code> 是由 <code class="highlighter-rouge">VMware</code> 中国研发团队负责开发的开源企业级 <code class="highlighter-rouge">Docker Registry</code>，不仅解决了我们直接使用 <code class="highlighter-rouge">Docker Registry</code>的功能缺失，更解决了我们在生产使用 <code class="highlighter-rouge">Docker Registry</code> 面临的高可用、镜像仓库直接复制、镜像仓库性能等运维痛点。在安装使用<code class="highlighter-rouge">Harbor</code>前，请先安装好<code class="highlighter-rouge">python2.7</code>,<code class="highlighter-rouge">docker-CE</code>和<code class="highlighter-rouge">docker-compose</code>。</p>
+
+<ol>
+  <li>
+    <p>查看本机IP（inet）：<code class="highlighter-rouge">ip addr show eth0 </code>(也可以直接使用局域网内的域名，但是前提是域名要包含<code class="highlighter-rouge">.</code>，不然<code class="highlighter-rouge">docker push</code>会识别为官方的registry，即便你已经成功登录到这个private registry)</p>
+
+    <!--more-->
+  </li>
+  <li>
+    <p>生成证书：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 先修改openssl配置</span>
+<span class="nb">sudo </span>vi /etc/ssl/openssl.cnf
+<span class="c"># 找到[ v3_ca ]这一行，在下面加上：</span>
+subjectAltName <span class="o">=</span> IP:步骤1得到的IP地址
+   
+mkdir <span class="nt">-p</span> certs <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>openssl req <span class="se">\</span>
+<span class="nt">-newkey</span> rsa:4096 <span class="nt">-nodes</span> <span class="nt">-sha256</span> <span class="nt">-keyout</span> certs/ca.key <span class="se">\</span>
+<span class="nt">-x509</span> <span class="nt">-days</span> 365 <span class="nt">-out</span> certs/ca.crt
+<span class="c"># Common Name 填写第一步得到的IP地址，其他项无所谓</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>全局使用刚生成的CA证书（<strong>注意！需要全局重启docker的服务</strong>）：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>cp certs/ca.crt /usr/local/share/ca-certificates/
+<span class="nb">sudo </span>update-ca-certificates
+<span class="nb">sudo </span>service docker restart
+</code></pre></div>    </div>
+    <p>其实有种方式可以不用重启<code class="highlighter-rouge">docker service</code>，但是官方解释这种方法只在部分版本的docker的下才能使用：</p>
+
+    <blockquote>
+      <p>When using authentication, some versions of Docker also require you to trust the certificate at the OS level.</p>
+    </blockquote>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/docker/certs.d/第一步得到的IP地址/
+cp certs/ca.crt /etc/docker/certs.d/第一步得到的IP地址/
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>安装启动<a href="https://github.com/vmware/harbor/releases">Harbor</a> (当前版本号v1.5.2)：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://storage.googleapis.com/harbor-releases/harbor-offline-installer-latest.tgz
+<span class="nb">tar</span> <span class="nt">-zxvf</span> harbor-offline-installer-latest.tgz
+<span class="nb">cd </span>harbor
+vi harbor.cfg
+   
+<span class="c"># 修改harbor.cfg的几处配置：</span>
+hostname <span class="o">=</span> 步骤1得到的IP地址
+ui_url_protocol <span class="o">=</span> ssl_cert <span class="o">=</span> /path_to_your/certs/ca.crt
+ssl_cert_key <span class="o">=</span> /path_to_your/certs/ca.key
+   
+<span class="c"># 安装harbor：</span>
+<span class="nb">sudo</span> ./install.sh
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>局域网内作为registry hub的服务器设置完成了，内网的其他机器要想使用该registry就必须有步骤1中创建的<code class="highlighter-rouge">ca.crt</code>文件。</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scp ca.crt <span class="nv">$USER</span>@XXX.XXX.XXX.XXX:~
+<span class="nb">sudo </span>mkdir <span class="nt">-p</span> /etc/docker/certs.d/第一步得到的IP地址/
+cp certs/ca.crt /etc/docker/certs.d/第一步得到的IP地址/
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>如何更改<code class="highlighter-rouge">harbor.cfg</code>并使其生效：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>docker-compose down <span class="nt">-v</span>
+vim harbor.cfg
+<span class="nb">sudo </span>prepare
+<span class="c"># Removing Harbor's containers while keeping the image data and Harbor's database files on the file system</span>
+<span class="nb">sudo </span>docker-compose up <span class="nt">-d</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>数据文件存放位置：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/data/registry <span class="c"># images</span>
+/data/database <span class="c"># harbor 数据库</span>
+/var/log/harbor/ <span class="c"># harbor 日志</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Ps. 如果没有装python2.7到<code class="highlighter-rouge">usr/bin/python</code>，可以用<code class="highlighter-rouge">sudo apt install python2.7 python-pip</code>快速安装（也可以用软连接指到<code class="highlighter-rouge">usr/bin/python</code>）</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 安装Python2.7/usr/bin/python</span>
+<span class="nb">sudo </span>apt install python2.7 python-pip
+<span class="c"># 安装docker-ce</span>
+<span class="nb">sudo </span>apt-get install docker-ce
+<span class="c"># 安装docker-compose</span>
+<span class="nb">sudo </span>curl <span class="nt">-L</span> https://github.com/docker/compose/releases/download/1.21.2/docker-compose-<span class="k">$(</span>uname <span class="nt">-s</span><span class="k">)</span>-<span class="k">$(</span>uname <span class="nt">-m</span><span class="k">)</span> <span class="nt">-o</span> /usr/local/bin/docker-compose
+<span class="nb">sudo </span>chmod +x /usr/local/bin/docker-compose
+
+<span class="c"># docker 免sudo</span>
+<span class="nb">sudo </span>chmod 666 /var/run/docker.sock
+<span class="c"># docker 免sudo 另一种方式</span>
+<span class="nb">sudo </span>gpasswd <span class="nt">-a</span> <span class="nv">$USER</span> docker
+newgrp - docker
+<span class="c"># 还有一种方式</span>
+<span class="nb">alias </span><span class="nv">docker</span><span class="o">=</span><span class="s1">'sudo docker'</span>
+
+<span class="c"># python安装有问题，删除/usr/bin/python这个旧版本python</span>
+mv /usr/bin/python /usr/bin/python.old
+rm <span class="nt">-f</span> /usr/bin/python-config
+<span class="c"># 然后建立软链接</span>
+ln <span class="nt">-s</span> /usr/local/bin/python /usr/bin/python
+ln <span class="nt">-s</span> /usr/local/bin/python-config /usr/bin/python-config
+ln <span class="nt">-s</span> /usr/local/include/python2.7/ /usr/include/python2.7
+
+<span class="c"># scp把crt分发出去</span>
+scp ca.crt <span class="nv">$USER</span>@XXX.XXX.XXX.XXX:~
+
+<span class="c"># 新建一个linux用户</span>
+adduser <span class="nv">$USER</span>
+<span class="c"># 为其添加sudo权限</span>
+<span class="nb">sudo </span>vi /etc/sudoers
+<span class="c"># 加上一句</span>
+<span class="nv">$USER</span> <span class="nv">ALL</span><span class="o">=(</span>ALL:ALL<span class="o">)</span> ALL
+</code></pre></div></div>
+
+<h2 id="migrate-docker-registry-images">migrate docker registry images</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">IDS</span><span class="o">=</span><span class="k">$(</span>docker images | awk <span class="s1">'{if ($1 ~ /^st.*/) print $1}'</span><span class="k">)</span> <span class="o">&amp;&amp;</span> docker save <span class="nv">$IDS</span> | bzip2 | ssh yanfu@10.190.178.161 <span class="s2">"bunzip2 | docker load"</span>管道
+docker save hello-world | bzip2 | ssh root@10.140.1.120 <span class="s2">"cat | docker load"</span>
+
+docker save <span class="k">$(</span>docker images | awk <span class="s1">'{if ($1 ~ /^carina.*/) printf $1" "}'</span><span class="k">)</span> | bzip2 <span class="o">&gt;</span> qna-images.tar.bz2
+
+docker images | sed <span class="s1">'1d'</span> | awk <span class="s1">'{if ($1 ~ /^carina.*/) print $1 " " $2 " " $3}'</span> <span class="o">&gt;</span> qna-images.list
+</code></pre></div></div>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/01/25/C/">
+            C# Memo
+            <small>25 Jan 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/06/23/k8s/">
+            JS Note
+            <small>23 Jun 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/06/23/build-tf-on-win/">
+            Build TF on win
+            <small>23 Jun 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

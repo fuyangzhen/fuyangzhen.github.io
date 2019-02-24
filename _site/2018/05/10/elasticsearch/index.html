@@ -1,0 +1,213 @@
+<h2 id="score-formula">Score formula</h2>
+
+<p>ES版本跟新迭代的很快，截止到今天（2018.7.10) master的版本为6.3，打分公式一直都在微调，当前版本每个doc的对query的得分计算公式如下（就是最普通的BM25），其中n为query的term和当前doc的term的交集的大小：</p>
+
+<script type="math/tex; mode=display">score_d=\sum_{t=0}^ntfNorm_t*idf_t</script>
+
+<p>idf计算公式如下，其中docCount为index中doc总数，docFreq为曾出现当前计算的term的doc频数：</p>
+
+<script type="math/tex; mode=display">idf=log(1+\frac{docCount-docFreq+0.5}{docFreq+0.5})</script>
+
+<p>tfNorm的计算公式如下，其中fieldLength为当前doc的term的个数，avgFieldLength为index内所有doc的平均term个数，freq为当前计算的term的频数，$k_1$和b为参数，其默认值分别为1.2和0.75：</p>
+
+<script type="math/tex; mode=display">tfNorm=\frac{freq*(k_1+1)}{freq+k_1*(1-b+b*fieldLength/avgFieldLength)}</script>
+
+<p>注意：ES 为了分布式index和search的性能，<code class="highlighter-rouge">docFreq</code> , <code class="highlighter-rouge">docCount</code> and <code class="highlighter-rouge">avgFieldLength</code>are computed per shard.</p>
+
+<!--more-->
+
+<h2 id="query-flow">query flow</h2>
+
+<h2 id="analyzer">Analyzer</h2>
+
+<p>目前原生的ES并未包含对中文分词的支持，需要另行安装插件来支持，最常用的插件有两个：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>bin/elasticsearch-plugin install analysis-smartcn
+<span class="nb">sudo </span>bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.3.0/elasticsearch-analysis-ik-6.3.0.zip
+</code></pre></div></div>
+
+<p>测试方式：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/_analyze"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "analyzer": "smartcn", # or "ik_smart"(best) , "ik_max_word"
+  "text":     "无线电法国别研究"
+}'</span>
+<span class="c"># different, smartcn：</span>
+<span class="o">{</span>
+  <span class="s2">"tokens"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"无线电"</span>,
+      <span class="s2">"start_offset"</span>: 0,
+      <span class="s2">"end_offset"</span>: 3,
+      <span class="s2">"type"</span>: <span class="s2">"word"</span>,
+      <span class="s2">"position"</span>: 0
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"法国"</span>,
+      <span class="s2">"start_offset"</span>: 3,
+      <span class="s2">"end_offset"</span>: 5,
+      <span class="s2">"type"</span>: <span class="s2">"word"</span>,
+      <span class="s2">"position"</span>: 1
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"别"</span>,
+      <span class="s2">"start_offset"</span>: 5,
+      <span class="s2">"end_offset"</span>: 6,
+      <span class="s2">"type"</span>: <span class="s2">"word"</span>,
+      <span class="s2">"position"</span>: 2
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"研究"</span>,
+      <span class="s2">"start_offset"</span>: 6,
+      <span class="s2">"end_offset"</span>: 8,
+      <span class="s2">"type"</span>: <span class="s2">"word"</span>,
+      <span class="s2">"position"</span>: 3
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+<span class="c"># ik_smart:</span>
+<span class="o">{</span>
+  <span class="s2">"tokens"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"无线电"</span>,
+      <span class="s2">"start_offset"</span>: 0,
+      <span class="s2">"end_offset"</span>: 3,
+      <span class="s2">"type"</span>: <span class="s2">"CN_WORD"</span>,
+      <span class="s2">"position"</span>: 0
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"法"</span>,
+      <span class="s2">"start_offset"</span>: 3,
+      <span class="s2">"end_offset"</span>: 4,
+      <span class="s2">"type"</span>: <span class="s2">"CN_CHAR"</span>,
+      <span class="s2">"position"</span>: 1
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"国别"</span>,
+      <span class="s2">"start_offset"</span>: 4,
+      <span class="s2">"end_offset"</span>: 6,
+      <span class="s2">"type"</span>: <span class="s2">"CN_WORD"</span>,
+      <span class="s2">"position"</span>: 2
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">"token"</span>: <span class="s2">"研究"</span>,
+      <span class="s2">"start_offset"</span>: 6,
+      <span class="s2">"end_offset"</span>: 8,
+      <span class="s2">"type"</span>: <span class="s2">"CN_WORD"</span>,
+      <span class="s2">"position"</span>: 3
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>目前（v6.2.4^）在settings中使用<code class="highlighter-rouge">stopwords_path</code>的<strong>唯一方式</strong>(index建立了即生效，无需重启ES）：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># index settings&amp;mappings init</span>
+curl <span class="nt">-X</span> PUT <span class="s2">"localhost:9200/my_index"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "ik_analyzer": {
+          "type": "custom",
+          "tokenizer": "ik_smart",
+          "filter": [
+            "ik_stop"
+          ]
+        }
+      },
+      "filter": {
+        "ik_stop": {
+          "type": "stop",
+          "stopwords_path": "analysis-ik/extra_stopword.dic"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "content": {
+          "type": "text",
+          "analyzer": "ik_analyzer",
+          "search_analyzer": "ik_analyzer"
+        }
+      }
+    }
+  }
+}'</span>
+
+<span class="c"># chect analyzer</span>
+curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/my_index/_analyze"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+    "analyzer":"ik_analyzer",
+    "text":"这个也是他的了"
+}'</span>
+
+<span class="c"># index some test samples</span>
+curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/my_index/_doc"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+    "content":"这个也是他的了"
+}'</span>
+curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/my_index/_doc"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+    "content":"笔"
+}'</span>
+
+<span class="c"># test search effect</span>
+curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/my_index/_doc/_search?pretty"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "explain": true,
+  "query": {
+    "match": {
+      "content": "这个也是他的笔了"
+    }
+  }
+}'</span>
+</code></pre></div></div>
+
+<p>如果更新index的analysis，需要先关闭index，然后更新，再打开：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/my_index/_close"</span>
+curl <span class="nt">-X</span> PUT <span class="s2">"localhost:9200/my_index/_settings"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "ik_analyzer": {
+          "type": "custom",
+          "tokenizer": "ik_smart",
+           #stopwords_path -&gt; 写在这个位置是无效的
+          "filter": [
+            "ik_stop"
+          ]
+        }
+      },
+      "filter": {
+        "ik_stop": {
+          "type": "stop",
+          "stopwords": [
+            "的",
+            "是"
+          ]
+        }
+      }
+    }
+  }
+}'</span>
+curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/my_index/_open"</span>
+curl <span class="nt">-X</span> POST <span class="s2">"localhost:9200/my_index/_analyze"</span> <span class="nt">-H</span> <span class="s1">'Content-Type: application/json'</span> <span class="nt">-d</span><span class="s1">'
+{
+  "analyzer":"ik_analyzer",
+  "content" : "这个是无线电法国别研究"
+}'</span>
+</code></pre></div></div>
+
+<h2 id="q">Q</h2>
+
+<script type="math/tex; mode=display">keywordsScore_d=10-editDis(queryKeywords,docKeywords)</script>
+
+<script type="math/tex; mode=display">embeddingScore_d=cosDis(queryEmbedding,docEmbedding)</script>
+
+<script type="math/tex; mode=display">featureScore_d=keywordsScore_d+embeddingScore_d</script>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Build TF on win &middot; Young
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Build TF on win</h1>
+  <span class="post-date">23 Jun 2018</span>
+  <h2 id="准备工作">准备工作</h2>
+
+<p>win：windows server 2016（win10应该也没问题，成功build和系统关系不大）</p>
+
+<p>cMake：latest</p>
+
+<p>TF源码：master -&gt; 1.10（until 2018.9.1）</p>
+
+<p>eigen：latest</p>
+
+<p>python：3.5.0</p>
+
+<p>visual studio：2015</p>
+
+<p>（<a href="https://www.youtube.com/watch?v=gj_4Yv94LgQ">可供参考的视频</a>）</p>
+
+<!--more-->
+
+<h2 id="1-build-tf">1. build tf</h2>
+
+<ol>
+  <li>
+    <p>终端进入TensorFlow的cmake文件夹,例如<code class="highlighter-rouge">E:\tf-r.1.10\tensorflow\tensorflow\contrib\cmake</code></p>
+  </li>
+  <li>
+    <p>新建一个文件夹并进入<code class="highlighter-rouge">build</code></p>
+  </li>
+  <li>
+    <p>执行：</p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmake .. -A x64 -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ^ 
+More? -DSWIG_EXECUTABLE<span class="o">=</span>E:/swigwin-3.0.12/swig.exe ^ 
+More? -DPYTHON_EXECUTABLE<span class="o">=</span>C:/Users/yanfu/AppData/Local/Programs/Python/Python35/python.exe ^
+More? -DPYTHON_LIBRARIES<span class="o">=</span>C:/Users/yanfu/AppData/Local/Programs/Python/Python35/libs/python35.lib ^
+More? -Dtensorflow_BUILD_SHARED_LIB<span class="o">=</span>ON
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>MSBuild：</p>
+
+    <div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MSBuild ^
+/m:1 ^
+/p:CL_MPCount<span class="o">=</span>1 ^
+/p:Configuration<span class="o">=</span>Release ^
+/p:Platform<span class="o">=</span>x64 ^
+/p:PreferredToolArchitecture<span class="o">=</span>x64 ALL_BUILD.vcxproj ^
+/filelogger
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>PS.MSBuild 是增量build的，期间很可能部分项目会有提示内存不足的错误，多按照上面的MSBuild命令build几次直到0error，build完成大概需要2~3小时，这个得看机器内存和处理器。完成后在以下目录<code class="highlighter-rouge">E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\Release  </code>生成<code class="highlighter-rouge">tensorflow.dll, tensorflow.lib</code>，表示build完成；</p>
+
+    <ol>
+      <li>执行<code class="highlighter-rouge">Release\tf_tutorials_example_trainer.exe  </code>检验是否build成功；</li>
+      <li>执行<code class="highlighter-rouge">Release\tf_label_image_example.exe</code>进一步检验是否build成功，这一步检验需要model，dic文件，可在<a href="https://github.com/firdauslubis88/tensorflow/tree/master/build/tensorflow/examples/label_image/data">此处</a>下载到，放置在<code class="highlighter-rouge">E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\tensorflow\examples\label_image\data </code>即可。</li>
+    </ol>
+  </li>
+</ol>
+
+<h2 id="2-new-vs-c-project">2. New VS C++ project</h2>
+
+<p>用VS2015新建空的visual C++ 项目（<strong>选择为Release，x64</strong>），右键项目修改properties：</p>
+
+<ol>
+  <li>
+    <p>修改C/C++下的<code class="highlighter-rouge">Additional Include Directories，</code>添加:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\tf-r1.10\tensorflow
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\eigen_archive
+E:\tf-r1.10\tensorflow\third_party\eigen3
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\protobuf\src\protobuf\src
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\nsync\public
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\zlib_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\gif_archive\giflib-5.1.4
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\png_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\jpeg_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\lmdb
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\gemmlowp\src\gemmlowp
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\jsoncpp\src\jsoncpp
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\farmhash_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\farmhash_archive\util
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\highwayhash
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\cub\src\cub
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\re2\install\include
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\sqlite
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\grpc\src\grpc\include
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\snappy\src\snappy
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>修改C/C++的<code class="highlighter-rouge">Preprocesser Definitions</code>,添加：</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>COMPILER_MSVC
+NOMINMAX
+TENSORFLOW_EXPORTS
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>修改Linker的Input下的<code class="highlighter-rouge">Additional Dependencies</code>，添加<code class="highlighter-rouge">Addtional Denpendencies</code>:</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>E:\tf-r1.10\tensorflow
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\eigen_archive
+E:\tf-r1.10\tensorflow\third_party\eigen3
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\protobuf\src\protobuf\src
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\nsync\public
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\zlib_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\gif_archive\giflib-5.1.4
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\png_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\jpeg_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\lmdb
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\gemmlowp\src\gemmlowp
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\jsoncpp\src\jsoncpp
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\farmhash_archive
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\farmhash_archive\util
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\highwayhash
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\cub\src\cub
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\re2\install\include
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\external\sqlite
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\grpc\src\grpc\include
+E:\tf-r1.10\tensorflow\tensorflow\contrib\cmake\build\snappy\src\snappy
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>在<code class="highlighter-rouge">main.cpp</code>下测试官方的测试代码：</p>
+
+    <pre><code class="language-CPP">#include "tensorflow/cc/client/client_session.h"
+#include "tensorflow/cc/ops/standard_ops.h"
+#include "tensorflow/core/framework/tensor.h"
+   
+int main() {
+    using namespace tensorflow;
+    using namespace tensorflow::ops;
+       
+    Scope root = Scope::NewRootScope();
+    // Matrix A = [3 2; -1 0]
+    auto A = Const(root, { { 3.f, 2.f },{ -1.f, 0.f } });
+    // Vector b = [3 5]
+    auto b = Const(root, { { 3.f, 5.f } });
+    // v = Ab^T
+    auto v = MatMul(root.WithOpName("v"), A, b, MatMul::TransposeB(true));
+    std::vector&lt;Tensor&gt; outputs;
+    ClientSession session(root);
+    // Run and fetch v
+    TF_CHECK_OK(session.Run({ v }, &amp;outputs));
+    // Expect outputs[0] == [19; -3]
+    LOG(INFO) &lt;&lt; outputs[0].matrix&lt;float&gt;();
+    return 0;
+}
+</code></pre>
+  </li>
+  <li>
+    <p>编译项目，然后在<code class="highlighter-rouge">C:\Users\yanfu\Documents\Visual Studio 2015\Projects\tensorflow-native-test\x64\Release </code>下用终端直接执行<code class="highlighter-rouge">tensorflow-native-test.exe</code>：</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-09-02 08:03:49.370879: I E:\tf-r1.10\tensorflow\tensorflow\core\platform\cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX AVX2
+2018-09-02 08:03:49.382443: I main.cpp:20] 19
+-3
+</code></pre></div>    </div>
+
+    <p>表示C++项目已经可以正确使用编译出来的TF库了。</p>
+  </li>
+</ol>
+
+<h4 id="pspython生产model文件在c项目使用">Ps.Python生产model文件，在C++项目使用</h4>
+
+<p>最开始的目的是想用 python去生产TF的pb格式（在这个需求场景下推荐这个格式）的model文件，然后在C++的项目中使用，但是后来项目不需要TF的model了，所以就放弃了。python导出pb格式的文件的方法为：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.framework</span> <span class="kn">import</span> <span class="n">graph_util</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'x'</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">666</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s">'y'</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'w'</span><span class="p">)</span>
+    <span class="n">_op</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+    <span class="n">op</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">_op</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">'op_to_store'</span><span class="p">)</span>
+
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
+
+    <span class="c"># convert_variables_to_constants 需要指定output_node_names，list()，可以多个</span>
+    <span class="n">constant_graph</span> <span class="o">=</span> <span class="n">graph_util</span><span class="o">.</span><span class="n">convert_variables_to_constants</span><span class="p">(</span>
+        <span class="n">sess</span><span class="p">,</span> <span class="n">sess</span><span class="o">.</span><span class="n">graph_def</span><span class="p">,</span> <span class="p">[</span><span class="s">'op_to_store'</span><span class="p">])</span>
+
+    <span class="c"># 测试 OP</span>
+    <span class="n">feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">feed_dict</span><span class="p">))</span>
+
+    <span class="c"># 写入序列化的 PB 文件</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">FastGFile</span><span class="p">(</span><span class="s">'./model.pb'</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">constant_graph</span><span class="o">.</span><span class="n">SerializeToString</span><span class="p">())</span>
+</code></pre></div></div>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/01/25/C/">
+            C# Memo
+            <small>25 Jan 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/07/24/docker-private-registry/">
+            Build a docker private registry with Harbor
+            <small>24 Jul 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/06/23/k8s/">
+            JS Note
+            <small>23 Jun 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

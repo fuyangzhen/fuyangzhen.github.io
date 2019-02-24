@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      JS Note &middot; Young
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">JS Note</h1>
+  <span class="post-date">23 Jun 2018</span>
+  <h2 id="syntax-note">Syntax Note</h2>
+
+<!--more-->
+
+<ol>
+  <li>循环体内部定义的var会传到外部，所以应该使用let来定义块作用域</li>
+  <li>字符前加上+会转为int（or float?）:</li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">char2Int</span><span class="p">(){</span>
+    <span class="kd">let</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">+</span><span class="nx">c</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Array的sort()方法默认把所有元素先转换为String再排序：
+// 无法理解的结果:
+[10, 20, 1, 2].sort(); // [1, 10, 2, 20]
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量;</p>
+  </li>
+  <li>
+    <p>“创建一个匿名函数并立刻执行“(匿名函数必须加上“（）”才能立即使用)：</p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span> <span class="p">})</span> <span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>在返回的对象中，实现一个闭包，该闭包携带了局部变量<code class="highlighter-rouge">x</code>，并且，从外部代码根本无法访问到变量<code class="highlighter-rouge">x</code>。换句话说，<strong>闭包就是携带状态的函数，并且它的状态可以完全对外隐藏起来</strong>：</p>
+
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s1">'use strict'</span><span class="p">;</span>
+   
+<span class="kd">function</span> <span class="nx">create_counter</span><span class="p">(</span><span class="nx">initial</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">initial</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">inc</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">x</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">x</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+   
+<span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="nx">create_counter</span><span class="p">();</span>
+<span class="nx">c1</span><span class="p">.</span><span class="nx">inc</span><span class="p">();</span> <span class="c1">// 1</span>
+<span class="nx">c1</span><span class="p">.</span><span class="nx">inc</span><span class="p">();</span> <span class="c1">// 2</span>
+<span class="nx">c1</span><span class="p">.</span><span class="nx">inc</span><span class="p">();</span> <span class="c1">// 3</span>
+   
+<span class="kd">var</span> <span class="nx">c2</span> <span class="o">=</span> <span class="nx">create_counter</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="nx">c2</span><span class="p">.</span><span class="nx">inc</span><span class="p">();</span> <span class="c1">// 11</span>
+<span class="nx">c2</span><span class="p">.</span><span class="nx">inc</span><span class="p">();</span> <span class="c1">// 12</span>
+<span class="nx">c2</span><span class="p">.</span><span class="nx">inc</span><span class="p">();</span> <span class="c1">// 13</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">res += 1</code>等于<code class="highlighter-rouge">++res</code>;</p>
+  </li>
+  <li>
+    <p>总结一下，有这么几条规则需要遵守：</p>
+
+    <ul>
+      <li>不要使用<code class="highlighter-rouge">new Number()</code>、<code class="highlighter-rouge">new Boolean()</code>、<code class="highlighter-rouge">new String()</code>创建包装对象；</li>
+      <li>用<code class="highlighter-rouge">parseInt()</code>或<code class="highlighter-rouge">parseFloat()</code>来转换任意类型到<code class="highlighter-rouge">number</code>；</li>
+      <li>用<code class="highlighter-rouge">String()</code>来转换任意类型到<code class="highlighter-rouge">string</code>，或者直接调用某个对象的<code class="highlighter-rouge">toString()</code>方法；</li>
+      <li>通常不必把任意类型转换为<code class="highlighter-rouge">boolean</code>再判断，因为可以直接写<code class="highlighter-rouge">if (myVar) {...}</code>；</li>
+      <li><code class="highlighter-rouge">typeof</code>操作符可以判断出<code class="highlighter-rouge">number</code>、<code class="highlighter-rouge">boolean</code>、<code class="highlighter-rouge">string</code>、<code class="highlighter-rouge">function</code>和<code class="highlighter-rouge">undefined</code>；</li>
+      <li>判断<code class="highlighter-rouge">Array</code>要使用<code class="highlighter-rouge">Array.isArray(arr)</code>；</li>
+      <li>判断<code class="highlighter-rouge">null</code>请使用<code class="highlighter-rouge">myVar === null</code>；</li>
+      <li>判断某个全局变量是否存在用<code class="highlighter-rouge">typeof window.myVar === 'undefined'</code>；</li>
+      <li>函数内部判断某个变量是否存在用<code class="highlighter-rouge">typeof myVar === 'undefined'</code>。</li>
+    </ul>
+  </li>
+  <li>没有<code class="highlighter-rouge">name</code>属性的<code class="highlighter-rouge">&lt;input&gt;</code>的数据不会被提交 ;</li>
+</ol>
+
+<h2 id="react">React</h2>
+
+<p>组件继承自react component class，一般分为三个属性：</p>
+
+<ol>
+  <li>普通属性</li>
+  <li>state（component class预定义好的）自身的数据字段，应该代表着UI呈现状态在render中被使用</li>
+  <li>props（component class预定义好的）数据的接口</li>
+</ol>
+
+<p>不要依赖当前的state和props计算下一个状态，因为他们的更新都是异步的。</p>
+
+<p><strong>state的改变意味着渲染刷新</strong></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/01/25/C/">
+            C# Memo
+            <small>25 Jan 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/07/24/docker-private-registry/">
+            Build a docker private registry with Harbor
+            <small>24 Jul 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2018/06/23/k8s/">
+            JS Note
+            <small>23 Jun 2018</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://young-hook.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>
