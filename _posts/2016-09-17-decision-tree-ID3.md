@@ -45,7 +45,7 @@ def calcShannonEnt(dataSet):
         prob=float(labelCounts[key])/numEntries
         shannonEnt-=prob*log(prob,2)
     return shannonEnt
-```  
+```
 测试信息熵计算函数：
 
 ```py
@@ -77,7 +77,7 @@ def splitDataSet(dataSet,axis,value):
     return retDataSet
 
 splitDataSet(myDat,0,1)#[[1, 'yes'], [1, 'yes'], [0, 'no']]
-```  
+```
 选出在当前样本集的各个特征中能最使`初始的信息`增益达到最高的那个特征：
 
 ```py
@@ -99,7 +99,7 @@ def chooseBestFeatureToSplit(dataSet):
             baseInfoGain=infoGain
             bestFeature=i
     return bestFeature
-```  
+```
 ### 2.3 递归构建决策树  
 ```py
 #===================================================================递归构建决策树
@@ -134,7 +134,7 @@ def createTree(dataSet,labels):
 myDat,labels=createDataSet()
 createTree(myDat,labels)
 #{'no surfacing': {0: 'no', 1: {'flippers': {0: 'no', 1: 'yes'}}}}
-```  
+```
 ### 2.4 绘图展示  
 ```py
 #====================================================================绘图构造注解树
@@ -215,10 +215,12 @@ def createPlot(inTree):
     plotTree.yOff = 1.0;
     plotTree(inTree, (0.5,1.0), '')
     plt.show()
-```  
+```
 用决策树字典`{'no surfacing':{0:'no',1:{'flippers':{0:'no',1:'yes'}}}}`测试该绘图函数，结果如下：  
-![sample](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474158973548.png
-)
+![sample](assets/gallery/1474158973548.png)  
+
+图挂了这个故事告诉我们减少对第三方免费服务的依赖，文件能自己存就自己存，功能能代码实现就用代码实现。
+
 ### 2.5 预测新样本类别  
 ```py
 #===================================================利用训练好的决策树进行新样本的分类
@@ -247,7 +249,7 @@ def grabTree(filename):
     import pickle
     with open(filename) as fr:
         return pickle.load(fr)
-```  
+```
 ## 3 示例  
 以书中第3章给出的隐形眼镜数据集来展示算法的效果：
 
@@ -258,7 +260,7 @@ with open('/Users/fuyangzhen/Documents/machinelearninginaction/Ch03/lenses.txt')
 lensesLabels=['age','prescript','astigmatic','tearRate']
 lensesTree=createTree(lenses,lensesLabels)
 createPlot(lensesTree)
-```  
+```
 得出的决策树的字典如下：  
 `{'tearRate':  {'normal': {'astigmatic': {'no': {'age': {'pre': 'soft',
       'presbyopic': {'prescript': {'hyper': 'soft', 'myope': 'no lenses'}},
