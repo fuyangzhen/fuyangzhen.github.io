@@ -8,55 +8,55 @@ comments: true
 
 Post some useful essential cheat sheets for machine learning and deep learning engineers that all reprinted from [Kailash Ahirwar](https://startupsventurecapital.com/essential-cheat-sheets-for-machine-learning-and-deep-learning-researchers-efb6a8ebd2e5).  
 <!--more-->
-<img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308192701.png" data-action="zoom"/>
+<img src="/assets/gallery/1513308192701.png" data-action="zoom"/>
 
 
 ## keras  
-[![keras](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308192701.png)](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307478364.png)  
+[![keras](/assets/gallery/1513308192701.png)](/assets/gallery/1513307478364.png)  
 
 ## Numpy  
-![numpy](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307555773.png)  
+![numpy](/assets/gallery/1513307555773.png)  
 
 ## Pandas  
-![Pandas1](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307668547.png)  
+![Pandas1](/assets/gallery/1513307668547.png)  
 
 ***  
 
-![pandas2](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307699208.png)  
+![pandas2](/assets/gallery/1513307699208.png)  
 
 ***  
 
-![pandas3](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307785365.png)  
+![pandas3](/assets/gallery/1513307785365.png)  
 
 ## Scipy  
-![scipy](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307861349.png)  
+![scipy](/assets/gallery/1513307861349.png)  
 
 ## Matplotlib  
-![Matplotlib](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307902094.png)  
+![Matplotlib](/assets/gallery/1513307902094.png)  
 
 ## Scikit-learn  
-![Scikit-learn](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307933927.png)  
+![Scikit-learn](/assets/gallery/1513307933927.png)  
 
 ## Neural Networks Zoo  
-![Neural Networks Zoo](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513307966868.png)  
+![Neural Networks Zoo](/assets/gallery/1513307966868.png)  
 
 ## ggplot2  
-![ggplot2](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308003271.png)  
+![ggplot2](/assets/gallery/1513308003271.png)  
 
 ***  
 
-![ggplot22](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308030638.png)  
+![ggplot22](/assets/gallery/1513308030638.png)  
 
 ## Jupyter Notebook  
-![Jupyter Notebook](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308085074.png)  
+![Jupyter Notebook](/assets/gallery/1513308085074.png)  
 
 ## PySpark  
-![PySpark1](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308152453.png)  
+![PySpark1](/assets/gallery/1513308152453.png)  
 
 ***  
 
-![PySpark2](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308176767.png)  
+![PySpark2](/assets/gallery/1513308176767.png)  
 
 ***  
 
-![PySpark3](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1513308192701.png)
+![PySpark3](/assets/gallery/1513308192701.png)

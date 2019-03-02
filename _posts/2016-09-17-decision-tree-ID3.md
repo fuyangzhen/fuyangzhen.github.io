@@ -271,7 +271,7 @@ createPlot(lensesTree)
       'myope': 'hard'}}}},
   'reduced': 'no lenses'}}`  
   得出的决策树的注解树如下：  
-![示例](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474158708244.png
+![示例](/assets/gallery/1474158708244.png
 )  
 ## 4 小结  
 决策树能非常好地匹配`标称型`实验数据，但可能存在匹配选项过多地现象，即`过度匹配(overfitting)`。为了减少过度匹配问题，可以裁剪决策树，去掉一些不必要的叶节点：若叶节点智能增加少许信息，则可以删除该节点，将它并入导其他叶节点中。  

@@ -118,9 +118,9 @@ $$
 
 上式左侧是3维空间里两个向量的点积，可看做$\vec a$投影在$\vec p$上的长度乘以$\vec p$的长度。式子等号若要成立，可看作以$\vec v,\vec w$围成的平行四边形为底，为其寻找一个垂直于该四边形平面的向量$\vec p$，该向量的长度等于平行四边形的面积：  
 
-![](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1523105954898.png)
+![](/assets/gallery/1523105954898.png)
 
-![](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1523105834920.png)  
+![](/assets/gallery/1523105834920.png)  
 
 ## 7 基变换
 
@@ -208,21 +208,21 @@ $$
 
 * 关于向量的概念在函数的世界都有直接的类比：
 
-  ![](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1523185808205.png)
+  ![](/assets/gallery/1523185808205.png)
 
 * 只要处理的对象集具有合理的数乘和相加的概念，线性代数中所有关于向量、线性变换和其他的概念（线性变换、零空间、特征向量、点积等）都适用于它；这些类似向量的事物，如箭头、一组数、函数等，构成的集合被称作“**向量空间**”：
 
-  ![](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1523186046724.png)
+  ![](/assets/gallery/1523186046724.png)
 
 * 对于向量空间内的函数来说，微分算子$\frac{d}{dx}$就是一种线性变换。更具体地，对于函数中的全体多项式空间来说，基向量此时就是基函数：
 
-  ![](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1523186331214.png)
+  ![](/assets/gallery/1523186331214.png)
 
   此时**求导这种线性变换**（微分算子$\frac{d}{dx}$满足线性性质）就可以用一个无限阶矩阵描述：  
 
-  ![](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1523186927929.png)
+  ![](/assets/gallery/1523186927929.png)
 
   其中微分矩阵的计算方法是，对每个基函数进行微分变换得出微分后的基函数，将所有基函数组合在一起就是相应的整体微分变换矩阵：  
 
-  ![](http://7xwp22.com1.z0.glb.clouddn.com/markdown/1523187254642.png)
+  ![](/assets/gallery/1523187254642.png)
 

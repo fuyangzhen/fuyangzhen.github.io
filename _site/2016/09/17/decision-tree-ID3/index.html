@@ -376,7 +376,7 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 <p>用决策树字典<code class="highlighter-rouge">{'no surfacing':{0:'no',1:{'flippers':{0:'no',1:'yes'}}}}</code>测试该绘图函数，结果如下：<br />
-<img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474158973548.png" alt="sample" /></p>
+<img src="/assets/gallery/1474158973548.png" alt="sample" /></p>
 <h3 id="25-预测新样本类别">2.5 预测新样本类别</h3>
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#===================================================利用训练好的决策树进行新样本的分类</span>
     <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">inputTree</span><span class="p">,</span><span class="n">featLabels</span><span class="p">,</span><span class="n">testVec</span><span class="p">):</span><span class="c">#后两个参数的属性顺序要一一对应</span>
@@ -424,7 +424,7 @@
       'myope': 'hard'}}}},
   'reduced': 'no lenses'}}</code><br />
   得出的决策树的注解树如下：<br />
-<img src="http://7xwp22.com1.z0.glb.clouddn.com/markdown/1474158708244.png" alt="示例" /></p>
+<img src="/assets/gallery/1474158708244.png" alt="示例" /></p>
 <h2 id="4-小结">4 小结</h2>
 <p>决策树能非常好地匹配<code class="highlighter-rouge">标称型</code>实验数据，但可能存在匹配选项过多地现象，即<code class="highlighter-rouge">过度匹配(overfitting)</code>。为了减少过度匹配问题，可以裁剪决策树，去掉一些不必要的叶节点：若叶节点智能增加少许信息，则可以删除该节点，将它并入导其他叶节点中。<br />
 决策树分类器就像带有终止块的流程图，终止块表示分类结果。开始处理数据集时，我们先需要测量集合中数据整体的不一致性（熵），然后寻找最优特征来划分数据集，直到数据集中所有数据属于同一分类。</p>
