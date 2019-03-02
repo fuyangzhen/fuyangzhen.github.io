@@ -217,7 +217,7 @@ def createPlot(inTree):
     plt.show()
 ```
 用决策树字典`{'no surfacing':{0:'no',1:{'flippers':{0:'no',1:'yes'}}}}`测试该绘图函数，结果如下：  
-![sample](assets/gallery/1474158973548.png)  
+![sample](/assets/gallery/1474158973548.png)  
 
 图挂了这个故事告诉我们减少对第三方免费服务的依赖，文件能自己存就自己存，功能能代码实现就用代码实现。
 

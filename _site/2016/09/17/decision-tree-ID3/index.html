@@ -9,10 +9,10 @@
 </script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 </script>
-<link href="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.js"></script>
-<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/transition.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
+<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
 
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -377,6 +377,9 @@
 </code></pre></div></div>
 <p>用决策树字典<code class="highlighter-rouge">{'no surfacing':{0:'no',1:{'flippers':{0:'no',1:'yes'}}}}</code>测试该绘图函数，结果如下：<br />
 <img src="/assets/gallery/1474158973548.png" alt="sample" /></p>
+
+<p>图挂了这个故事告诉我们减少对第三方免费服务的依赖，文件能自己存就自己存，功能能代码实现就用代码实现。</p>
+
 <h3 id="25-预测新样本类别">2.5 预测新样本类别</h3>
 <div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#===================================================利用训练好的决策树进行新样本的分类</span>
     <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="n">inputTree</span><span class="p">,</span><span class="n">featLabels</span><span class="p">,</span><span class="n">testVec</span><span class="p">):</span><span class="c">#后两个参数的属性顺序要一一对应</span>
