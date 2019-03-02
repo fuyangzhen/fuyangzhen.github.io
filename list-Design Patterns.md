@@ -1,11 +1,11 @@
 ---
 layout: page
-title: NLP&ML
+title: Design Patterns
 comments: true
 ---
-## Nature language processing & machine learning
+## Design Patterns Library
 {% for post in site.posts %}
-{% if post.tags contains 'nlp' or post.tags contains 'ml' %}
+{% if post.tags contains 'Design Patterns' %}
   * {{ post.date | date_to_string }} / [ {{ post.title }} ]({{ post.url }})
 {% endif %}
 {% endfor %}

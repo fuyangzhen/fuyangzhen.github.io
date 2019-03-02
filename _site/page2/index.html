@@ -9,10 +9,10 @@
 </script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 </script>
-<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<link href="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
-<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/transition.js"></script>
 
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -86,31 +86,25 @@
     
     
     
+    <a class="sidebar-nav-item" href="/list-AIR/">AIR</a>
+    
+    
+    
+    
+    
     <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
     
     
     
     
     
-    <a class="sidebar-nav-item" href="/list-Math/">Math</a>
+    <a class="sidebar-nav-item" href="/list-Design%20Patterns/">Design Patterns</a>
     
     
     
     
     
-    <a class="sidebar-nav-item" href="/list-NLP&ML/">NLP&ML</a>
-    
-    
-    
-    
-    
-    <a class="sidebar-nav-item" href="/list-OJ/">OJ</a>
-    
-    
-    
-    
-    
-    <a class="sidebar-nav-item" href="/list-Other/">Other</a>
+    <a class="sidebar-nav-item" href="/list-Memo/">Memo</a>
     
     
     
@@ -253,14 +247,25 @@
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+      <a href="/2018/04/29/patterns-library/">
         设计模式
       </a>
     </h1>
 
     <span class="post-date">29 Apr 2018</span>
 
-    <h2 id="1-工厂模式">1 工厂模式</h2>
+    <h2 id="0-适配器模式">0 适配器模式</h2>
+
+<p>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</p>
+
+<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
+
+<p>concrete：具体的，凝固。</p>
+
+<p>tabular：扁平的，列表的</p>
+
+<h2 id="1-工厂模式">1 工厂模式</h2>
+
 <p>客户端代码调用工厂类，让工厂类的内部方法逻辑选择判断该实例化哪个具体类。</p>
 
 <ol>
@@ -276,7 +281,7 @@
 
 ...
     <div style="text-align:center">
-      <a href="/2018/04/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+      <a href="/2018/04/29/patterns-library/">
         <font size="5">more »</font>
       </a>
     </div>

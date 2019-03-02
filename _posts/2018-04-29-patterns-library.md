@@ -6,7 +6,20 @@ date: 2018-04-29 00:00:00
 comments: true
 ---  
 
+
+
+## 0 适配器模式  
+
+client -> adaptor interface -> adaptor class -> adaptee
+
+不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。
+
+concrete：具体的，凝固。
+
+tabular：扁平的，列表的
+
 ## 1 工厂模式  
+
 客户端代码调用工厂类，让工厂类的内部方法逻辑选择判断该实例化哪个具体类。
 
 1. 简单工厂模式的最大优点是工厂类中包含的必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，对于客户端，去除了与具体产品的依赖；

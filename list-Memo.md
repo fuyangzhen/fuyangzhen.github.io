@@ -1,11 +1,11 @@
 ---
 layout: page
-title: OJ
+title: Memo
 comments: true
 ---
-## Online judge collection
+
 {% for post in site.posts %}
-{% if post.tags contains 'oj' %}
+{% if post.tags contains 'memo' or post.tags contains 'other' %}
   * {{ post.date | date_to_string }} / [ {{ post.title }} ]({{ post.url }})
 {% endif %}
 {% endfor %}
