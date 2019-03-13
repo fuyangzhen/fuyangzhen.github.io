@@ -9,10 +9,10 @@
 </script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 </script>
-<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<link href="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
-<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/transition.js"></script>
 
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -165,6 +165,146 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2018/05/10/elasticsearch/">
+        ElasticSearch Note
+      </a>
+    </h1>
+
+    <span class="post-date">10 May 2018</span>
+
+    <h2 id="score-formula">Score formula</h2>
+
+<p>ES版本跟新迭代的很快，截止到今天（2018.7.10) master的版本为6.3，打分公式一直都在微调，当前版本每个doc的对query的得分计算公式如下（就是最普通的BM25），其中n为query的term和当前doc的term的交集的大小：</p>
+
+<script type="math/tex; mode=display">score_d=\sum_{t=0}^ntfNorm_t*idf_t</script>
+
+<p>idf计算公式如下，其中docCount为index中doc总数，docFreq为曾出现当前计算的term的doc频数：</p>
+
+<script type="math/tex; mode=display">idf=log(1+\frac{docCount-docFreq+0.5}{docFreq+0.5})</script>
+
+<p>tfNorm的计算公式如下，其中fieldLength为当前doc的term的个数，avgFieldLength为index内所有doc的平均term个数，freq为当前计算的term的频数，$k_1$和b为参数，其默认值分别为1.2和0.75：</p>
+
+<script type="math/tex; mode=display">tfNorm=\frac{freq*(k_1+1)}{freq+k_1*(1-b+b*fieldLength/avgFieldLength)}</script>
+
+<p>注意：ES 为了分布式index和search的性能，<code class="highlighter-rouge">docFreq</code> , <code class="highlighter-rouge">docCount</code> and <code class="highlighter-rouge">avgFieldLength</code>are computed per shard.</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/05/10/elasticsearch/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/05/09/NLP/">
+        NLP Memo Note
+      </a>
+    </h1>
+
+    <span class="post-date">09 May 2018</span>
+
+    <h2 id="nlp">NLP</h2>
+
+<h4 id="虚词">虚词</h4>
+
+<p>对短语的语义不起决定作用，对QA的查询贡献也小，这些词一般作为停用词表（stop list）</p>
+
+<p>语法词：can, go, say, he;</p>
+
+<p>功能词：介词of, about;</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/05/09/NLP/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/04/29/patterns-library/">
+        设计模式
+      </a>
+    </h1>
+
+    <span class="post-date">29 Apr 2018</span>
+
+    <h2 id="0-适配器模式">0 适配器模式</h2>
+
+<p>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</p>
+
+<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
+
+<p>concrete：具体的，凝固。</p>
+
+<p>tabular：扁平的，列表的</p>
+
+<h2 id="1-工厂模式">1 工厂模式</h2>
+
+<p>客户端代码调用工厂类，让工厂类的内部方法逻辑选择判断该实例化哪个具体类。</p>
+
+<ol>
+  <li>简单工厂模式的最大优点是工厂类中包含的必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，对于客户端，去除了与具体产品的依赖；</li>
+  <li>简单工厂模式是把创建对象的判断逻辑放到了工厂类的静态方法里面了，后续增加工厂功能的话，就需要改动里面的逻辑代码，不符合开闭原则。客户端代码的逻辑要上升到工厂类中去修改具体方法逻辑，这样太过耦合。</li>
+</ol>
+
+<h2 id="2-迪米特法则松耦合">2 迪米特法则（松耦合）</h2>
+<ol>
+  <li>类之间应该松耦合，耦合越弱，越有利于复用，处于弱耦合的类被修改，不会对有关系的类造成波及。</li>
+  <li>如果两类不必彼此直接通信，那这两个类就不应该发生直接的相互作用。如果一个类需要调用另一个类的某一个方法，可通过第三者转发该调用。</li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/04/29/patterns-library/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/04/29/C++/">
+        C++笔记
+      </a>
+    </h1>
+
+    <span class="post-date">29 Apr 2018</span>
+
+    <h2 id="编码和二进制">编码和二进制</h2>
+
+<ol>
+  <li>十进制小数转为二进制,要不断地乘以2直到为整数：<br />
+<img src="/assets/gallery/1522118636367.png" alt="" /></li>
+  <li>3个二进制位为一个8进制位，4个二进制位为一个16进制位。</li>
+  <li><strong><em>原码</em></strong>：用0,1来表示正负号。其缺点：1.零的表示不唯一，四则运算符号位要单独处理，运算规则复杂。</li>
+  <li><strong><em>补码</em></strong>：0的表示唯一，符号位可以作为数值参与运算。一般只考虑负数的原码转换方式：
+    <ul>
+      <li>原码 -&gt; 反码 -&gt; 补码：负数的原码最高符号位不变，其他位全部取反，最后整体加1。<strong>这个过程叫做求补</strong>，补码转回原码只需要再次求补即可。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="c-变量类型">C++ 变量类型</h2>
+<p><strong>&lt;font color=#CD5C5C&gt; 变量其实只不过是程序可操作的存储区的名称。&lt;/font&gt;</strong>C++ 中每个变量都有指定的类型，类型决定了变量存储的大小和布局，该范围内的值都可以存储在内存中，运算符可应用于变量上。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/04/29/C++/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2018/04/22/deploy/">
         Linux deploy of WeRoBot's search engine
       </a>
@@ -181,124 +321,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/04/22/deploy/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/04/07/Essence-of-linear-algebra/">
-        Essence of linear algebra
-      </a>
-    </h1>
-
-    <span class="post-date">07 Apr 2018</span>
-
-    <h2 id="前言">前言</h2>
-
-<p>以下内容启发自著名youtuber-<a href="https://www.bilibili.com/video/av6731067/?p=1">3b1b的线代教程</a>。不涉及到具体计算方法，只对线代的基本几何意义进行总结。</p>
-
-<h2 id="1-线性">1 线性</h2>
-
-<ul>
-  <li>线性相关：a可用b（可能由多个线性无关的向量组成）表示出来</li>
-  <li>线性变换：向量空间的线性函数变换，其中的空间变换关系就是矩阵，矩阵中的具体数值可看作原基向量通过这种变换后的坐标位置</li>
-  <li>矩阵的行列式的绝对值含义为线性变换使空间压缩或放大的比例，如果行列式为负，则表示将空间翻转了，空间定向（orientation）改变了。<strong>特征就是本来在单位向量i左边的j，转到了i右边</strong>。</li>
-  <li>转置不改变行列式的值。</li>
-  <li>行列式为0，代表着原空间维度的损失。</li>
-</ul>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/04/07/Essence-of-linear-algebra/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/03/18/Some-TODO-blogs/">
-        Some TODO blogs
-      </a>
-    </h1>
-
-    <span class="post-date">18 Mar 2018</span>
-
-    <ol>
-  <li>Relationship between PangeRank &amp; Markov Model</li>
-  <li>Relationship between MLE &amp; LSE</li>
-  <li>Relationship between Beam Search &amp; Viterbi Decoding</li>
-  <li>Relationship between HMM &amp; CRF</li>
-  <li>Feature engineering methodology</li>
-  <li>Models’ summary:
-    <ul>
-      <li>Gradient Boosting</li>
-      <li>Random Forest</li>
-      <li>Extra Randomized Trees</li>
-      <li>Logistic Regression</li>
-      <li>Linear Regression</li>
-      <li>Neural Networks</li>
-      <li>SVM</li>
-    </ul>
-  </li>
-  <li>Ensemble Generation</li>
-  <li>Docker tutorial</li>
-  <li>Design Patterns</li>
-  <li>model (build &amp; train &amp; infer) pipeline</li>
-</ol>
-...
-    <div style="text-align:center">
-      <a href="/2018/03/18/Some-TODO-blogs/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2017/12/15/useful-essential-cheat-sheets/">
-        Some useful essential cheat sheets
-      </a>
-    </h1>
-
-    <span class="post-date">15 Dec 2017</span>
-
-    <p>Post some useful essential cheat sheets for machine learning and deep learning engineers that all reprinted from <a href="https://startupsventurecapital.com/essential-cheat-sheets-for-machine-learning-and-deep-learning-researchers-efb6a8ebd2e5">Kailash Ahirwar</a>.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2017/12/15/useful-essential-cheat-sheets/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2017/12/12/encoding-problem/">
-        Encoding problem
-      </a>
-    </h1>
-
-    <span class="post-date">12 Dec 2017</span>
-
-    <h2 id="encoding-problem">Encoding problem</h2>
-
-<p>Some stackoverflow OG give us a little advices:</p>
-<ul>
-  <li><a href="https://stackoverflow.com/q/436220/8586273">OG1</a></li>
-  <li><a href="https://stackoverflow.com/questions/19699367/unicodedecodeerror-utf-8-codec-cant-decode-byte">OG2</a></li>
-</ul>
-
-...
-    <div style="text-align:center">
-      <a href="/2017/12/12/encoding-problem/">
         <font size="5">more »</font>
       </a>
     </div>

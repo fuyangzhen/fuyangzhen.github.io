@@ -24,7 +24,7 @@
 
   <title>
     
-      Some TODO blogs &middot; Young
+      Bridge Pattern &middot; Young
     
   </title>
 
@@ -162,30 +162,18 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Some TODO blogs</h1>
-  <span class="post-date">18 Mar 2018</span>
-  <ol>
-  <li>Relationship between PangeRank &amp; Markov Model</li>
-  <li>Relationship between MLE &amp; LSE</li>
-  <li>Relationship between Beam Search &amp; Viterbi Decoding</li>
-  <li>Relationship between HMM &amp; CRF</li>
-  <li>Feature engineering methodology</li>
-  <li>Models’ summary:
-    <ul>
-      <li>Gradient Boosting</li>
-      <li>Random Forest</li>
-      <li>Extra Randomized Trees</li>
-      <li>Logistic Regression</li>
-      <li>Linear Regression</li>
-      <li>Neural Networks</li>
-      <li>SVM</li>
-    </ul>
-  </li>
-  <li>Ensemble Generation</li>
-  <li>Docker tutorial</li>
-  <li>Design Patterns</li>
-  <li>model (build &amp; train &amp; infer) pipeline</li>
-</ol>
+  <h1 class="post-title">Bridge Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="桥连模式">桥连模式</h2>
+
+<p>abstraction -&gt; abstraction  -&gt; implementation</p>
+
+<p>对象可多角度抽象出类别时，只用一种类别树来继承，耦合就太重了，会使类的定义大量增加，抽象和实现内在是一种依赖耦合关系。讲不同角度单独视为一类，不同角度的类通过聚合（桥）关联起来（参见大话设计模式），这也是一种抽象之上的再次抽象。</p>
+
+<p><strong>再次抽象，是在扩展你的类的能力，将能力抽象为接口，解耦出来。这样就可为类实现各种其他的功能，而不用修改类，符合开闭原则。</strong></p>
+
+<!--more-->
+
 
 </div>
 
@@ -213,8 +201,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Bridge-Pattern/">
-            Bridge Pattern
+          <a href="/2019/03/04/DP-Adapter-Pattern/">
+            Adapter Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>

@@ -9,10 +9,10 @@
 </script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 </script>
-<link href="http://localhost:4000/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<link href="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://localhost:4000/assets/zoom-jQuery/zoom.js"></script>
-<script src="http://localhost:4000/assets/zoom-jQuery/transition.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/transition.js"></script>
 
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
@@ -165,6 +165,157 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/10/01/classic-sort/">
+        Classic sort
+      </a>
+    </h1>
+
+    <span class="post-date">01 Oct 2016</span>
+
+    <h3 id="先上结果">先上结果</h3>
+<ul>
+  <li>插入排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">insertionSort1</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)):</span>
+        <span class="n">curV</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">curV</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">pos</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">curV</span> <span class="c">#找到正确的位置插入</span>
+    <span class="k">return</span> <span class="n">L</span>
+</code></pre></div></div>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/01/classic-sort/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/09/27/naive-bayesian/">
+        Naive bayesian
+      </a>
+    </h1>
+
+    <span class="post-date">27 Sep 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<blockquote>
+  <p>朴素贝叶斯是一种构建分类器的简单方法。该分类器模型会给问题实例分配用特征值表示的类标签，类标签取自有限集合。它不是训练这种分类器的单一算法，而是一系列基于相同原理的算法：所有朴素贝叶斯分类器都假定样本每个特征与其他特征都不相关。举个例子，如果一种水果其具有红，圆，直径大概3英寸等特征，该水果可以被判定为是苹果。尽管这些特征相互依赖或者有些特征由其他特征决定，然而朴素贝叶斯分类器认为这些属性在判定该水果是否为苹果的概率分布上独立的。</p>
+</blockquote>
+
+<blockquote>
+  <p>对于某些类型的概率模型，在监督式学习的样本集中能获取得非常好的分类效果。在许多实际应用中，朴素贝叶斯模型参数估计使用最大似然估计方法；换而言之，在不用到贝叶斯概率或者任何贝叶斯模型的情况下，朴素贝叶斯模型也能奏效。</p>
+</blockquote>
+
+<blockquote>
+  <p>尽管是带着这些朴素思想和过于简单化的假设，但朴素贝叶斯分类器在很多复杂的现实情形中仍能够取得相当好的效果。2004年，<a href="http://www.cs.unb.ca/~hzhang/publications/FLAIRS04ZhangH.pdf">一篇分析贝叶斯分类器问题的文章</a>揭示了朴素贝叶斯分类器取得看上去不可思议的分类效果的若干理论上的原因。尽管如此，2006年有<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.122.5901&amp;rep=rep1&amp;type=pdfPDF">一篇文章</a>详细比较了各种分类方法，发现更新的方法（如提升树和随机森林）的性能超过了贝叶斯分类器。</p>
+</blockquote>
+
+<blockquote>
+  <p>朴素贝叶斯分类器的一个优势在于只需要根据少量的训练数据估计出必要的参数（变量的均值和方差）。由于变量独立假设，只需要估计各个变量的方法，而不需要确定整个协方差矩阵。</p>
+</blockquote>
+
+<p>以上来自<a href="https://zh.wikipedia.org/wiki/朴素贝叶斯分类器">wiki百科</a>。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/09/27/naive-bayesian/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/09/21/hash-map/">
+        Hash map
+      </a>
+    </h1>
+
+    <span class="post-date">21 Sep 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<p>字曲是python里最有用的数据集合之一。字典是一对键值-数据的组合，键值是用来查找相应的数据，我们把这种思想称为“映射”。</p>
+
+<p>映射的抽象数据类型定义如下，这是一个无序的键-值对集合，键值总是唯一的以便建立与数据的对应关系。映射的操作方法如下：<br />
+***</p>
+<ul>
+  <li><code class="highlighter-rouge">Map()</code>创建一个新的空的映射，返回一个空集合。</li>
+  <li><code class="highlighter-rouge">put(key,val)</code>在映射中增加一对新的键-值对，如果键值已经存在，用新的数据值代替原来的。</li>
+  <li><code class="highlighter-rouge">get(key)</code>根据给定的键值，返回对应的数值，找不到时返回None。</li>
+  <li><code class="highlighter-rouge">Del</code>从映射中删除键-值对，形式del map[key]</li>
+  <li><code class="highlighter-rouge">len()</code>返回映射中键-值对的数量</li>
+  <li><code class="highlighter-rouge">In</code>如果key值在映射中，key in map返回True，否则返回False</li>
+</ul>
+
+<hr />
+<p>字典的好处之一，是给一个键值可以很快返回相关的数据，为了提供这样快速查询的能力，我们需要引入一个高效的查找功能。</p>
+
+<p>可以对列表使用顺序或二分查找，但是最好是用 哈希表，因为它能提供接近<code class="highlighter-rouge">O(1)</code>的性能。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/09/21/hash-map/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/09/17/decision-tree-ID3/">
+        Decision tree - ID3
+      </a>
+    </h1>
+
+    <span class="post-date">17 Sep 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+
+<blockquote>
+  <p>ID3算法（Iterative Dichotomiser 3 迭代二叉树3代)是一个由Ross Quinlan发明的用于<a href="https://zh.wikipedia.org/wiki/决策树">决策树</a>的算法。<br />
+这个算法是建立在<a href="https://zh.wikipedia.org/wiki/奥卡姆剃刀">奥卡姆剃刀</a>的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个<a href="https://zh.wikipedia.org/wiki/启发法">启发式算法</a>。奥卡姆剃刀阐述了一个信息熵的概念：</p>
+</blockquote>
+<div align="center">
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/df2cbb3a4327afabc4ecca75e9a2db379a35be73" alt="1469499283270" />
+</div>
+<p>这个ID3算法可以归纳为以下几点:</p>
+
+<blockquote>
+  <ul>
+    <li>使用所有没有使用的属性并计算与之相关的样本熵值</li>
+    <li>选取其中熵值最小的属性</li>
+    <li>生成包含该属性的节点</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>还有其他决策树的构造算法，最流行的是CART和C4.5。关于ID3算法的实现可以参考C4.5算法，它同时也是ID3的升级版。</p>
+</blockquote>
+
+<p>以上介绍来自维基百科。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/09/17/decision-tree-ID3/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/08/01/order-list/">
         Order list
       </a>
@@ -183,98 +334,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/08/01/order-list/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/07/26/unorder-list/">
-        Unorder list
-      </a>
-    </h1>
-
-    <span class="post-date">26 Jul 2016</span>
-
-    
-...
-    <div style="text-align:center">
-      <a href="/2016/07/26/unorder-list/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/07/26/stack/">
-        Basic data structure - stack
-      </a>
-    </h1>
-
-    <span class="post-date">26 Jul 2016</span>
-
-    <h2 id="python实现stack结构">python实现stack结构</h2>
-
-<blockquote>
-  <p>以前怎么能这么嫩…全文不改了···</p>
-</blockquote>
-<p align="right">2017.12.4</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/07/26/stack/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/02/11/example-content/">
-        Example content
-      </a>
-    </h1>
-
-    <span class="post-date">11 Feb 2016</span>
-
-    <div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-</div>
-
-<p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. <em>Aenean eu leo quam.</em> Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-
-<blockquote>
-  <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-</blockquote>
-
-<p>Etiam porta <strong>sem malesuada magna</strong> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/02/11/example-content/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2013/06/25/video-post/">
-        A post with a video
-      </a>
-    </h1>
-
-    <span class="post-date">25 Jun 2013</span>
-
-    Custom written post descriptions are the way to go... if you're not lazy....
-    <div style="text-align:center">
-      <a href="/2013/06/25/video-post/">
         <font size="5">more »</font>
       </a>
     </div>

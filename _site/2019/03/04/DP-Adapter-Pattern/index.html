@@ -24,7 +24,7 @@
 
   <title>
     
-      Some TODO blogs &middot; Young
+      Adapter Pattern &middot; Young
     
   </title>
 
@@ -162,30 +162,37 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Some TODO blogs</h1>
-  <span class="post-date">18 Mar 2018</span>
-  <ol>
-  <li>Relationship between PangeRank &amp; Markov Model</li>
-  <li>Relationship between MLE &amp; LSE</li>
-  <li>Relationship between Beam Search &amp; Viterbi Decoding</li>
-  <li>Relationship between HMM &amp; CRF</li>
-  <li>Feature engineering methodology</li>
-  <li>Models’ summary:
-    <ul>
-      <li>Gradient Boosting</li>
-      <li>Random Forest</li>
-      <li>Extra Randomized Trees</li>
-      <li>Logistic Regression</li>
-      <li>Linear Regression</li>
-      <li>Neural Networks</li>
-      <li>SVM</li>
-    </ul>
+  <h1 class="post-title">Adapter Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="适配器模式">适配器模式</h2>
+
+<p>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</p>
+
+<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
+
+<p>常见的一种简单adapter：继承自target类，在其定义中聚合adaptee，在adapter定义中override的target的方法中使用adaptee的方法。  （参见大话设计模式）</p>
+
+<p>常见的另一种adapter：target类定义中直接聚合符合Iadapter的adapter实例，然后在target的方法中调用adapter实例的方法。这种方式是通过Iadapter接口来规范定义可接受的adapter实例方法。（参见pluralsight-patterns-library）</p>
+
+<!--more-->
+
+<h3 id="与其有联系的其他模式">与其有联系的其他模式</h3>
+
+<ol>
+  <li>
+    <p>存储库模式</p>
   </li>
-  <li>Ensemble Generation</li>
-  <li>Docker tutorial</li>
-  <li>Design Patterns</li>
-  <li>model (build &amp; train &amp; infer) pipeline</li>
+  <li>
+    <p>策略模式</p>
+  </li>
+  <li>
+    <p>facade外观模式（涉及到包装简化，而适配器模式只是包装适配）</p>
+  </li>
 </ol>
+
+<h3 id="原则">原则</h3>
+
+<p>初始设计的时候类的接口应该尽可能的规范统一，而不是使用适配器去调整。适配器适用于修补和完全不同环境的代码之间的适配。</p>
 
 </div>
 

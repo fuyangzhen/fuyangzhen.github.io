@@ -24,7 +24,7 @@
 
   <title>
     
-      Some TODO blogs &middot; Young
+      Builder Pattern &middot; Young
     
   </title>
 
@@ -162,30 +162,25 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Some TODO blogs</h1>
-  <span class="post-date">18 Mar 2018</span>
-  <ol>
-  <li>Relationship between PangeRank &amp; Markov Model</li>
-  <li>Relationship between MLE &amp; LSE</li>
-  <li>Relationship between Beam Search &amp; Viterbi Decoding</li>
-  <li>Relationship between HMM &amp; CRF</li>
-  <li>Feature engineering methodology</li>
-  <li>Models’ summary:
-    <ul>
-      <li>Gradient Boosting</li>
-      <li>Random Forest</li>
-      <li>Extra Randomized Trees</li>
-      <li>Logistic Regression</li>
-      <li>Linear Regression</li>
-      <li>Neural Networks</li>
-      <li>SVM</li>
-    </ul>
-  </li>
-  <li>Ensemble Generation</li>
-  <li>Docker tutorial</li>
-  <li>Design Patterns</li>
-  <li>model (build &amp; train &amp; infer) pipeline</li>
+  <h1 class="post-title">Builder Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="建造者模式">建造者模式</h2>
+
+<p>为了构造很复杂的对象，把logic从data中分离出来，以便能够重用logic。</p>
+
+<p>这些对象内部构建间的建造顺序通常是稳定的，但对象内部的构建通常面临着复杂的变化。</p>
+
+<p>做三明治的步骤顺序一般固定，但是每一步骤都可以有很多种变换。</p>
+
+<p><img src="/assets/gallery/Builder-Pattern.png" alt="Builder-Pattern" /></p>
+
+<ol>
+  <li>Director负责组织Concrete Builder的product构造逻辑顺序 (logic)；</li>
+  <li>Builder (abstract interface) 负责定义product的每一步抽象逻辑；</li>
+  <li>Concrete Builder定义product的每一步具体逻辑；</li>
 </ol>
+
+<!--more-->
 
 </div>
 
@@ -204,8 +199,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Builder-Pattern/">
-            Builder Pattern
+          <a href="/2019/03/04/DP-Bridge-Pattern/">
+            Bridge Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>
@@ -213,8 +208,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Bridge-Pattern/">
-            Bridge Pattern
+          <a href="/2019/03/04/DP-Adapter-Pattern/">
+            Adapter Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>
