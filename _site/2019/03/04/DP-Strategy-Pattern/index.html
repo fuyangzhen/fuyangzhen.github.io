@@ -170,19 +170,22 @@
   <span class="post-date">04 Mar 2019</span>
   <h2 id="策略模式">策略模式</h2>
 
-<p>为了构造很复杂的对象，把logic从data中分离出来，以便能够重用logic。</p>
-
-<p>这些对象内部构建间的建造顺序通常是稳定的，但对象内部的构建通常面临着复杂的变化。</p>
-
-<p>做三明治的步骤顺序一般固定，但是每一步骤都可以有很多种变换。</p>
-
-<p><img src="/assets/gallery/Builder-Pattern.png" alt="Builder-Pattern" /></p>
+<p>策略模式就是在多种不同业务逻辑上抽象出策略接口和context类，context类的构造函数接收该接口的参数，其余函数用来封装策略的函数。然后在client端实例化具体的策略类，传给context实例化，然后用context对象的函数来使用传入的策略的函数。</p>
 
 <ol>
-  <li>Director负责组织Concrete Builder的product构造逻辑顺序 (logic)；</li>
-  <li>Builder (abstract interface) 负责定义product的每一步抽象逻辑；</li>
-  <li>Concrete Builder定义product的每一步具体逻辑；</li>
+  <li>
+    <p><strong>需要在不同时间应用不同的业务规则（算法），就可以考虑使用策略模式处理这种变化。</strong></p>
+  </li>
+  <li><em>switch</em>可能是一个信号表明此处可以考虑使用策略模式，即使用接口来代替switch。</li>
+  <li>
+    <p>简化了单元测试，每个算法都有自己的类，可以通过自己的接口单独测试。</p>
+  </li>
+  <li>再抽象一层意味着，客户端（使用端）代码可以直接用更上层的context，就可以在需要修改时不用更改主体logic，是一种解耦，避免大量修改代码。</li>
+  <li>变体：若允许，可简化策略类为函数，用delegate传入context的参数来使用这些策略函数。</li>
+  <li>（大化设计模式）Client端用switch来选择策略传给context时，可以让这个switch转到context的构造函数，这样就把策略的选择逻辑与客户端分离开，耦合更加低。</li>
 </ol>
+
+<p><img src="/assets/gallery/strategy.png" alt="stategy" /></p>
 
 <!--more-->
 

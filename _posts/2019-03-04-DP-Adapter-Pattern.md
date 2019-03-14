@@ -24,7 +24,7 @@ client -> adaptor interface -> adaptor class -> adaptee
 
 2. 策略模式  
 
-3. facade外观模式（涉及到包装简化，而适配器模式只是包装适配）  
+3. facade：外观模式（涉及到包装简化，而适配器模式只是包装适配）  
 
    
 
