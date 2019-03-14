@@ -24,7 +24,7 @@
 
   <title>
     
-      Memo &middot; Young
+      Strategy Pattern &middot; Young
     
   </title>
 
@@ -104,7 +104,7 @@
     
     
     
-    <a class="sidebar-nav-item active" href="/list-Memo/">Memo</a>
+    <a class="sidebar-nav-item" href="/list-Memo/">Memo</a>
     
     
     
@@ -165,64 +165,61 @@
       </div>
 
       <div class="container content">
-        <div class="page">
-  <h1 class="page-title">Memo</h1>
-  
-<ul>
-  <li>
-    <p>10 Mar 2019 / <a href="/2019/03/10/Daily-Habits/"> Routines </a></p>
-  </li>
-  <li>
-    <p>25 Jan 2019 / <a href="/2019/01/25/CSharp/"> C# Memo </a></p>
-  </li>
-  <li>
-    <p>24 Jul 2018 / <a href="/2018/07/24/docker-private-registry/"> Build a docker private registry with Harbor </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/k8s/"> JS Note </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/build-tf-on-win/"> Build TF on win </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/importantNote/"> My Memo Note </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/JavaScript/"> JS Note </a></p>
-  </li>
-  <li>
-    <p>10 May 2018 / <a href="/2018/05/10/elasticsearch/"> ElasticSearch Note </a></p>
-  </li>
-  <li>
-    <p>29 Apr 2018 / <a href="/2018/04/29/patterns-library/"> 设计模式 </a></p>
-  </li>
-  <li>
-    <p>29 Apr 2018 / <a href="/2018/04/29/C++/"> C++笔记 </a></p>
-  </li>
-  <li>
-    <p>22 Apr 2018 / <a href="/2018/04/22/deploy/"> Linux deploy of WeRoBot’s search engine </a></p>
-  </li>
-  <li>
-    <p>18 Mar 2018 / <a href="/2018/03/18/Some-TODO-blogs/"> Some TODO blogs </a></p>
-  </li>
-  <li>
-    <p>12 Dec 2017 / <a href="/2017/12/12/encoding-problem/"> Encoding problem </a></p>
-  </li>
-  <li>
-    <p>09 Apr 2017 / <a href="/2017/04/09/privoxy/"> OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理 </a></p>
-  </li>
-  <li>
-    <p>11 Feb 2016 / <a href="/2016/02/11/example-content/"> Example content </a></p>
-  </li>
-  <li>
-    <p>25 Jun 2013 / <a href="/2013/06/25/video-post/"> A post with a video </a></p>
-  </li>
-  <li>
-    <p>22 May 2013 / <a href="/2013/05/22/sample-post-images/"> A post with images </a></p>
-  </li>
-</ul>
+        <div class="post">
+  <h1 class="post-title">Strategy Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="策略模式">策略模式</h2>
 
+<p>为了构造很复杂的对象，把logic从data中分离出来，以便能够重用logic。</p>
 
+<p>这些对象内部构建间的建造顺序通常是稳定的，但对象内部的构建通常面临着复杂的变化。</p>
+
+<p>做三明治的步骤顺序一般固定，但是每一步骤都可以有很多种变换。</p>
+
+<p><img src="/assets/gallery/Builder-Pattern.png" alt="Builder-Pattern" /></p>
+
+<ol>
+  <li>Director负责组织Concrete Builder的product构造逻辑顺序 (logic)；</li>
+  <li>Builder (abstract interface) 负责定义product的每一步抽象逻辑；</li>
+  <li>Concrete Builder定义product的每一步具体逻辑；</li>
+</ol>
+
+<!--more-->
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/03/10/Daily-Habits/">
+            Routines
+            <small>10 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Builder-Pattern/">
+            Builder Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Bridge-Pattern/">
+            Bridge Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
 
         
