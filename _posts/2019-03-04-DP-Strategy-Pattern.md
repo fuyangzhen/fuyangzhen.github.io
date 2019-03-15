@@ -20,7 +20,9 @@ comments: true
 5. 变体：若允许，可简化策略类为函数，用delegate传入context的参数来使用这些策略函数。  
 6. （大化设计模式）Client端用switch来选择策略传给context时，可以让这个switch转到context的构造函数，这样就把策略的选择逻辑与客户端分离开，耦合更加低。  
 
-![stategy](/assets/gallery/strategy.png)  
+![strategy](/assets/gallery/strategy.png)    
+
+
 
 
 
