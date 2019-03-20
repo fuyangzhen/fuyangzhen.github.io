@@ -46,6 +46,7 @@ comments: true
 ### 相关创建型模式  
 
 * 单例模式  
-* 建造者模式  
+* [建造者模式](https://fuyangzhen.github.io/2019/03/04/DP-Builder-Pattern/)    
 * 对象池  
 * 原型模式
+
