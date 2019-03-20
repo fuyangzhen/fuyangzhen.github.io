@@ -49,7 +49,3 @@ comments: true
 * 建造者模式  
 * 对象池  
 * 原型模式
-
-
-
-![factory2](/assets/gallery/factory2.png)
