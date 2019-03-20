@@ -169,6 +169,86 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/09/21/hash-map/">
+        Hash map
+      </a>
+    </h1>
+
+    <span class="post-date">21 Sep 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<p>字曲是python里最有用的数据集合之一。字典是一对键值-数据的组合，键值是用来查找相应的数据，我们把这种思想称为“映射”。</p>
+
+<p>映射的抽象数据类型定义如下，这是一个无序的键-值对集合，键值总是唯一的以便建立与数据的对应关系。映射的操作方法如下：<br />
+***</p>
+<ul>
+  <li><code class="highlighter-rouge">Map()</code>创建一个新的空的映射，返回一个空集合。</li>
+  <li><code class="highlighter-rouge">put(key,val)</code>在映射中增加一对新的键-值对，如果键值已经存在，用新的数据值代替原来的。</li>
+  <li><code class="highlighter-rouge">get(key)</code>根据给定的键值，返回对应的数值，找不到时返回None。</li>
+  <li><code class="highlighter-rouge">Del</code>从映射中删除键-值对，形式del map[key]</li>
+  <li><code class="highlighter-rouge">len()</code>返回映射中键-值对的数量</li>
+  <li><code class="highlighter-rouge">In</code>如果key值在映射中，key in map返回True，否则返回False</li>
+</ul>
+
+<hr />
+<p>字典的好处之一，是给一个键值可以很快返回相关的数据，为了提供这样快速查询的能力，我们需要引入一个高效的查找功能。</p>
+
+<p>可以对列表使用顺序或二分查找，但是最好是用 哈希表，因为它能提供接近<code class="highlighter-rouge">O(1)</code>的性能。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/09/21/hash-map/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/09/17/decision-tree-ID3/">
+        Decision tree - ID3
+      </a>
+    </h1>
+
+    <span class="post-date">17 Sep 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+
+<blockquote>
+  <p>ID3算法（Iterative Dichotomiser 3 迭代二叉树3代)是一个由Ross Quinlan发明的用于<a href="https://zh.wikipedia.org/wiki/决策树">决策树</a>的算法。<br />
+这个算法是建立在<a href="https://zh.wikipedia.org/wiki/奥卡姆剃刀">奥卡姆剃刀</a>的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个<a href="https://zh.wikipedia.org/wiki/启发法">启发式算法</a>。奥卡姆剃刀阐述了一个信息熵的概念：</p>
+</blockquote>
+<div align="center">
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/df2cbb3a4327afabc4ecca75e9a2db379a35be73" alt="1469499283270" />
+</div>
+<p>这个ID3算法可以归纳为以下几点:</p>
+
+<blockquote>
+  <ul>
+    <li>使用所有没有使用的属性并计算与之相关的样本熵值</li>
+    <li>选取其中熵值最小的属性</li>
+    <li>生成包含该属性的节点</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>还有其他决策树的构造算法，最流行的是CART和C4.5。关于ID3算法的实现可以参考C4.5算法，它同时也是ID3的升级版。</p>
+</blockquote>
+
+<p>以上介绍来自维基百科。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/09/17/decision-tree-ID3/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/08/01/order-list/">
         Order list
       </a>
@@ -231,54 +311,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/07/26/stack/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/02/11/example-content/">
-        Example content
-      </a>
-    </h1>
-
-    <span class="post-date">11 Feb 2016</span>
-
-    <div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-</div>
-
-<p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. <em>Aenean eu leo quam.</em> Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-
-<blockquote>
-  <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-</blockquote>
-
-<p>Etiam porta <strong>sem malesuada magna</strong> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/02/11/example-content/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2013/06/25/video-post/">
-        A post with a video
-      </a>
-    </h1>
-
-    <span class="post-date">25 Jun 2013</span>
-
-    Custom written post descriptions are the way to go... if you're not lazy....
-    <div style="text-align:center">
-      <a href="/2013/06/25/video-post/">
         <font size="5">more »</font>
       </a>
     </div>
