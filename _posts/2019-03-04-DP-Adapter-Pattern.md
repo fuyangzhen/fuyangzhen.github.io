@@ -8,7 +8,11 @@ comments: true
 
 ## 适配器模式  
 
-client -> adaptor interface -> adaptor class -> adaptee
+#### Tips  
+
+*初始设计的时候类的接口应该尽可能的规范统一，而不是使用适配器去调整。适配器适用于修补和完全不同环境的代码之间的适配。*
+
+**client -> adaptor interface -> adaptor class -> adaptee**
 
 不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。
 
@@ -24,10 +28,5 @@ client -> adaptor interface -> adaptor class -> adaptee
 
 2. 策略模式  
 
-3. facade：外观模式（涉及到包装简化，而适配器模式只是包装适配）  
+3. [facade：外观模式](https://fuyangzhen.github.io/2019/03/04/DP-Facade-Pattern/)（涉及到包装简化，而适配器模式只是包装适配）  
 
-   
-
-### 原则  
-
-初始设计的时候类的接口应该尽可能的规范统一，而不是使用适配器去调整。适配器适用于修补和完全不同环境的代码之间的适配。
