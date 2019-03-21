@@ -7,7 +7,17 @@ date: 2019-03-04 00:00:00
 comments: true
 ---  
 
-*可以用反射技术+config来去除分支判断逻辑带来的耦合。*  
+### TIP  
+
+*可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :*  
+
+```C#
+static IAutoFactory LoadFactory()
+{
+    string factoryName = Properties.Settings.Default.AutoFactory;
+    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
+}
+```
 
 ### 动机
 
@@ -41,7 +51,7 @@ comments: true
 * 客户端通过抽象接口操纵实例，产品的具体类名被具体工厂实现分离，不会出现在客户代码中。  
 * 辅以反射和config来把分支判断将程序由编译时转为运行时。
 
-![factory2](/assets/gallery/factory1.png)
+![factory2](/assets/gallery/factory2.png)
 
 ### 相关创建型模式  
 
