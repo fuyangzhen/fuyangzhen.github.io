@@ -168,7 +168,18 @@
         <div class="post">
   <h1 class="post-title">Factory Pattern</h1>
   <span class="post-date">04 Mar 2019</span>
-  <h3 id="动机">动机</h3>
+  <h3 id="tips">Tips</h3>
+
+<p><em>可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :</em></p>
+
+<pre><code class="language-C#">static IAutoFactory LoadFactory()
+{
+    string factoryName = Properties.Settings.Default.AutoFactory;
+    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
+}
+</code></pre>
+
+<h3 id="动机">动机</h3>
 
 <ol>
   <li>不确定接口的哪个具体实现来返回</li>
@@ -206,18 +217,17 @@
   <li>辅以反射和config来把分支判断将程序由编译时转为运行时。</li>
 </ul>
 
-<p><img src="/assets/gallery/factory1.png" alt="factory2" /></p>
+<p><img src="/assets/gallery/factory2.png" alt="factory2" /></p>
 
 <h3 id="相关创建型模式">相关创建型模式</h3>
 
 <ul>
   <li>单例模式</li>
-  <li>建造者模式</li>
+  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Builder-Pattern/">建造者模式</a></li>
   <li>对象池</li>
   <li>原型模式</li>
 </ul>
 
-<p><img src="/assets/gallery/factory2.png" alt="factory2" /></p>
 
 </div>
 
@@ -245,8 +255,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Facade-Pattern/">
-            Facade Pattern
+          <a href="/2019/03/04/DP-Mediator-Pattern/">
+            Mediator Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>

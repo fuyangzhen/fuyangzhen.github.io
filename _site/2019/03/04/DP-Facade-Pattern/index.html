@@ -170,9 +170,24 @@
   <span class="post-date">04 Mar 2019</span>
   <h2 id="外观模式">外观模式</h2>
 
+<h4 id="tips">Tips</h4>
+
+<p><em>目的：解耦，使子系统间减少依赖。</em></p>
+
+<p>封装集成一些繁杂的功能为一层包装类，使客户端使用起来更加方便。</p>
+
 <ol>
-  <li></li>
+  <li>设计初期应该将不同的两个层分离，层间使用facade为复杂子系统提供简单接口。</li>
+  <li>为设计粗糙或高度复杂的遗留代码设计简单的facade接口，这样新系统就解耦地使用遗留代码。</li>
 </ol>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Adapter-Pattern/">适配器</a></li>
+  <li>flyweight</li>
+  <li>Mediator</li>
+</ul>
 
 <!--more-->
 
@@ -202,8 +217,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Factory-Pattern/">
-            Factory Pattern
+          <a href="/2019/03/04/DP-Mediator-Pattern/">
+            Mediator Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>

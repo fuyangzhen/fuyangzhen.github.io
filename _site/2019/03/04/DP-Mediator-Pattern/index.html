@@ -24,7 +24,7 @@
 
   <title>
     
-      Builder Pattern &middot; Young
+      Mediator Pattern &middot; Young
     
   </title>
 
@@ -166,23 +166,25 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Builder Pattern</h1>
+  <h1 class="post-title">Mediator Pattern</h1>
   <span class="post-date">04 Mar 2019</span>
-  <h2 id="建造者模式">建造者模式</h2>
+  <h2 id="中介模式">中介模式</h2>
 
-<p>为了构造很复杂的对象，把logic从data中分离出来，以便能够重用logic。</p>
+<p><em>用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互作用，从而使其耦合松散，而且可以独立地改变他们间的交互。</em></p>
 
-<p>这些对象内部构建间的建造顺序通常是稳定的，但对象内部的构建通常面临着复杂的变化。</p>
+<h5 id="优点">优点</h5>
 
-<p>做三明治的步骤顺序一般固定，但是每一步骤都可以有很多种变换。</p>
+<p>Mediator的出现减少了各个Colleague的耦合，使得可以独立地改变和复用各个Colleague类和Mediator。</p>
 
-<p><img src="/assets/gallery/Builder-Pattern.png" alt="Builder-Pattern" /></p>
+<p>把对象如何协作进行了抽象，将中介作为一个独立的概念封装在对象中，关注的对象就从对象各自本身的行为转义到他们之间的交互上来，是从一个更为宏观的角度看待系统。</p>
 
-<ol>
-  <li>Director负责组织Concrete Builder的product构造逻辑顺序 (logic)；</li>
-  <li>Builder (abstract interface) 负责定义product的每一步抽象逻辑；</li>
-  <li>Concrete Builder定义product的每一步具体逻辑；</li>
-</ol>
+<h5 id="缺点">缺点</h5>
+
+<p>当系统出现‘多对多’交互复杂的对象群时，不要急于使用中介者模式，而是烦死系统在设计上是否合理。</p>
+
+<p>由于ConcreteMediator控制了集中化，浴室就把交互复杂性转变为了中介者复杂性，这就使ConcreteMediator比任何一个ConcreteColleague都复杂。</p>
+
+<p><img src="/assets/gallery/mediator.png" alt="Builder-Pattern" /></p>
 
 <!--more-->
 
@@ -212,8 +214,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Mediator-Pattern/">
-            Mediator Pattern
+          <a href="/2019/03/04/DP-Factory-Pattern/">
+            Factory Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>

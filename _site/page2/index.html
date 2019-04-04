@@ -169,6 +169,40 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Builder-Pattern/">
+        Builder Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="建造者模式">建造者模式</h2>
+
+<p>为了构造很复杂的对象，把logic从data中分离出来，以便能够重用logic。</p>
+
+<p>这些对象内部构建间的建造顺序通常是稳定的，但对象内部的构建通常面临着复杂的变化。</p>
+
+<p>做三明治的步骤顺序一般固定，但是每一步骤都可以有很多种变换。</p>
+
+<p><img src="/assets/gallery/Builder-Pattern.png" alt="Builder-Pattern" /></p>
+
+<ol>
+  <li>Director负责组织Concrete Builder的product构造逻辑顺序 (logic)；</li>
+  <li>Builder (abstract interface) 负责定义product的每一步抽象逻辑；</li>
+  <li>Concrete Builder定义product的每一步具体逻辑；</li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Builder-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Bridge-Pattern/">
         Bridge Pattern
       </a>
@@ -183,6 +217,8 @@
 <p>对象可<strong>多角度抽象出类别</strong>时，只用一种类别树来继承，耦合就太重了，会使类的定义大量增加，抽象和实现内在是一种依赖耦合关系。将不同角度单独视为一类，不同角度的类通过聚合（桥）关联起来（参见大话设计模式），这也是一种抽象之上的再次抽象。</p>
 
 <p><strong>再次抽象，是在扩展你的类的能力，将能力抽象为接口，解耦出来。这样就可为类实现各种其他的功能，而不用修改类，符合开闭原则。</strong></p>
+
+<p><img src="/assets/gallery/bridge.png" alt="Builder-Pattern" /></p>
 
 ...
     <div style="text-align:center">
@@ -204,7 +240,11 @@
 
     <h2 id="适配器模式">适配器模式</h2>
 
-<p>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</p>
+<h4 id="tips">Tips</h4>
+
+<p><em>初始设计的时候类的接口应该尽可能的规范统一，而不是使用适配器去调整。适配器适用于修补和完全不同环境的代码之间的适配。</em></p>
+
+<p><strong>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</strong></p>
 
 <p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
 
@@ -267,26 +307,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/07/24/docker-private-registry/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/06/23/k8s/">
-        JS Note
-      </a>
-    </h1>
-
-    <span class="post-date">23 Jun 2018</span>
-
-    <h2 id="原理示意图">原理示意图</h2>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/06/23/k8s/">
         <font size="5">more »</font>
       </a>
     </div>
