@@ -2,7 +2,7 @@
 layout: post
 title: "Routines"
 tags: [other,memo]
-date: 2019-03-10 00:00:00
+date: 2019-03-1 00:00:00
 
 comments: true
 ---  
