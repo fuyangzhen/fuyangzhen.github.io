@@ -170,6 +170,29 @@
   <span class="post-date">04 Mar 2019</span>
   <h2 id="责任链模式">责任链模式</h2>
 
+<h4 id="何时使用">何时使用</h4>
+
+<ul>
+  <li>对于一条message有超过一个handler可以处理它</li>
+  <li>发送message的sender一开始并不能明确得知最终合适的handler</li>
+  <li>handler的集合可以被动态地定义（node handler用起来可以按需连接）</li>
+</ul>
+
+<h4 id="责任链优点">责任链优点</h4>
+
+<ul>
+  <li>减少耦合</li>
+  <li>动态地管理 message handlers</li>
+  <li>责任链的末尾可以适当的自定义</li>
+</ul>
+
+<h4 id="与其有关的模式">与其有关的模式</h4>
+
+<ul>
+  <li>Composite组合模式</li>
+  <li>责任树模式（也就是字面意思）</li>
+</ul>
+
 <p><img src="/assets/gallery/chain-of-responsibility.png" alt="strategy" /></p>
 
 <!--more-->
