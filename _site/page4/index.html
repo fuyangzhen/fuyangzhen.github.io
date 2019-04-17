@@ -169,6 +169,40 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2018/05/10/elasticsearch/">
+        ElasticSearch Note
+      </a>
+    </h1>
+
+    <span class="post-date">10 May 2018</span>
+
+    <h2 id="score-formula">Score formula</h2>
+
+<p>ES版本跟新迭代的很快，截止到今天（2018.7.10) master的版本为6.3，打分公式一直都在微调，当前版本每个doc的对query的得分计算公式如下（就是最普通的BM25），其中n为query的term和当前doc的term的交集的大小：</p>
+
+<script type="math/tex; mode=display">score_d=\sum_{t=0}^ntfNorm_t*idf_t</script>
+
+<p>idf计算公式如下，其中docCount为index中doc总数，docFreq为曾出现当前计算的term的doc频数：</p>
+
+<script type="math/tex; mode=display">idf=log(1+\frac{docCount-docFreq+0.5}{docFreq+0.5})</script>
+
+<p>tfNorm的计算公式如下，其中fieldLength为当前doc的term的个数，avgFieldLength为index内所有doc的平均term个数，freq为当前计算的term的频数，$k_1$和b为参数，其默认值分别为1.2和0.75：</p>
+
+<script type="math/tex; mode=display">tfNorm=\frac{freq*(k_1+1)}{freq+k_1*(1-b+b*fieldLength/avgFieldLength)}</script>
+
+<p>注意：ES 为了分布式index和search的性能，<code class="highlighter-rouge">docFreq</code> , <code class="highlighter-rouge">docCount</code> and <code class="highlighter-rouge">avgFieldLength</code>are computed per shard.</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/05/10/elasticsearch/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2018/05/09/NLP/">
         NLP Memo Note
       </a>
@@ -291,38 +325,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/04/22/deploy/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/04/07/Essence-of-linear-algebra/">
-        Essence of linear algebra
-      </a>
-    </h1>
-
-    <span class="post-date">07 Apr 2018</span>
-
-    <h2 id="前言">前言</h2>
-
-<p>以下内容启发自著名youtuber-<a href="https://www.bilibili.com/video/av6731067/?p=1">3b1b的线代教程</a>。不涉及到具体计算方法，只对线代的基本几何意义进行总结。</p>
-
-<h2 id="1-线性">1 线性</h2>
-
-<ul>
-  <li>线性相关：a可用b（可能由多个线性无关的向量组成）表示出来</li>
-  <li>线性变换：向量空间的线性函数变换，其中的空间变换关系就是矩阵，矩阵中的具体数值可看作原基向量通过这种变换后的坐标位置</li>
-  <li>矩阵的行列式的绝对值含义为线性变换使空间压缩或放大的比例，如果行列式为负，则表示将空间翻转了，空间定向（orientation）改变了。<strong>特征就是本来在单位向量i左边的j，转到了i右边</strong>。</li>
-  <li>转置不改变行列式的值。</li>
-  <li>行列式为0，代表着原空间维度的损失。</li>
-</ul>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/04/07/Essence-of-linear-algebra/">
         <font size="5">more »</font>
       </a>
     </div>
