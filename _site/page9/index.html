@@ -173,6 +173,49 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/09/17/decision-tree-ID3/">
+        Decision tree - ID3
+      </a>
+    </h1>
+
+    <span class="post-date">17 Sep 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+
+<blockquote>
+  <p>ID3算法（Iterative Dichotomiser 3 迭代二叉树3代)是一个由Ross Quinlan发明的用于<a href="https://zh.wikipedia.org/wiki/决策树">决策树</a>的算法。<br />
+这个算法是建立在<a href="https://zh.wikipedia.org/wiki/奥卡姆剃刀">奥卡姆剃刀</a>的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个<a href="https://zh.wikipedia.org/wiki/启发法">启发式算法</a>。奥卡姆剃刀阐述了一个信息熵的概念：</p>
+</blockquote>
+<div align="center">
+<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/df2cbb3a4327afabc4ecca75e9a2db379a35be73" alt="1469499283270" />
+</div>
+<p>这个ID3算法可以归纳为以下几点:</p>
+
+<blockquote>
+  <ul>
+    <li>使用所有没有使用的属性并计算与之相关的样本熵值</li>
+    <li>选取其中熵值最小的属性</li>
+    <li>生成包含该属性的节点</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>还有其他决策树的构造算法，最流行的是CART和C4.5。关于ID3算法的实现可以参考C4.5算法，它同时也是ID3的升级版。</p>
+</blockquote>
+
+<p>以上介绍来自维基百科。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/09/17/decision-tree-ID3/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/08/01/order-list/">
         Order list
       </a>
@@ -265,24 +308,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/02/11/example-content/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2013/06/25/video-post/">
-        A post with a video
-      </a>
-    </h1>
-
-    <span class="post-date">25 Jun 2013</span>
-
-    Custom written post descriptions are the way to go... if you're not lazy....
-    <div style="text-align:center">
-      <a href="/2013/06/25/video-post/">
         <font size="5">more »</font>
       </a>
     </div>

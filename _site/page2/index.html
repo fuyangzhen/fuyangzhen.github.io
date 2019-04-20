@@ -173,6 +173,57 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Command-Pattern/">
+        Command Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="命令模式">命令模式</h2>
+
+<h4 id="优点">优点</h4>
+
+<ul>
+  <li>
+    <p>把命令的执行抽象为类，执行命令的client 与 命令逻辑及其依赖项 解耦；</p>
+  </li>
+  <li>收集命令为队列，使命令可以延迟执行;</li>
+  <li>命令，aka 事务（transaction），行动（action）;</li>
+  <li>可方便地对命令进行日志记录，验证，撤销；</li>
+  <li>很容易添加新命令，符合开闭原则；</li>
+  <li>完全自包含，客户端不会直接传任何参数给命令，而是通过一个invoker来调用命令；</li>
+  <li>注意为了安全要有个null command；</li>
+</ul>
+
+<h3 id="何时使用">何时使用</h3>
+
+<ol>
+  <li>当需要将执行命令的client与命令逻辑及其依赖项解耦时，请求操作的对象（invoker）与知道具体如何操作的对象（command &amp; receiver ）分割开；</li>
+  <li>设计命令行工具；</li>
+  <li>真正需要实现命令的验证、撤销和恢复时。</li>
+</ol>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>工厂模式，常用来结合到命令模式中，生产命令实例；</li>
+  <li>组合模式（执行一个命令，其所有子命令全部执行）。</li>
+</ul>
+
+<p><img src="/assets/gallery/command.png" alt="command" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Command-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
         Chain of Responsibility Pattern
       </a>
@@ -304,48 +355,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Adapter-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/01/Daily-Habits/">
-        Routines
-      </a>
-    </h1>
-
-    <span class="post-date">01 Mar 2019</span>
-
-    <h4 id="咽炎">咽炎</h4>
-
-<ol>
-  <li>不吃盐油蒜辣椒羊狗肉烟酒</li>
-  <li>多吃鱼虾牛鸡胸肉，蛋奶，蔬菜</li>
-</ol>
-
-<h4 id="日常">日常</h4>
-
-<ol>
-  <li>上厕所不用手机</li>
-  <li>11点睡觉，7点起床，工作不看手机</li>
-  <li>犹豫要不要买的东西不买</li>
-  <li>丢掉所有无用的，没必要的，可能会用到的东西</li>
-</ol>
-
-<h4 id="说话">说话</h4>
-
-<ol>
-  <li>不说儿化音</li>
-  <li>减慢语速到一半</li>
-  <li>交流前每次都必须先组织好语言</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/01/Daily-Habits/">
         <font size="5">more »</font>
       </a>
     </div>

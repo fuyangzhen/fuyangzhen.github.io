@@ -173,6 +173,42 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/10/12/hihocoder-1148-trie/">
+        hihocoder 1148 — trie
+      </a>
+    </h1>
+
+    <span class="post-date">12 Oct 2016</span>
+
+    <h2 id="1-trie树">1 Trie树</h2>
+<p>trie，又称前缀树或字典树。它利用字符串的公共前缀来节约存储空间。
+性质:</p>
+
+<ol>
+  <li>根节点不包含字符，除根节点外的每个节点只包含一个字符。</li>
+  <li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串。</li>
+  <li>每个节点的所有子节点包含的字符串不相同。</li>
+</ol>
+
+<p>应用:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">词频统计</code>:比直接用hash节省空间</li>
+  <li><code class="highlighter-rouge">搜索提示</code>:输入前缀的时候提示可以构成的词</li>
+  <li><code class="highlighter-rouge">作为辅助结构</code>:如后缀树，AC自动机等的辅助结构</li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/12/hihocoder-1148-trie/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/10/05/binary-tree/">
         Basic data structure - binary tree & ADT
       </a>
@@ -308,49 +344,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/09/21/hash-map/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/09/17/decision-tree-ID3/">
-        Decision tree - ID3
-      </a>
-    </h1>
-
-    <span class="post-date">17 Sep 2016</span>
-
-    <h2 id="1-简介">1 简介</h2>
-
-<blockquote>
-  <p>ID3算法（Iterative Dichotomiser 3 迭代二叉树3代)是一个由Ross Quinlan发明的用于<a href="https://zh.wikipedia.org/wiki/决策树">决策树</a>的算法。<br />
-这个算法是建立在<a href="https://zh.wikipedia.org/wiki/奥卡姆剃刀">奥卡姆剃刀</a>的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个<a href="https://zh.wikipedia.org/wiki/启发法">启发式算法</a>。奥卡姆剃刀阐述了一个信息熵的概念：</p>
-</blockquote>
-<div align="center">
-<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/df2cbb3a4327afabc4ecca75e9a2db379a35be73" alt="1469499283270" />
-</div>
-<p>这个ID3算法可以归纳为以下几点:</p>
-
-<blockquote>
-  <ul>
-    <li>使用所有没有使用的属性并计算与之相关的样本熵值</li>
-    <li>选取其中熵值最小的属性</li>
-    <li>生成包含该属性的节点</li>
-  </ul>
-</blockquote>
-
-<blockquote>
-  <p>还有其他决策树的构造算法，最流行的是CART和C4.5。关于ID3算法的实现可以参考C4.5算法，它同时也是ID3的升级版。</p>
-</blockquote>
-
-<p>以上介绍来自维基百科。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/09/17/decision-tree-ID3/">
         <font size="5">more »</font>
       </a>
     </div>

@@ -173,6 +173,32 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2017/12/12/encoding-problem/">
+        Encoding problem
+      </a>
+    </h1>
+
+    <span class="post-date">12 Dec 2017</span>
+
+    <h2 id="encoding-problem">Encoding problem</h2>
+
+<p>Some stackoverflow OG give us a little advices:</p>
+<ul>
+  <li><a href="https://stackoverflow.com/q/436220/8586273">OG1</a></li>
+  <li><a href="https://stackoverflow.com/questions/19699367/unicodedecodeerror-utf-8-codec-cant-decode-byte">OG2</a></li>
+</ul>
+
+...
+    <div style="text-align:center">
+      <a href="/2017/12/12/encoding-problem/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2017/11/23/pigeonhole-principle/">
         LeetCode 523 — DP与鸽巢原理
       </a>
@@ -269,65 +295,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/10/24/hihocoder-1037/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/24/Negative-binary-conversion/">
-        编程之美 - 负数的二进制转换
-      </a>
-    </h1>
-
-    <span class="post-date">24 Oct 2016</span>
-
-    <h2 id="1-简介">1 简介</h2>
-<p>int型整数有4个字节，每个字节8个bit，所以一共32位。</p>
-
-<ol>
-  <li>负十进制整数计算二进制：去掉符号，转为二进制，取反，加1</li>
-  <li>负二进制整数计算十进制：取反，加1，转为十进制</li>
-</ol>
-
-<table>
-  <thead>
-    <tr>
-      <th>二进制 &lt;–</th>
-      <th style="text-align: center">负整数</th>
-      <th style="text-align: center">正整数</th>
-      <th style="text-align: center">–&gt; 二进制</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">1111 1111 1111 1111</code></td>
-      <td style="text-align: center">-1</td>
-      <td style="text-align: center">0</td>
-      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0000</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">1111 1111 1111 1110</code></td>
-      <td style="text-align: center">-2</td>
-      <td style="text-align: center">1</td>
-      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0001</code></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">1111 1111 1111 1101</code></td>
-      <td style="text-align: center">-3</td>
-      <td style="text-align: center">2</td>
-      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0010</code></td>
-    </tr>
-  </tbody>
-</table>
-
-<p>观察上表可知，<strong><em>可将负整数去掉符号后，减去1，再计算二进制后取反</em></strong>。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/24/Negative-binary-conversion/">
         <font size="5">more »</font>
       </a>
     </div>
