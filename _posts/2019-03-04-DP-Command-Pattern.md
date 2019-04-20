@@ -29,8 +29,9 @@ comments: true
 #### 相关模式  
 
 * 工厂模式，常用来结合到命令模式中，生产命令实例；
-* 组合模式（执行一个命令，其所有子命令全部执行）。
+* [组合模式](https://fuyangzhen.github.io/2019/03/04/DP-Composite-Pattern/)（执行一个命令，其所有子命令全部执行）。
 
 ![command](/assets/gallery/command.png)
 
 <!--more-->  
+
