@@ -196,6 +196,8 @@
 
 <p><img src="/assets/gallery/singleton.png" alt="singleton" /></p>
 
+<!--more-->
+
 <h4 id="线程安全单例">线程安全单例</h4>
 
 <h5 id="单锁">单锁</h5>
@@ -218,6 +220,23 @@
 
 <p><img src="/assets/gallery/anotherLazy.png" alt="anotherLazy" /></p>
 
+<h5 id="利用readonly关键字实现线程安全">利用readonly关键字实现线程安全</h5>
+
+<p><strong>静态初始化</strong>：在自己被框架加载时就将自己实例化。</p>
+
+<p><strong>readonly</strong>：instance标记上关键字<strong>readonly</strong>，意味着只能在静态初始化期间或类构造函数中分配变量。程序一加载就会为其赋值，所以不用再显式地编写线程安全代码。是一种饿汉式单例类，相对地，之前的在自己第一次被引用时才将自己实例化的，就属于懒汉式单例类。</p>
+
+<pre><code class="language-C#">public sealed class Singleton
+{
+    private static readonly Singleton instance = new Singleton();
+    private Singleton(){}
+    public static Single GetInstance()
+    {
+        return instance;
+    }
+}
+</code></pre>
+
 <h4 id="关联的模式">关联的模式</h4>
 
 <ul>
@@ -229,8 +248,6 @@
 <h3 id="ioc-container">IOC Container</h3>
 
 <p>向容器注册好所需的每个对象及其接口。对象的构造函数如果需要其他对象，也一并注册好，然后容器在 resolve 所需的 object 时会自动的找到构造函数所需的参数，直接帮你构造好。</p>
-
-<!--more-->
 
 </div>
 

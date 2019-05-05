@@ -27,6 +27,8 @@ comments: true
 
 ![singleton](/assets/gallery/singleton.png)   
 
+<!--more-->  
+
 #### 线程安全单例  
 
 ##### 单锁
@@ -76,5 +78,3 @@ public sealed class Singleton
 ### IOC Container  
 
 向容器注册好所需的每个对象及其接口。对象的构造函数如果需要其他对象，也一并注册好，然后容器在 resolve 所需的 object 时会自动的找到构造函数所需的参数，直接帮你构造好。
-
-<!--more-->  
