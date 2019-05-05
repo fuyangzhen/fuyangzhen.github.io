@@ -144,6 +144,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -226,16 +230,16 @@
 
 <p><strong>readonly</strong>：instance标记上关键字<strong>readonly</strong>，意味着只能在静态初始化期间或类构造函数中分配变量。程序一加载就会为其赋值，所以不用再显式地编写线程安全代码。是一种饿汉式单例类，相对地，之前的在自己第一次被引用时才将自己实例化的，就属于懒汉式单例类。</p>
 
-<pre><code class="language-C#">public sealed class Singleton
-{
-    private static readonly Singleton instance = new Singleton();
-    private Singleton(){}
-    public static Single GetInstance()
-    {
-        return instance;
-    }
-}
-</code></pre>
+<div class="language-c# highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">sealed</span> <span class="k">class</span> <span class="nc">Singleton</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">Singleton</span> <span class="n">instance</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Singleton</span><span class="p">();</span>
+    <span class="k">private</span> <span class="nf">Singleton</span><span class="p">(){}</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="n">Single</span> <span class="nf">GetInstance</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
 
 <h4 id="关联的模式">关联的模式</h4>
 

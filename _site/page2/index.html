@@ -144,6 +144,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -204,6 +208,41 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Facade-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Decorator-Pattern/">
+        Decorator Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="装饰模式">装饰模式</h2>
+
+<p>去超市买塑料袋，另外又用很多花哨的塑料袋来层层包装买的塑料袋。各个包装的先后顺序可控，按需选择装饰功能包装原始对象。</p>
+
+<h4 id="目的">目的</h4>
+
+<ul>
+  <li>动态地向已有对象添加功能</li>
+  <li>替代子类化</li>
+  <li>弹性设计</li>
+  <li>支持开闭原则</li>
+</ul>
+
+<p><img src="/assets/gallery/decorator.png" alt="decorator" /></p>
+
+<p><em>Decorator类构造函数传入Component的子类给属性赋值，该属性是protected的。</em></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Decorator-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>
@@ -341,40 +380,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Builder-Pattern/">
-        Builder Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="建造者模式">建造者模式</h2>
-
-<p>为了构造很复杂的对象，把logic从data中分离出来，以便能够重用logic。</p>
-
-<p>这些对象内部构建间的建造顺序通常是稳定的，但对象内部的构建通常面临着复杂的变化。</p>
-
-<p>做三明治的步骤顺序一般固定，但是每一步骤都可以有很多种变换。</p>
-
-<p><img src="/assets/gallery/Builder-Pattern.png" alt="Builder-Pattern" /></p>
-
-<ol>
-  <li>Director负责组织Concrete Builder的product构造逻辑顺序 (logic)；</li>
-  <li>Builder (abstract interface) 负责定义product的每一步抽象逻辑；</li>
-  <li>Concrete Builder定义product的每一步具体逻辑；</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Builder-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

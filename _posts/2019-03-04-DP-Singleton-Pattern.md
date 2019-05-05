@@ -55,7 +55,7 @@ comments: true
 
 **readonly**：instance标记上关键字**readonly**，意味着只能在静态初始化期间或类构造函数中分配变量。程序一加载就会为其赋值，所以不用再显式地编写线程安全代码。是一种饿汉式单例类，相对地，之前的在自己第一次被引用时才将自己实例化的，就属于懒汉式单例类。  
 
-```C#
+```c#
 public sealed class Singleton
 {
     private static readonly Singleton instance = new Singleton();

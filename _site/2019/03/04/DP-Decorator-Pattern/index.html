@@ -24,7 +24,7 @@
 
   <title>
     
-      Memo &middot; Young
+      Decorator Pattern &middot; Young
     
   </title>
 
@@ -104,7 +104,7 @@
     
     
     
-    <a class="sidebar-nav-item active" href="/list-Memo/">Memo</a>
+    <a class="sidebar-nav-item" href="/list-Memo/">Memo</a>
     
     
     
@@ -173,67 +173,106 @@
       </div>
 
       <div class="container content">
-        <div class="page">
-  <h1 class="page-title">Memo</h1>
-  
+        <div class="post">
+  <h1 class="post-title">Decorator Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="装饰模式">装饰模式</h2>
+
+<p>去超市买塑料袋，另外又用很多花哨的塑料袋来层层包装买的塑料袋。各个包装的先后顺序可控，按需选择装饰功能包装原始对象。</p>
+
+<h4 id="目的">目的</h4>
+
+<ul>
+  <li>动态地向已有对象添加功能</li>
+  <li>替代子类化</li>
+  <li>弹性设计</li>
+  <li>支持开闭原则</li>
+</ul>
+
+<p><img src="/assets/gallery/decorator.png" alt="decorator" /></p>
+
+<p><em>Decorator类构造函数传入Component的子类给属性赋值，该属性是protected的。</em></p>
+
+<!--more-->
+
+<h5 id="protected和private">protected和private</h5>
+
 <ul>
   <li>
-    <p>01 Mar 2019 / <a href="/2019/03/01/Daily-Habits/"> Routines </a></p>
+    <p>private是完全私有的，只有在类自己里面可以调用，在类的外部和子类都不能调用，子类也不能继承父类的private的属性和方法。</p>
   </li>
   <li>
-    <p>25 Jan 2019 / <a href="/2019/01/25/CSharp/"> C# Memo </a></p>
+    <p>protected虽然可以被外界看到，但外界却不能调用，只有自己及自己的子类可以调用（protected的属性和方法都可以被子类所继承和调用）。</p>
   </li>
   <li>
-    <p>24 Jul 2018 / <a href="/2018/07/24/docker-private-registry/"> Build a docker private registry with Harbor </a></p>
+    <p>private和protected的共同点：外部都不可以访问。</p>
   </li>
   <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/Business-Writing/"> Business Writing </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/k8s/"> JS Note </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/build-tf-on-win/"> Build TF on win </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/importantNote/"> My Memo Note </a></p>
-  </li>
-  <li>
-    <p>23 Jun 2018 / <a href="/2018/06/23/JavaScript/"> JS Note </a></p>
-  </li>
-  <li>
-    <p>10 May 2018 / <a href="/2018/05/10/elasticsearch/"> ElasticSearch Note </a></p>
-  </li>
-  <li>
-    <p>29 Apr 2018 / <a href="/2018/04/29/patterns-library/"> 设计模式 </a></p>
-  </li>
-  <li>
-    <p>29 Apr 2018 / <a href="/2018/04/29/C++/"> C++笔记 </a></p>
-  </li>
-  <li>
-    <p>22 Apr 2018 / <a href="/2018/04/22/deploy/"> Linux deploy of WeRoBot’s search engine </a></p>
-  </li>
-  <li>
-    <p>18 Mar 2018 / <a href="/2018/03/18/Some-TODO-blogs/"> Some TODO blogs </a></p>
-  </li>
-  <li>
-    <p>12 Dec 2017 / <a href="/2017/12/12/encoding-problem/"> Encoding problem </a></p>
-  </li>
-  <li>
-    <p>09 Apr 2017 / <a href="/2017/04/09/privoxy/"> OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理 </a></p>
-  </li>
-  <li>
-    <p>11 Feb 2016 / <a href="/2016/02/11/example-content/"> Example content </a></p>
-  </li>
-  <li>
-    <p>25 Jun 2013 / <a href="/2013/06/25/video-post/"> A post with a video </a></p>
-  </li>
-  <li>
-    <p>22 May 2013 / <a href="/2013/05/22/sample-post-images/"> A post with images </a></p>
+    <p>private和protected的不同点：在同一类中可视为一样，但在继承中就不同了，private在派生类中不可以被访问，而protected可以</p>
   </li>
 </ul>
 
+<h4 id="使用场景">使用场景</h4>
 
+<ul>
+  <li>遗留代码</li>
+  <li>为UI控制元件添加功能</li>
+  <li>为sealed类添加功能（如第三方dll 或者.net 框架）</li>
+</ul>
+
+<h4 id="利弊">利弊</h4>
+
+<ul>
+  <li>原始对象无法感知任何包装它的对象；</li>
+  <li>没有一个包含所有选项的功能丰富的类；</li>
+  <li>装饰对象能以混合搭配（各种顺序）的方式组合在一起;</li>
+  <li>把类中的装饰功能从类中搬移出去，只留下核心功能，简化原始类，去除重复的装饰逻辑。</li>
+</ul>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>
+    <p>建造者模式</p>
+
+    <p>建造者模式要求建造过程稳定不变，而装饰模式的包装过程不是固定的。</p>
+  </li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Strategy-Pattern/">
+            Strategy Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Singleton-Pattern/">
+            Singleton Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Null-Object-Pattern/">
+            Null Object Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
 
         
