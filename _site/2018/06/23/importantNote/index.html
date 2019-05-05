@@ -172,7 +172,50 @@
         <div class="post">
   <h1 class="post-title">My Memo Note</h1>
   <span class="post-date">23 Jun 2018</span>
-  <h2 id="tmux-操作">tmux 操作</h2>
+  <h2 id="c-call-restful">C# Call RESTful</h2>
+
+<pre><code class="language-C#">public class RestAPICall
+{
+    public static string MakeCall(string method, string endpoint, string content, string contentType = "application/json")
+    {
+        string result = string.Empty;
+        try
+        {
+            var request = (HttpWebRequest)WebRequest.Create(endpoint);
+            request.ContentType = contentType;
+            request.Method = method;
+            request.Headers["authorization"] = "Basic";
+            request.Headers["X-Anchormailbox"] = "ipat";
+            request.Headers["X-CallerFileNameLin"] = "mytest.cs";
+            request.Headers["X-ProcessName"] = "test.powershell.exe";
+            request.Headers["X-ClientRequestId"] = "c03b981a";
+            request.Headers["X-ActivityId"] = "c03b981a-3";
+            request.Headers["X-CallerFileNameLine"] = "Mypowershell.ps1,line 3";
+
+            //using (var streamWriter = new System.IO.StreamWriter(request.GetRequestStream()))
+            //{
+            //    string json = content;
+
+            //    streamWriter.Write(json);
+            //}
+
+            var response = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new System.IO.StreamReader(response.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+
+        return result;
+    }
+}
+</code></pre>
+
+<h2 id="tmux-操作">tmux 操作</h2>
 
 <p>“start”: “webpack-dev-server –mode development –config ./webpack.dev.js –https –cert ./certs/server.crt –key ./certs/server.key”,</p>
 
@@ -369,8 +412,8 @@ $ sudo vim /etc/nginx/sites-enabled/test	#编辑项目文件
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Mediator-Pattern/">
-            Mediator Pattern
+          <a href="/2019/03/04/DP-Singleton-Pattern/">
+            Singleton Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>
@@ -378,8 +421,8 @@ $ sudo vim /etc/nginx/sites-enabled/test	#编辑项目文件
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Factory-Pattern/">
-            Factory Pattern
+          <a href="/2019/03/04/DP-Null-Object-Pattern/">
+            Null Object Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>

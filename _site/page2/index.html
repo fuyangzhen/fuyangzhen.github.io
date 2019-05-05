@@ -173,6 +173,86 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Facade-Pattern/">
+        Facade Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="外观模式">外观模式</h2>
+
+<h4 id="tips">Tips</h4>
+
+<p><em>目的：解耦，使子系统间减少依赖。</em></p>
+
+<p>封装集成一些繁杂的功能为一层包装类，使客户端使用起来更加方便。</p>
+
+<ol>
+  <li>设计初期应该将不同的两个层分离，层间使用facade为复杂子系统提供简单接口。</li>
+  <li>为设计粗糙或高度复杂的遗留代码设计简单的facade接口，这样新系统就解耦地使用遗留代码。</li>
+</ol>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Adapter-Pattern/">适配器</a></li>
+  <li>flyweight</li>
+  <li>Mediator</li>
+</ul>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Facade-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Composite-Pattern/">
+        Composite Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="组合模式">组合模式</h2>
+
+<p>将对象组合到树结构中以表示部分-整体层次结构。Composite允许客户端统一地处理单个对象和对象的组合。</p>
+
+<p><strong>抽象出枝节点和叶节点的统一的行为接口，让client端可以对他们一视同仁，简化操作。</strong></p>
+
+<h4 id="何时使用">何时使用</h4>
+
+<ol>
+  <li>需求中是体现部分和整体层次结构时;</li>
+  <li>希望用户可以忽略组合对象与单个对象的不同，统一使用组合结构中的所有对象时；</li>
+  <li>想要分发什么东西到对象时。</li>
+</ol>
+
+<h4 id="优点">优点</h4>
+
+<ol>
+  <li>基本对象可悲组合为更复杂的组合对象，用到基本对象的地方都可以使用组合对象；</li>
+  <li>用户不用关心到底是处理叶节点还是一个组合组件，也不用为定义组合而写一些判断语句。即客户可以一致地使用组合结构和单个对象。</li>
+</ol>
+
+<p><img src="/assets/gallery/composite.png" alt="composite" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Composite-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Command-Pattern/">
         Command Pattern
       </a>
@@ -295,66 +375,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Builder-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Bridge-Pattern/">
-        Bridge Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="桥连模式">桥连模式</h2>
-
-<p>abstraction -&gt; abstraction  -&gt; implementation</p>
-
-<p>对象可<strong>多角度抽象出类别</strong>时，只用一种类别树来继承，耦合就太重了，会使类的定义大量增加，抽象和实现内在是一种依赖耦合关系。将不同角度单独视为一类，不同角度的类通过聚合（桥）关联起来（参见大话设计模式），这也是一种抽象之上的再次抽象。</p>
-
-<p><strong>再次抽象，是在扩展你的类的能力，将能力抽象为接口，解耦出来。这样就可为类实现各种其他的功能，而不用修改类，符合开闭原则。</strong></p>
-
-<p><img src="/assets/gallery/bridge.png" alt="Builder-Pattern" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Bridge-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Adapter-Pattern/">
-        Adapter Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="适配器模式">适配器模式</h2>
-
-<h4 id="tips">Tips</h4>
-
-<p><em>初始设计的时候类的接口应该尽可能的规范统一，而不是使用适配器去调整。适配器适用于修补和完全不同环境的代码之间的适配。</em></p>
-
-<p><strong>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</strong></p>
-
-<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
-
-<p>常见的一种简单adapter：继承自target类，在其定义中聚合adaptee，在adapter定义中override的target的方法中使用adaptee的方法。  （参见大话设计模式）</p>
-
-<p>常见的另一种adapter：target类定义中直接聚合符合Iadapter的adapter实例，然后在target的方法中调用adapter实例的方法。这种方式是通过Iadapter接口来规范定义可接受的adapter实例方法。（参见pluralsight-patterns-library）</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Adapter-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

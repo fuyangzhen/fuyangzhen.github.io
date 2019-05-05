@@ -173,6 +173,80 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2018/06/23/Business-Writing/">
+        Business Writing
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="原则">原则</h2>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/Business-Writing/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/06/23/k8s/">
+        JS Note
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="原理示意图">原理示意图</h2>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/k8s/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/06/23/build-tf-on-win/">
+        Build TF on win
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="准备工作">准备工作</h2>
+
+<p>win：windows server 2016（win10应该也没问题，成功build和系统关系不大）</p>
+
+<p>cMake：latest</p>
+
+<p>TF源码：master -&gt; 1.10（until 2018.9.1）</p>
+
+<p>eigen：latest</p>
+
+<p>python：3.5.0</p>
+
+<p>visual studio：2015</p>
+
+<p>（<a href="https://www.youtube.com/watch?v=gj_4Yv94LgQ">可供参考的视频</a>）</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/build-tf-on-win/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2018/06/23/importantNote/">
         My Memo Note
       </a>
@@ -180,7 +254,50 @@
 
     <span class="post-date">23 Jun 2018</span>
 
-    <h2 id="tmux-操作">tmux 操作</h2>
+    <h2 id="c-call-restful">C# Call RESTful</h2>
+
+<pre><code class="language-C#">public class RestAPICall
+{
+    public static string MakeCall(string method, string endpoint, string content, string contentType = "application/json")
+    {
+        string result = string.Empty;
+        try
+        {
+            var request = (HttpWebRequest)WebRequest.Create(endpoint);
+            request.ContentType = contentType;
+            request.Method = method;
+            request.Headers["authorization"] = "Basic";
+            request.Headers["X-Anchormailbox"] = "ipat";
+            request.Headers["X-CallerFileNameLin"] = "mytest.cs";
+            request.Headers["X-ProcessName"] = "test.powershell.exe";
+            request.Headers["X-ClientRequestId"] = "c03b981a";
+            request.Headers["X-ActivityId"] = "c03b981a-3";
+            request.Headers["X-CallerFileNameLine"] = "Mypowershell.ps1,line 3";
+
+            //using (var streamWriter = new System.IO.StreamWriter(request.GetRequestStream()))
+            //{
+            //    string json = content;
+
+            //    streamWriter.Write(json);
+            //}
+
+            var response = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new System.IO.StreamReader(response.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+
+        return result;
+    }
+}
+</code></pre>
+
+<h2 id="tmux-操作">tmux 操作</h2>
 
 <p>“start”: “webpack-dev-server –mode development –config ./webpack.dev.js –https –cert ./certs/server.crt –key ./certs/server.key”,</p>
 
@@ -207,111 +324,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/06/23/JavaScript/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/05/10/elasticsearch/">
-        ElasticSearch Note
-      </a>
-    </h1>
-
-    <span class="post-date">10 May 2018</span>
-
-    <h2 id="score-formula">Score formula</h2>
-
-<p>ES版本跟新迭代的很快，截止到今天（2018.7.10) master的版本为6.3，打分公式一直都在微调，当前版本每个doc的对query的得分计算公式如下（就是最普通的BM25），其中n为query的term和当前doc的term的交集的大小：</p>
-
-<script type="math/tex; mode=display">score_d=\sum_{t=0}^ntfNorm_t*idf_t</script>
-
-<p>idf计算公式如下，其中docCount为index中doc总数，docFreq为曾出现当前计算的term的doc频数：</p>
-
-<script type="math/tex; mode=display">idf=log(1+\frac{docCount-docFreq+0.5}{docFreq+0.5})</script>
-
-<p>tfNorm的计算公式如下，其中fieldLength为当前doc的term的个数，avgFieldLength为index内所有doc的平均term个数，freq为当前计算的term的频数，$k_1$和b为参数，其默认值分别为1.2和0.75：</p>
-
-<script type="math/tex; mode=display">tfNorm=\frac{freq*(k_1+1)}{freq+k_1*(1-b+b*fieldLength/avgFieldLength)}</script>
-
-<p>注意：ES 为了分布式index和search的性能，<code class="highlighter-rouge">docFreq</code> , <code class="highlighter-rouge">docCount</code> and <code class="highlighter-rouge">avgFieldLength</code>are computed per shard.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/05/10/elasticsearch/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/05/09/NLP/">
-        NLP Memo Note
-      </a>
-    </h1>
-
-    <span class="post-date">09 May 2018</span>
-
-    <h2 id="nlp">NLP</h2>
-
-<h4 id="虚词">虚词</h4>
-
-<p>对短语的语义不起决定作用，对QA的查询贡献也小，这些词一般作为停用词表（stop list）</p>
-
-<p>语法词：can, go, say, he;</p>
-
-<p>功能词：介词of, about;</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/05/09/NLP/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/04/29/patterns-library/">
-        设计模式
-      </a>
-    </h1>
-
-    <span class="post-date">29 Apr 2018</span>
-
-    <h2 id="0-适配器模式">0 适配器模式</h2>
-
-<p>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</p>
-
-<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
-
-<p>concrete：具体的，凝固。</p>
-
-<p>tabular：扁平的，列表的</p>
-
-<h2 id="1-工厂模式">1 工厂模式</h2>
-
-<p>客户端代码调用工厂类，让工厂类的内部方法逻辑选择判断该实例化哪个具体类。</p>
-
-<ol>
-  <li>简单工厂模式的最大优点是工厂类中包含的必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，对于客户端，去除了与具体产品的依赖；</li>
-  <li>简单工厂模式是把创建对象的判断逻辑放到了工厂类的静态方法里面了，后续增加工厂功能的话，就需要改动里面的逻辑代码，不符合开闭原则。客户端代码的逻辑要上升到工厂类中去修改具体方法逻辑，这样太过耦合。</li>
-</ol>
-
-<h2 id="2-迪米特法则松耦合">2 迪米特法则（松耦合）</h2>
-<ol>
-  <li>类之间应该松耦合，耦合越弱，越有利于复用，处于弱耦合的类被修改，不会对有关系的类造成波及。</li>
-  <li>如果两类不必彼此直接通信，那这两个类就不应该发生直接的相互作用。如果一个类需要调用另一个类的某一个方法，可通过第三者转发该调用。</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/04/29/patterns-library/">
         <font size="5">more »</font>
       </a>
     </div>

@@ -6,6 +6,54 @@ date: 2018-06-23 00:00:00
 comments: true
 ---  
 
+
+
+## C# Call RESTful  
+
+```C#
+public class RestAPICall
+{
+    public static string MakeCall(string method, string endpoint, string content, string contentType = "application/json")
+    {
+        string result = string.Empty;
+        try
+        {
+            var request = (HttpWebRequest)WebRequest.Create(endpoint);
+            request.ContentType = contentType;
+            request.Method = method;
+            request.Headers["authorization"] = "Basic";
+            request.Headers["X-Anchormailbox"] = "ipat";
+            request.Headers["X-CallerFileNameLin"] = "mytest.cs";
+            request.Headers["X-ProcessName"] = "test.powershell.exe";
+            request.Headers["X-ClientRequestId"] = "c03b981a";
+            request.Headers["X-ActivityId"] = "c03b981a-3";
+            request.Headers["X-CallerFileNameLine"] = "Mypowershell.ps1,line 3";
+
+            //using (var streamWriter = new System.IO.StreamWriter(request.GetRequestStream()))
+            //{
+            //    string json = content;
+
+            //    streamWriter.Write(json);
+            //}
+
+            var response = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new System.IO.StreamReader(response.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+
+        return result;
+    }
+}
+```
+
+
+
 ## tmux 操作
 
 "start": "webpack-dev-server --mode development --config ./webpack.dev.js --https --cert ./certs/server.crt --key ./certs/server.key", 
