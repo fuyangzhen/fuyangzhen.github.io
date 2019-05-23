@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "MVP Pattern"
+title: "Proxy Pattern"
 tags: [Design Patterns]
 date: 2019-03-04 00:00:00
 
@@ -17,6 +17,36 @@ comments: true
 
 ![proxy](/assets/gallery/proxy.png)   
 
- 
+![proxy2](/assets/gallery/proxy2.png)  
 
-![proxy2](/assets/gallery/proxy2.png)   
+#### lazy loading  
+
+在真正需要的时候才去loading数据，其余时候只用继承自同一基类的proxy类。在proxy类中实现需要被访问的字段数据的lazy loading property, 如：
+
+```C#
+_items = new Lazy<List<OrderDetails>>(() => new OrderDetails());
+```
+
+或者通过flag 字段来实现：  
+
+```C#
+public override List<OrderDetails> Items
+{
+    get
+    {
+        return GetItems();
+    }
+}
+
+protected override List<OrderDetails> GetItems()
+{
+    if (!_itemsLoaded)
+    {
+        GetEntity();
+        _orderDetails = base.GetItems();
+        _itemsLoaded = true;
+    }
+    return _orderDetails;
+}
+```
+

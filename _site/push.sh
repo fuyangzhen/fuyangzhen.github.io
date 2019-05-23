@@ -1,4 +1,4 @@
 jekyll build
 git add .
-git commit -am "$0"
+git commit -am "$1"
 git push

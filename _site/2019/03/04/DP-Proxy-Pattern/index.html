@@ -24,7 +24,7 @@
 
   <title>
     
-      MVP Pattern &middot; Young
+      Proxy Pattern &middot; Young
     
   </title>
 
@@ -174,7 +174,7 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">MVP Pattern</h1>
+  <h1 class="post-title">Proxy Pattern</h1>
   <span class="post-date">04 Mar 2019</span>
   <h2 id="代理模式">代理模式</h2>
 
@@ -189,6 +189,36 @@
 <p><img src="/assets/gallery/proxy.png" alt="proxy" /></p>
 
 <p><img src="/assets/gallery/proxy2.png" alt="proxy2" /></p>
+
+<h4 id="lazy-loading">lazy loading</h4>
+
+<p>在真正需要的时候才去loading数据，其余时候只用继承自同一基类的proxy类。在proxy类中实现需要被访问的字段数据的lazy loading property, 如：</p>
+
+<pre><code class="language-C#">_items = new Lazy&lt;List&lt;OrderDetails&gt;&gt;(() =&gt; new OrderDetails());
+</code></pre>
+
+<p>或者通过flag 字段来实现：</p>
+
+<pre><code class="language-C#">public override List&lt;OrderDetails&gt; Items
+{
+    get
+    {
+        return GetItems();
+    }
+}
+
+protected override List&lt;OrderDetails&gt; GetItems()
+{
+    if (!_itemsLoaded)
+    {
+        GetEntity();
+        _orderDetails = base.GetItems();
+        _itemsLoaded = true;
+    }
+    return _orderDetails;
+}
+</code></pre>
+
 
 </div>
 
