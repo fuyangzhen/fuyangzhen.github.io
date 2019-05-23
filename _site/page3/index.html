@@ -177,6 +177,178 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Decorator-Pattern/">
+        Decorator Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="装饰模式">装饰模式</h2>
+
+<p>去超市买塑料袋，另外又用很多花哨的塑料袋来层层包装买的塑料袋。各个包装的先后顺序可控，按需选择装饰功能包装原始对象。</p>
+
+<h4 id="目的">目的</h4>
+
+<ul>
+  <li>动态地向已有对象添加功能</li>
+  <li>替代子类化</li>
+  <li>弹性设计</li>
+  <li>支持开闭原则</li>
+</ul>
+
+<p><img src="/assets/gallery/decorator.png" alt="decorator" /></p>
+
+<p><em>Decorator类构造函数传入Component的子类给属性赋值，该属性是protected的。</em></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Decorator-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Composite-Pattern/">
+        Composite Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="组合模式">组合模式</h2>
+
+<p>将对象组合到树结构中以表示部分-整体层次结构。Composite允许客户端统一地处理单个对象和对象的组合。</p>
+
+<p><strong>抽象出枝节点和叶节点的统一的行为接口，让client端可以对他们一视同仁，简化操作。</strong></p>
+
+<h4 id="何时使用">何时使用</h4>
+
+<ol>
+  <li>需求中是体现部分和整体层次结构时;</li>
+  <li>希望用户可以忽略组合对象与单个对象的不同，统一使用组合结构中的所有对象时；</li>
+  <li>想要分发什么东西到对象时。</li>
+</ol>
+
+<h4 id="优点">优点</h4>
+
+<ol>
+  <li>基本对象可悲组合为更复杂的组合对象，用到基本对象的地方都可以使用组合对象；</li>
+  <li>用户不用关心到底是处理叶节点还是一个组合组件，也不用为定义组合而写一些判断语句。即客户可以一致地使用组合结构和单个对象。</li>
+</ol>
+
+<p><img src="/assets/gallery/composite.png" alt="composite" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Composite-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Command-Pattern/">
+        Command Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="命令模式">命令模式</h2>
+
+<h4 id="优点">优点</h4>
+
+<ul>
+  <li>
+    <p>把命令的执行抽象为类，执行命令的client 与 命令逻辑及其依赖项 解耦；</p>
+  </li>
+  <li>收集命令为队列，使命令可以延迟执行;</li>
+  <li>命令，aka 事务（transaction），行动（action）;</li>
+  <li>可方便地对命令进行日志记录，验证，撤销；</li>
+  <li>很容易添加新命令，符合开闭原则；</li>
+  <li>完全自包含，客户端不会直接传任何参数给命令，而是通过一个invoker来调用命令；</li>
+  <li>注意为了安全要有个null command；</li>
+</ul>
+
+<h3 id="何时使用">何时使用</h3>
+
+<ol>
+  <li>当需要将执行命令的client与命令逻辑及其依赖项解耦时，请求操作的对象（invoker）与知道具体如何操作的对象（command &amp; receiver ）分割开；</li>
+  <li>设计命令行工具；</li>
+  <li>真正需要实现命令的验证、撤销和恢复时。</li>
+</ol>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>工厂模式，常用来结合到命令模式中，生产命令实例；</li>
+  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Composite-Pattern/">组合模式</a>（执行一个命令，其所有子命令全部执行）。</li>
+</ul>
+
+<p><img src="/assets/gallery/command.png" alt="command" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Command-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
+        Chain of Responsibility Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="责任链模式">责任链模式</h2>
+
+<h4 id="何时使用">何时使用</h4>
+
+<ul>
+  <li>对于一条message有超过一个handler可以处理它</li>
+  <li>发送message的sender一开始并不能明确得知最终合适的handler</li>
+  <li>handler的集合可以被动态地定义（node handler用起来可以按需连接）</li>
+</ul>
+
+<h4 id="责任链优点">责任链优点</h4>
+
+<ul>
+  <li>减少耦合</li>
+  <li>动态地管理 message handlers</li>
+  <li>责任链的末尾可以适当的自定义</li>
+</ul>
+
+<h4 id="与其有关的模式">与其有关的模式</h4>
+
+<ul>
+  <li>Composite组合模式</li>
+  <li>责任树模式（也就是字面意思）</li>
+</ul>
+
+<p><img src="/assets/gallery/chain-of-responsibility.png" alt="strategy" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Builder-Pattern/">
         Builder Pattern
       </a>
@@ -203,136 +375,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Builder-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Bridge-Pattern/">
-        Bridge Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="桥连模式">桥连模式</h2>
-
-<p>abstraction -&gt; abstraction  -&gt; implementation</p>
-
-<p>对象可<strong>多角度抽象出类别</strong>时，只用一种类别树来继承，耦合就太重了，会使类的定义大量增加，抽象和实现内在是一种依赖耦合关系。将不同角度单独视为一类，不同角度的类通过聚合（桥）关联起来（参见大话设计模式），这也是一种抽象之上的再次抽象。</p>
-
-<p><strong>再次抽象，是在扩展你的类的能力，将能力抽象为接口，解耦出来。这样就可为类实现各种其他的功能，而不用修改类，符合开闭原则。</strong></p>
-
-<p><img src="/assets/gallery/bridge.png" alt="Builder-Pattern" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Bridge-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Adapter-Pattern/">
-        Adapter Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="适配器模式">适配器模式</h2>
-
-<h4 id="tips">Tips</h4>
-
-<p><em>初始设计的时候类的接口应该尽可能的规范统一，而不是使用适配器去调整。适配器适用于修补和完全不同环境的代码之间的适配。</em></p>
-
-<p><strong>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</strong></p>
-
-<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
-
-<p>常见的一种简单adapter：继承自target类，在其定义中聚合adaptee，在adapter定义中override的target的方法中使用adaptee的方法。  （参见大话设计模式）</p>
-
-<p>常见的另一种adapter：target类定义中直接聚合符合Iadapter的adapter实例，然后在target的方法中调用adapter实例的方法。这种方式是通过Iadapter接口来规范定义可接受的adapter实例方法。（参见pluralsight-patterns-library）</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Adapter-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/01/Daily-Habits/">
-        Routines
-      </a>
-    </h1>
-
-    <span class="post-date">01 Mar 2019</span>
-
-    <h4 id="咽炎">咽炎</h4>
-
-<ol>
-  <li>不吃盐油蒜辣椒羊狗肉烟酒</li>
-  <li>多吃鱼虾牛鸡胸肉，蛋奶，蔬菜</li>
-</ol>
-
-<h4 id="日常">日常</h4>
-
-<ol>
-  <li>上厕所不用手机</li>
-  <li>11点睡觉，7点起床，工作不看手机</li>
-  <li>犹豫要不要买的东西不买</li>
-  <li>丢掉所有无用的，没必要的，可能会用到的东西</li>
-</ol>
-
-<h4 id="说话">说话</h4>
-
-<ol>
-  <li>不说儿化音</li>
-  <li>减慢语速到一半</li>
-  <li>交流前每次都必须先组织好语言</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/01/Daily-Habits/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/01/25/CSharp/">
-        C# Memo
-      </a>
-    </h1>
-
-    <span class="post-date">25 Jan 2019</span>
-
-    <h2 id="c">C#</h2>
-
-<h4 id="反射">反射</h4>
-
-<p>动态地获取实例的类的各种信息</p>
-
-<h4 id="匿名">匿名</h4>
-
-<p>将函数换层皮表达</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/01/25/CSharp/">
         <font size="5">more »</font>
       </a>
     </div>

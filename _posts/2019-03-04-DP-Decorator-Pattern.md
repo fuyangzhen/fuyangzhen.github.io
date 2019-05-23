@@ -22,7 +22,7 @@ comments: true
 
 *Decorator类构造函数传入Component的子类给属性赋值，该属性是protected的。*  
 
-<!--more-->  
+<!--more--> 
 
 ##### protected和private
 

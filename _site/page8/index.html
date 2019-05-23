@@ -177,6 +177,135 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2017/04/09/privoxy/">
+        OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理
+      </a>
+    </h1>
+
+    <span class="post-date">09 Apr 2017</span>
+
+    <p><strong><em>环境：OS X + Shadowsocks</em></strong><br />
+<strong><em>问题：虽然装有Shadowsocks，但是Twitter的pythonAPI仍无法使用</em></strong></p>
+
+<p>在使用Twitter的pythonAPI时，发现在Shadowsocks开启的情况下，python的爬虫无法访问使用Twitter，此处整合了几个零散方法，分别在终端内全局代理和脚本内单独代理：</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2017/04/09/privoxy/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/24/kaggle-mnist/">
+        Kaggle - MNIST手写体识别
+      </a>
+    </h1>
+
+    <span class="post-date">24 Oct 2016</span>
+
+    <h2 id="0-加载所需用的库">0 加载所需用的库</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/24/kaggle-mnist/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/24/hihocoder-1037/">
+        hihocoder 1037 — 数字三角形
+      </a>
+    </h1>
+
+    <span class="post-date">24 Oct 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<h3 id="问题描述">问题描述</h3>
+<p>一个被称为“数字三角形”的n(n不超过200)层迷宫，这个迷宫的第i层有i个房间，分别编号为1..i。除去最后一层的房间，每一个房间都会有一些通往下一层的房间的楼梯，用符号来表示的话，就是从第i层的编号为j的房间出发会有两条路，一条通向第i+1层的编号为j的房间，另一条会通向第i+1层的编号为j+1的房间，而最后一层的所有房间都只有一条离开迷宫的道路。这样的道路都是单向的，也就是说当沿着这些道路前往下一层的房间或者离开迷宫之后，小Ho没有办法再次回到这个房间。迷宫里同时只会有一个参与者，而在每个参与者进入这个迷宫的时候，每个房间里都会生成一定数量的奖券，这些奖券可以在通过迷宫之后兑换各种奖品。小Ho的起点在第1层的编号为1的房间，现在小Ho悄悄向其他参与者弄清楚了每个房间里的奖券数量，希望小Hi帮他计算出他最多能获得多少奖券。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/24/hihocoder-1037/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/24/Negative-binary-conversion/">
+        编程之美 - 负数的二进制转换
+      </a>
+    </h1>
+
+    <span class="post-date">24 Oct 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<p>int型整数有4个字节，每个字节8个bit，所以一共32位。</p>
+
+<ol>
+  <li>负十进制整数计算二进制：去掉符号，转为二进制，取反，加1</li>
+  <li>负二进制整数计算十进制：取反，加1，转为十进制</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>二进制 &lt;–</th>
+      <th style="text-align: center">负整数</th>
+      <th style="text-align: center">正整数</th>
+      <th style="text-align: center">–&gt; 二进制</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">1111 1111 1111 1111</code></td>
+      <td style="text-align: center">-1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0000</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">1111 1111 1111 1110</code></td>
+      <td style="text-align: center">-2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0001</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">1111 1111 1111 1101</code></td>
+      <td style="text-align: center">-3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0010</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>观察上表可知，<strong><em>可将负整数去掉符号后，减去1，再计算二进制后取反</em></strong>。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/24/Negative-binary-conversion/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/10/24/hihocoder-1399/">
         hihocoder 1399 - shortening sequence
       </a>
@@ -192,120 +321,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/10/24/hihocoder-1399/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/18/hihocoder-1288/">
-        hihocoder 1288 — font size
-      </a>
-    </h1>
-
-    <span class="post-date">18 Oct 2016</span>
-
-    <h2 id="1-描述">1 描述</h2>
-<p>Steven loves reading book on his phone. The book he reads now consists of N paragraphs and the i-th paragraph contains ai characters.</p>
-
-<p>Steven wants to make the characters easier to read, so he decides to increase the font size of characters. But the size of Steven’s phone screen is limited. Its width is W and height is H. As a result, if the font size of characters is S then it can only show ⌊W / S⌋ characters in a line and ⌊H / S⌋ lines in a page. (⌊x⌋ is the largest integer no more than x)</p>
-
-<p>So here’s the question, if Steven wants to control the number of pages no more than P, what’s the maximum font size he can set? Note that paragraphs must start in a new line and there is no empty line between paragraphs.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/18/hihocoder-1288/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/16/hihocoder-1148/">
-        hihocoder 1148 — 2月29日
-      </a>
-    </h1>
-
-    <span class="post-date">16 Oct 2016</span>
-
-    <h2 id="1-描述">1 描述</h2>
-<p>给定两个日期，计算这两个日期之间有多少个2月29日（包括起始日期）。</p>
-
-<p>只有闰年有2月29日，满足以下一个条件的年份为闰年：</p>
-
-<ol>
-  <li>
-    <p>年份能被4整除但不能被100整除</p>
-  </li>
-  <li>
-    <p>年份能被400整除</p>
-  </li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/16/hihocoder-1148/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/13/gradient-descent/">
-        Gradient descent & logistic regression
-      </a>
-    </h1>
-
-    <span class="post-date">13 Oct 2016</span>
-
-    <h2 id="1-简介">1 简介</h2>
-<p>这一章的 <a href="http://www.ituring.com.cn/book/1021">机器学习实战(第5章)</a> ，唯一想说的就是里面关于梯度上升算法的细节问题。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/13/gradient-descent/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/12/hihocoder-1148-trie/">
-        hihocoder 1148 — trie
-      </a>
-    </h1>
-
-    <span class="post-date">12 Oct 2016</span>
-
-    <h2 id="1-trie树">1 Trie树</h2>
-<p>trie，又称前缀树或字典树。它利用字符串的公共前缀来节约存储空间。
-性质:</p>
-
-<ol>
-  <li>根节点不包含字符，除根节点外的每个节点只包含一个字符。</li>
-  <li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串。</li>
-  <li>每个节点的所有子节点包含的字符串不相同。</li>
-</ol>
-
-<p>应用:</p>
-
-<ol>
-  <li><code class="highlighter-rouge">词频统计</code>:比直接用hash节省空间</li>
-  <li><code class="highlighter-rouge">搜索提示</code>:输入前缀的时候提示可以构成的词</li>
-  <li><code class="highlighter-rouge">作为辅助结构</code>:如后缀树，AC自动机等的辅助结构</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/12/hihocoder-1148-trie/">
         <font size="5">more »</font>
       </a>
     </div>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <!-- Enable mathjax-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']],
+                                processEscapes: true, 
+                                processEnvironments: true}});
+</script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+<link href="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/zoom.js"></script>
+<script src="https://fuyangzhen.github.io/assets/zoom-jQuery/transition.js"></script>
+
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Observer Pattern &middot; Young
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110129992-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110129992-1');
+</script>
+
+</head>
+<div id="backtop">
+   <a href="#">^</a>
+</div>
+
+
+  <body class="theme-base-08">
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>Have problems? Easy-peasy, just press the restart button.</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-AIR/">AIR</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-D&A/">D&A</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Design%20Patterns/">Design Patterns</a>
+    
+    
+    
+    
+    
+    <a class="sidebar-nav-item" href="/list-Memo/">Memo</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
+    <a class="sidebar-nav-item" href="">GitHub project</a>
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+    -->
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; <a href=http://www.linkedin.com/in/fuyangzhen>Young 2019 </a> All rights reserved.
+        </p> </div> </div>
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Young</a>
+            <small>Anything I do that may help others, I'll post it here.</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="post">
+  <h1 class="post-title">Observer Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="观察者模式">观察者模式</h2>
+
+<h4 id="特征">特征</h4>
+
+<ul>
+  <li>
+    <p>系统被分割成相互协作的很多类，但我们不希望为了维护相关对象间的一致性，而去使各类紧密耦合。</p>
+  </li>
+  <li>观察者模式所做的工作是解除耦合，让耦合双方依赖抽象，而非具体，从而使得各自的变化都不会影响另一方的变化。</li>
+  <li>多抽象，少具体可以降低耦合。(<strong>依赖倒转原则</strong>)</li>
+  <li>具体观察者可能并不属于同一基类，所以可以使用抽象接口来统一他们，都能实现update方法就行。</li>
+  <li>delegate可以看做是对函数的抽象，是函数的‘类’，委托的实例将代表一个具体函数。</li>
+  <li>委托所搭载的方法并不需要属于同一类，但方法接口参数要相同。</li>
+</ul>
+
+<p><img src="/assets/gallery/observer.png" alt="observer" /></p>
+
+<!--more-->
+
+<h4 id="使用场景">使用场景</h4>
+
+<ul>
+  <li>一个对象依赖另一个对象</li>
+  <li>改变一个对象需要同时改变其他对象</li>
+  <li>改变一个对象的时候通知它并不了解的其他对象</li>
+</ul>
+
+<h4 id="模式进化">模式进化</h4>
+
+<ul>
+  <li>传统抽象方式（四人帮）（需要保证所有observer来自同一基类，在subject中维护一个observer列表）</li>
+  <li>委托方式（old .net）  因为无法控制subject的引用的observer的析构，所以容易发生内存泄漏问题</li>
+  <li>IObservable<T>方式（new .net）</T></li>
+</ul>
+
+<p><img src="/assets/gallery/IObserver.png" alt="IObserver" /></p>
+
+<h4 id="常见使用场景">常见使用场景</h4>
+
+<ul>
+  <li>GUI controls</li>
+  <li>data binding</li>
+  <li>network events</li>
+  <li>file watcher</li>
+  <li>MVC pattern</li>
+</ul>
+
+<h4 id="潜在问题">潜在问题</h4>
+
+<ul>
+  <li>委托方式可能导致GC不干净</li>
+  <li>subject来自外部其他线程 (监控网络事件或磁盘文件)，导致主线程的observer的update动作可能会使用非我们创建的线程。<strong>这时候需要手动管理创建update的线程。</strong></li>
+</ul>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>MVC模式（model -&gt; subject, view -&gt; observer）</li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Strategy-Pattern/">
+            Strategy Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Singleton-Pattern/">
+            Singleton Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Proxy-Pattern/">
+            MVP Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+        
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://youngfu.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+    </script>
+  </body>
+</html>

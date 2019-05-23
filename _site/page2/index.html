@@ -177,6 +177,181 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Mediator-Pattern/">
+        Mediator Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="中介模式">中介模式</h2>
+
+<p><em>用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互作用，从而使其耦合松散，而且可以独立地改变他们间的交互。</em></p>
+
+<h5 id="优点">优点</h5>
+
+<p>Mediator的出现减少了各个Colleague的耦合，使得可以独立地改变和复用各个Colleague类和Mediator。</p>
+
+<p>把对象如何协作进行了抽象，将中介作为一个独立的概念封装在对象中，关注的对象就从对象各自本身的行为转义到他们之间的交互上来，是从一个更为宏观的角度看待系统。</p>
+
+<h5 id="缺点">缺点</h5>
+
+<p>当系统出现‘多对多’交互复杂的对象群时，不要急于使用中介者模式，而是烦死系统在设计上是否合理。</p>
+
+<p>由于ConcreteMediator控制了集中化，浴室就把交互复杂性转变为了中介者复杂性，这就使ConcreteMediator比任何一个ConcreteColleague都复杂。</p>
+
+<p><img src="/assets/gallery/mediator.png" alt="Builder-Pattern" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Mediator-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-MVVM-Pattern/">
+        Model View  ViewModel Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="model-view--viewmodel模式">Model View  ViewModel模式</h2>
+
+<p>view 和 presenter 相互绑定，view负责关联html内部的函数和变量。presenter 负责把view传给他的args和调用的model作为参数传入自己绑定的view 的函数中。</p>
+
+<ul>
+  <li>view 直接和html关联交互</li>
+  <li>presenter （aka controller）和view相互绑定，然后view在需要展示时传参调用presenter 的相关函数，这些函数再运用具体的逻辑去取需要的model传入view的函数去渲染展示</li>
+  <li>model只负责为presenter 提供数据</li>
+  <li>这样就形成了很好的分离解耦 ：view只负责展示，presenter只负责业务逻辑，model只负责提供数据</li>
+</ul>
+
+<h4 id="目的">目的</h4>
+
+<ul>
+  <li>职责分离
+    <ul>
+      <li>需要展示的数据 <em>Model</em></li>
+      <li>业务逻辑 <em>presenter</em></li>
+      <li>展示数据 <em>view</em></li>
+    </ul>
+  </li>
+  <li>使模式中这些合作者（MVP）能单独测试</li>
+  <li>比查找业务逻辑更具可读性和可维护性</li>
+</ul>
+
+<p><img src="/assets/gallery/MVP.png" alt="MVP" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-MVVM-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-MVP-Pattern/">
+        Model View Presenter Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="model-view-presenter-模式">Model View Presenter 模式</h2>
+
+<p>view 和 presenter 相互绑定，view负责关联html内部的函数和变量。presenter 负责把view传给他的args和调用的model作为参数传入自己绑定的view 的函数中。</p>
+
+<ul>
+  <li>view 直接和html关联交互</li>
+  <li>presenter （aka controller）和view相互绑定，然后view在需要展示时传参调用presenter 的相关函数，这些函数再运用具体的逻辑去取需要的model传入view的函数去渲染展示</li>
+  <li>model只负责为presenter 提供数据</li>
+  <li>这样就形成了很好的分离解耦 ：view只负责展示，presenter只负责业务逻辑，model只负责提供数据</li>
+</ul>
+
+<h4 id="目的">目的</h4>
+
+<ul>
+  <li>职责分离
+    <ul>
+      <li>需要展示的数据 <em>Model</em></li>
+      <li>业务逻辑 <em>presenter</em></li>
+      <li>展示数据 <em>view</em></li>
+    </ul>
+  </li>
+  <li>使模式中这些合作者（MVP）能单独测试</li>
+  <li>比查找业务逻辑更具可读性和可维护性</li>
+</ul>
+
+<p><img src="/assets/gallery/MVP.png" alt="MVP" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-MVP-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Factory-Pattern/">
+        Factory Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h3 id="tips">Tips</h3>
+
+<p><em>可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :</em></p>
+
+<pre><code class="language-C#">static IAutoFactory LoadFactory()
+{
+    string factoryName = Properties.Settings.Default.AutoFactory;
+    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
+}
+</code></pre>
+
+<h3 id="动机">动机</h3>
+
+<ol>
+  <li>不确定接口的哪个具体实现来返回</li>
+  <li>对象的创建和表达需要分开</li>
+  <li>很多if/switch 来决定创建哪个具体的class</li>
+</ol>
+
+<h3 id="目的">目的</h3>
+
+<ul>
+  <li>把对象的实际创建从对象创建的选择逻辑中分离出来</li>
+  <li>添加新的类和功能（生产工厂的类，工厂类），而不打破开闭原则</li>
+  <li>把对象选择存在程序之外（DB or config）</li>
+</ul>
+
+<h2 id="简单工厂模式">简单工厂模式</h2>
+
+<p>把类的实例化放在工厂内部的选择逻辑里。调用类知道它需要的具体工厂，直接用工厂实例的函数来返回所需的产品实例，这样就去除了客户端和具体产品的依赖。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Factory-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Facade-Pattern/">
         Facade Pattern
       </a>
@@ -208,178 +383,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Facade-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Decorator-Pattern/">
-        Decorator Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="装饰模式">装饰模式</h2>
-
-<p>去超市买塑料袋，另外又用很多花哨的塑料袋来层层包装买的塑料袋。各个包装的先后顺序可控，按需选择装饰功能包装原始对象。</p>
-
-<h4 id="目的">目的</h4>
-
-<ul>
-  <li>动态地向已有对象添加功能</li>
-  <li>替代子类化</li>
-  <li>弹性设计</li>
-  <li>支持开闭原则</li>
-</ul>
-
-<p><img src="/assets/gallery/decorator.png" alt="decorator" /></p>
-
-<p><em>Decorator类构造函数传入Component的子类给属性赋值，该属性是protected的。</em></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Decorator-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Composite-Pattern/">
-        Composite Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="组合模式">组合模式</h2>
-
-<p>将对象组合到树结构中以表示部分-整体层次结构。Composite允许客户端统一地处理单个对象和对象的组合。</p>
-
-<p><strong>抽象出枝节点和叶节点的统一的行为接口，让client端可以对他们一视同仁，简化操作。</strong></p>
-
-<h4 id="何时使用">何时使用</h4>
-
-<ol>
-  <li>需求中是体现部分和整体层次结构时;</li>
-  <li>希望用户可以忽略组合对象与单个对象的不同，统一使用组合结构中的所有对象时；</li>
-  <li>想要分发什么东西到对象时。</li>
-</ol>
-
-<h4 id="优点">优点</h4>
-
-<ol>
-  <li>基本对象可悲组合为更复杂的组合对象，用到基本对象的地方都可以使用组合对象；</li>
-  <li>用户不用关心到底是处理叶节点还是一个组合组件，也不用为定义组合而写一些判断语句。即客户可以一致地使用组合结构和单个对象。</li>
-</ol>
-
-<p><img src="/assets/gallery/composite.png" alt="composite" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Composite-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Command-Pattern/">
-        Command Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="命令模式">命令模式</h2>
-
-<h4 id="优点">优点</h4>
-
-<ul>
-  <li>
-    <p>把命令的执行抽象为类，执行命令的client 与 命令逻辑及其依赖项 解耦；</p>
-  </li>
-  <li>收集命令为队列，使命令可以延迟执行;</li>
-  <li>命令，aka 事务（transaction），行动（action）;</li>
-  <li>可方便地对命令进行日志记录，验证，撤销；</li>
-  <li>很容易添加新命令，符合开闭原则；</li>
-  <li>完全自包含，客户端不会直接传任何参数给命令，而是通过一个invoker来调用命令；</li>
-  <li>注意为了安全要有个null command；</li>
-</ul>
-
-<h3 id="何时使用">何时使用</h3>
-
-<ol>
-  <li>当需要将执行命令的client与命令逻辑及其依赖项解耦时，请求操作的对象（invoker）与知道具体如何操作的对象（command &amp; receiver ）分割开；</li>
-  <li>设计命令行工具；</li>
-  <li>真正需要实现命令的验证、撤销和恢复时。</li>
-</ol>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li>工厂模式，常用来结合到命令模式中，生产命令实例；</li>
-  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Composite-Pattern/">组合模式</a>（执行一个命令，其所有子命令全部执行）。</li>
-</ul>
-
-<p><img src="/assets/gallery/command.png" alt="command" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Command-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
-        Chain of Responsibility Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="责任链模式">责任链模式</h2>
-
-<h4 id="何时使用">何时使用</h4>
-
-<ul>
-  <li>对于一条message有超过一个handler可以处理它</li>
-  <li>发送message的sender一开始并不能明确得知最终合适的handler</li>
-  <li>handler的集合可以被动态地定义（node handler用起来可以按需连接）</li>
-</ul>
-
-<h4 id="责任链优点">责任链优点</h4>
-
-<ul>
-  <li>减少耦合</li>
-  <li>动态地管理 message handlers</li>
-  <li>责任链的末尾可以适当的自定义</li>
-</ul>
-
-<h4 id="与其有关的模式">与其有关的模式</h4>
-
-<ul>
-  <li>Composite组合模式</li>
-  <li>责任树模式（也就是字面意思）</li>
-</ul>
-
-<p><img src="/assets/gallery/chain-of-responsibility.png" alt="strategy" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>
