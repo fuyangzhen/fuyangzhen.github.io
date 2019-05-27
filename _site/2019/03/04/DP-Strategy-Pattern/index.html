@@ -148,6 +148,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -190,7 +194,7 @@
   </li>
   <li>再抽象一层意味着，客户端（使用端）代码可以直接用更上层的context，就可以在需要修改时不用更改主体logic，是一种解耦，避免大量修改代码。</li>
   <li>变体：若允许，可简化策略类为函数，用delegate传入context的参数来使用这些策略函数。</li>
-  <li>（大化设计模式）Client端用switch来选择策略传给context时，可以让这个switch转到context的构造函数，这样就把策略的选择逻辑与客户端分离开，耦合更加低。</li>
+  <li>（大话设计模式）Client端用switch来选择策略传给context时，可以让这个switch转到context的构造函数，这样就把策略的选择逻辑与客户端分离开，耦合更加低。</li>
 </ol>
 
 <p><img src="/assets/gallery/strategy.png" alt="strategy" /></p>

@@ -24,7 +24,7 @@
 
   <title>
     
-      Young &middot; Anything I do that may help others, I'll post it here.
+      Flyweight Pattern &middot; Young
     
   </title>
 
@@ -177,159 +177,100 @@
       </div>
 
       <div class="container content">
-        <div class="posts">
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/24/hihocoder-1399/">
-        hihocoder 1399 - shortening sequence
-      </a>
-    </h1>
+        <div class="post">
+  <h1 class="post-title">Flyweight Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="享元模式">享元模式</h2>
 
-    <span class="post-date">24 Oct 2016</span>
+<p>用共享技术有效地支持大量细粒度的对象。</p>
 
-    <h2 id="1-描述">1 描述</h2>
-<p>There is an integer array A1, A2 …AN. Each round you may choose two adjacent integers. If their sum is an odd number, the two adjacent integers can be deleted.</p>
-
-<p>Can you work out the minimum length of the final array after elaborate deletions?</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/24/hihocoder-1399/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/18/hihocoder-1288/">
-        hihocoder 1288 — font size
-      </a>
-    </h1>
-
-    <span class="post-date">18 Oct 2016</span>
-
-    <h2 id="1-描述">1 描述</h2>
-<p>Steven loves reading book on his phone. The book he reads now consists of N paragraphs and the i-th paragraph contains ai characters.</p>
-
-<p>Steven wants to make the characters easier to read, so he decides to increase the font size of characters. But the size of Steven’s phone screen is limited. Its width is W and height is H. As a result, if the font size of characters is S then it can only show ⌊W / S⌋ characters in a line and ⌊H / S⌋ lines in a page. (⌊x⌋ is the largest integer no more than x)</p>
-
-<p>So here’s the question, if Steven wants to control the number of pages no more than P, what’s the maximum font size he can set? Note that paragraphs must start in a new line and there is no empty line between paragraphs.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/18/hihocoder-1288/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/16/hihocoder-1148/">
-        hihocoder 1148 — 2月29日
-      </a>
-    </h1>
-
-    <span class="post-date">16 Oct 2016</span>
-
-    <h2 id="1-描述">1 描述</h2>
-<p>给定两个日期，计算这两个日期之间有多少个2月29日（包括起始日期）。</p>
-
-<p>只有闰年有2月29日，满足以下一个条件的年份为闰年：</p>
+<h4 id="使用场景">使用场景</h4>
 
 <ol>
+  <li>程序使用了大量的对象，造成了很大的存储开销；</li>
+  <li>对象的大多数状态可以实现为外部状态（作为参数），这样可以从类中抽出外部状态，用相对较少的共享对象取代很多组对象（棋子的类型为内部状态，所在棋盘的位置为外部状态）</li>
+</ol>
+
+<h4 id="目的">目的</h4>
+
+<ol>
+  <li>减少大量细粒度对象存储开销；</li>
+  <li>同时共享要在多个上下文中使用的对象；</li>
+  <li>保持面向对象的粒度和灵活性；</li>
+</ol>
+
+<h4 id="关联的模式">关联的模式</h4>
+
+<ul>
+  <li>组合模式（叶节点可被实现为享元）</li>
   <li>
-    <p>年份能被4整除但不能被100整除</p>
+    <p>策略模式（算法可被实现为享元）</p>
   </li>
-  <li>
-    <p>年份能被400整除</p>
-  </li>
-</ol>
+  <li>状态模式</li>
+</ul>
 
-...
-    <div style="text-align:center">
-      <a href="/2016/10/16/hihocoder-1148/">
-        <font size="5">more »</font>
-      </a>
-    </div>
+<p><img src="/assets/gallery/flyweight.png" alt="flyweight" /></p>
 
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/13/gradient-descent/">
-        Gradient descent & logistic regression
-      </a>
-    </h1>
+<!--more-->
 
-    <span class="post-date">13 Oct 2016</span>
-
-    <h2 id="1-简介">1 简介</h2>
-<p>这一章的 <a href="http://www.ituring.com.cn/book/1021">机器学习实战(第5章)</a> ，唯一想说的就是里面关于梯度上升算法的细节问题。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/13/gradient-descent/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/12/hihocoder-1148-trie/">
-        hihocoder 1148 — trie
-      </a>
-    </h1>
-
-    <span class="post-date">12 Oct 2016</span>
-
-    <h2 id="1-trie树">1 Trie树</h2>
-<p>trie，又称前缀树或字典树。它利用字符串的公共前缀来节约存储空间。
-性质:</p>
-
-<ol>
-  <li>根节点不包含字符，除根节点外的每个节点只包含一个字符。</li>
-  <li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串。</li>
-  <li>每个节点的所有子节点包含的字符串不相同。</li>
-</ol>
-
-<p>应用:</p>
-
-<ol>
-  <li><code class="highlighter-rouge">词频统计</code>:比直接用hash节省空间</li>
-  <li><code class="highlighter-rouge">搜索提示</code>:输入前缀的时候提示可以构成的词</li>
-  <li><code class="highlighter-rouge">作为辅助结构</code>:如后缀树，AC自动机等的辅助结构</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/12/hihocoder-1148-trie/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
 </div>
 
-<div class="pagination">
-  
-    <a class="pagination-item older" href="/page10">Older</a>
-  
-  
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
     
-      <a class="pagination-item newer" href="/page8">Newer</a>
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Strategy-Pattern/">
+            Strategy Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
     
-  
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Singleton-Pattern/">
+            Singleton Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Proxy-Pattern/">
+            Proxy Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
 
         
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://youngfu.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 
       </div>
     </div>

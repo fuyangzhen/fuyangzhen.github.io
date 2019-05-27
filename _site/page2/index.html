@@ -148,6 +148,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -222,31 +226,51 @@
 
     <h2 id="model-view--viewmodel模式">Model View  ViewModel模式</h2>
 
-<p>view 和 presenter 相互绑定，view负责关联html内部的函数和变量。presenter 负责把view传给他的args和调用的model作为参数传入自己绑定的view 的函数中。</p>
+<p>需要依赖WPF/Silverlight来实现，即只适用于这两个框架。</p>
 
-<ul>
-  <li>view 直接和html关联交互</li>
-  <li>presenter （aka controller）和view相互绑定，然后view在需要展示时传参调用presenter 的相关函数，这些函数再运用具体的逻辑去取需要的model传入view的函数去渲染展示</li>
-  <li>model只负责为presenter 提供数据</li>
-  <li>这样就形成了很好的分离解耦 ：view只负责展示，presenter只负责业务逻辑，model只负责提供数据</li>
-</ul>
+<p>大体上和MVP类似：</p>
 
-<h4 id="目的">目的</h4>
+<p><img src="/assets/gallery/MVVM.png" alt="MVVM" /></p>
 
-<ul>
-  <li>职责分离
+<ol>
+  <li>Model: the data;</li>
+  <li>View: Binding to ViewModel set by the DataContext;</li>
+  <li>ViewModel:
     <ul>
-      <li>需要展示的数据 <em>Model</em></li>
-      <li>业务逻辑 <em>presenter</em></li>
-      <li>展示数据 <em>view</em></li>
+      <li>Exposes the Model as Properties or Commands</li>
+      <li>Must implement INotifyPropertyChanged</li>
     </ul>
   </li>
-  <li>使模式中这些合作者（MVP）能单独测试</li>
-  <li>比查找业务逻辑更具可读性和可维护性</li>
+</ol>
+
+<h4 id="优缺点">优缺点</h4>
+
+<p>优点：</p>
+
+<ul>
+  <li>减少code-Behind；</li>
+  <li>Model不需要为了支持View去更改；</li>
+  <li>前端页面设计，和后端业务逻辑分离；</li>
+  <li>减少开发时间；</li>
+  <li>Multi-targeting(project linking) : support .net multi-framework</li>
 </ul>
 
-<p><img src="/assets/gallery/MVP.png" alt="MVP" /></p>
+<p>缺点：</p>
 
+<ul>
+  <li>创建了更多的文件；</li>
+  <li>简单的任务可能实现上也比较复杂；</li>
+  <li>缺少标准化；</li>
+  <li>特定地适用于WPF、Sliverlight平台；</li>
+</ul>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>Model View Presenter(MVP)</li>
+  <li>Model View Controller(MCV)</li>
+  <li>Presentation Model(PM)</li>
+</ul>
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-MVVM-Pattern/">
@@ -303,6 +327,55 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Flyweight-Pattern/">
+        Flyweight Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="享元模式">享元模式</h2>
+
+<p>用共享技术有效地支持大量细粒度的对象。</p>
+
+<h4 id="使用场景">使用场景</h4>
+
+<ol>
+  <li>程序使用了大量的对象，造成了很大的存储开销；</li>
+  <li>对象的大多数状态可以实现为外部状态（作为参数），这样可以从类中抽出外部状态，用相对较少的共享对象取代很多组对象（棋子的类型为内部状态，所在棋盘的位置为外部状态）</li>
+</ol>
+
+<h4 id="目的">目的</h4>
+
+<ol>
+  <li>减少大量细粒度对象存储开销；</li>
+  <li>同时共享要在多个上下文中使用的对象；</li>
+  <li>保持面向对象的粒度和灵活性；</li>
+</ol>
+
+<h4 id="关联的模式">关联的模式</h4>
+
+<ul>
+  <li>组合模式（叶节点可被实现为享元）</li>
+  <li>
+    <p>策略模式（算法可被实现为享元）</p>
+  </li>
+  <li>状态模式</li>
+</ul>
+
+<p><img src="/assets/gallery/flyweight.png" alt="flyweight" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Flyweight-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Factory-Pattern/">
         Factory Pattern
       </a>
@@ -344,45 +417,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Factory-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Facade-Pattern/">
-        Facade Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="外观模式">外观模式</h2>
-
-<h4 id="tips">Tips</h4>
-
-<p><em>目的：解耦，使子系统间减少依赖。</em></p>
-
-<p>封装集成一些繁杂的功能为一层包装类，使客户端使用起来更加方便。</p>
-
-<ol>
-  <li>设计初期应该将不同的两个层分离，层间使用facade为复杂子系统提供简单接口。</li>
-  <li>为设计粗糙或高度复杂的遗留代码设计简单的facade接口，这样新系统就解耦地使用遗留代码。</li>
-</ol>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Adapter-Pattern/">适配器</a></li>
-  <li>flyweight</li>
-  <li>Mediator</li>
-</ul>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Facade-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

@@ -148,6 +148,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -174,6 +178,30 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/04/22/deploy/">
+        Linux deploy of WeRoBot's search engine
+      </a>
+    </h1>
+
+    <span class="post-date">22 Apr 2018</span>
+
+    <h2 id="部署的整体理解">部署的整体理解</h2>
+
+<ul>
+  <li>微信公众号的前后端的交互服务相当于一个114接线员；nginx反向代理服务器相当于一个酒店前台；gunicorn接口服务相当于一个酒店房间内负者接电话的房内接线员，WeRoBot微信公众号开发框架是一个秘书，他负责传递搜索引擎的信息给gunicorn，但是他要确保是114接线员转接的电话才会工作（和114接线员有个秘密口令，这个口令包含在信息来回传输过程中)；Supervisor程序相当于一个酒店经理（24小时不睡觉，监督保证gunicorn不停地工作）：</li>
+</ul>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/04/22/deploy/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -287,40 +315,6 @@
 ...
     <div style="text-align:center">
       <a href="/2017/12/12/encoding-problem/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2017/11/23/pigeonhole-principle/">
-        LeetCode 523 — DP与鸽巢原理
-      </a>
-    </h1>
-
-    <span class="post-date">23 Nov 2017</span>
-
-    <h2 id="鸽巢原理">鸽巢原理</h2>
-
-<blockquote>
-  <p>鸽巢原理的一种简单的表述法为：
-若有n个笼子和n+1只鸽子，所有的鸽子都被关在鸽笼里，那么至少有一个笼子有至少2只鸽子。
-另一种为：
-若有n个笼子和kn+1只鸽子，所有的鸽子都被关在鸽笼里，那么至少有一个笼子有至少k+1只鸽子。
-一种推广表达是这样的：
-如果要把<code class="highlighter-rouge">n</code>个物件分配到<code class="highlighter-rouge">m</code>个容器中，必有至少一个容器容纳至少\( \lceil\frac{n}{m}\rceil \)个物件。</p>
-
-  <p>鸽巢原理经常在计算机领域得到真正的应用。比如：哈希表的重复问题（冲突）是不可避免的，因为Keys的数目总是比Indices的数目多，不管是多么高明的算法都不可能解决这个问题。这个原理，还证明任何无损压缩算法，在把一个文件变小的同时，一定有其他文件增大来辅助，否则某些信息必然会丢失。</p>
-</blockquote>
-<p align="right">———维基百科</p>
-
-<p>鸽巢原理的思想很简单，对应于每个具体问题就是每次选择都有<code class="highlighter-rouge">n</code>种情形供选择，若要选择<code class="highlighter-rouge">kn+1</code>次的话，那么必定存在一种选择是被选择了<code class="highlighter-rouge">k+1</code>次的。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2017/11/23/pigeonhole-principle/">
         <font size="5">more »</font>
       </a>
     </div>

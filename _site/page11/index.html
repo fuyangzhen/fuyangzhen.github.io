@@ -148,6 +148,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -174,6 +178,32 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/08/01/order-list/">
+        Order list
+      </a>
+    </h1>
+
+    <span class="post-date">01 Aug 2016</span>
+
+    <blockquote>
+  <p>复现有序list小轮子,其中add方法应该把 寻找插入位置 和 插入Node 分开来,这样程序更加清晰,易读</p>
+</blockquote>
+
+<p>在有序列表中操作中，isEmpty和size仍然象无序表中一样，这是因为它们只关心数据项的个数，而不关心数据大小。<br />
+同样的，remove的操作也完全一样，只涉及前后的节点，与数据大小无关。<br />
+只有search和add方法，需要作出改变。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/08/01/order-list/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -267,29 +297,11 @@
 
   </div>
   
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2013/05/22/sample-post-images/">
-        A post with images
-      </a>
-    </h1>
-
-    <span class="post-date">22 May 2013</span>
-
-    Examples and code for displaying images in posts....
-    <div style="text-align:center">
-      <a href="/2013/05/22/sample-post-images/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
 </div>
 
 <div class="pagination">
   
-    <span class="pagination-item older">Older</span>
+    <a class="pagination-item older" href="/page12">Older</a>
   
   
     

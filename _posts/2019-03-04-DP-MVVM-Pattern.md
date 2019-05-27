@@ -9,36 +9,37 @@ comments: true
 
 ## Model View  ViewModel模式  
 
-view 和 presenter 相互绑定，view负责关联html内部的函数和变量。presenter 负责把view传给他的args和调用的model作为参数传入自己绑定的view 的函数中。
+需要依赖WPF/Silverlight来实现，即只适用于这两个框架。  
 
-- view 直接和html关联交互
-- presenter （aka controller）和view相互绑定，然后view在需要展示时传参调用presenter 的相关函数，这些函数再运用具体的逻辑去取需要的model传入view的函数去渲染展示
-- model只负责为presenter 提供数据
-- 这样就形成了很好的分离解耦 ：view只负责展示，presenter只负责业务逻辑，model只负责提供数据
+大体上和MVP类似：  
 
-#### 目的  
+![MVVM](/assets/gallery/MVVM.png)   
 
-- 职责分离
-  - 需要展示的数据 *Model*
-  - 业务逻辑 *presenter*
-  - 展示数据 *view*
+1. Model: the data;
+2. View: Binding to ViewModel set by the DataContext;
+3. ViewModel: 
+   - Exposes the Model as Properties or Commands
+   - Must implement INotifyPropertyChanged
 
-- 使模式中这些合作者（MVP）能单独测试
-- 比查找业务逻辑更具可读性和可维护性
+#### 优缺点  
 
-![MVP](/assets/gallery/MVP.png)    
+优点：
 
-<!--more-->  
+- 减少code-Behind；
+- Model不需要为了支持View去更改；
+- 前端页面设计，和后端业务逻辑分离；
+- 减少开发时间；
+- Multi-targeting(project linking) : support .net multi-framework 
 
-MVP模式作为UI layer，model是仅供view使用的数据的特殊用途view
+缺点：
 
-![MVP2](/assets/gallery/MVP2.png)  
-
-
+- 创建了更多的文件；
+- 简单的任务可能实现上也比较复杂；
+- 缺少标准化；
+- 特定地适用于WPF、Sliverlight平台；
 
 #### 相关模式  
 
-- MVC模式
-- MVVM模式
-- Supervising Controller监督控制器
-- Passive View被动式图
+- Model View Presenter(MVP)
+- Model View Controller(MCV)  
+- Presentation Model(PM)

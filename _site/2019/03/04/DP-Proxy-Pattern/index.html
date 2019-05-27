@@ -148,6 +148,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -218,6 +222,43 @@ protected override List&lt;OrderDetails&gt; GetItems()
     return _orderDetails;
 }
 </code></pre>
+
+<h4 id="a-sample-of-protection-type">A sample of protection type</h4>
+
+<p>此例将proxy模式加入到仓库模式中去实现cache，提升了仓库模式的性能。</p>
+
+<p><code class="highlighter-rouge">CachedOrderRepository</code>作为proxy继承自<code class="highlighter-rouge">RemoteOrderRepository</code>(连接数据库，提供数据)。<code class="highlighter-rouge">CachedOrderRepository</code>类override了父类的getData方法，并在其中附加一些内务处理（此处是运用container来实现数据缓存）：</p>
+
+<pre><code class="language-C#">using System.Runtime.Caching;
+
+public class CachedOrderRepository : RemoteOrderRepository
+{
+    public override OrderEntity GetById(int id)
+    {
+        string cacheKey = "OrderEntity-" + id;
+        var entity = MemoryCache.Default[cacheKey] as OrderEntity;
+        if(entity == null)
+        {
+            entity = base.GetById(id);
+            var cacheItem = new CacheItem(cacheKey, entity);
+            var policy = new CacheItemPolicy();
+            MemoryCache.Default.Add(cacheItem, policy);
+        }
+        return entity;
+    }
+}
+</code></pre>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ol>
+  <li>
+    <p>适配器模式：适配器改变对象的接口来满足客户端的需要。代理模式保留接口不变，控制访问对象底层行为。</p>
+  </li>
+  <li>
+    <p>装饰器模式：实现方式与代理模式很像，但是目的不同。装饰器给对象附加上责任，但是代理控制对象的访问。</p>
+  </li>
+</ol>
 
 
 </div>
