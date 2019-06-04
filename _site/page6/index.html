@@ -181,6 +181,105 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2018/06/23/build-tf-on-win/">
+        Build TF on win
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="准备工作">准备工作</h2>
+
+<p>win：windows server 2016（win10应该也没问题，成功build和系统关系不大）</p>
+
+<p>cMake：latest</p>
+
+<p>TF源码：master -&gt; 1.10（until 2018.9.1）</p>
+
+<p>eigen：latest</p>
+
+<p>python：3.5.0</p>
+
+<p>visual studio：2015</p>
+
+<p>（<a href="https://www.youtube.com/watch?v=gj_4Yv94LgQ">可供参考的视频</a>）</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/build-tf-on-win/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/06/23/importantNote/">
+        My Memo Note
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="c-call-restful">C# Call RESTful</h2>
+
+<pre><code class="language-C#">public class RestAPICall
+{
+    public static string MakeCall(string method, string endpoint, string content, string contentType = "application/json")
+    {
+        string result = string.Empty;
+        try
+        {
+            var request = (HttpWebRequest)WebRequest.Create(endpoint);
+            request.ContentType = contentType;
+            request.Method = method;
+            request.Headers["authorization"] = "Basic";
+            request.Headers["X-Anchormailbox"] = "ipat";
+            request.Headers["X-CallerFileNameLin"] = "mytest.cs";
+            request.Headers["X-ProcessName"] = "test.powershell.exe";
+            request.Headers["X-ClientRequestId"] = "c03b981a";
+            request.Headers["X-ActivityId"] = "c03b981a-3";
+            request.Headers["X-CallerFileNameLine"] = "Mypowershell.ps1,line 3";
+
+            //using (var streamWriter = new System.IO.StreamWriter(request.GetRequestStream()))
+            //{
+            //    string json = content;
+
+            //    streamWriter.Write(json);
+            //}
+
+            var response = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new System.IO.StreamReader(response.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+
+        return result;
+    }
+}
+</code></pre>
+
+<h2 id="tmux-操作">tmux 操作</h2>
+
+<p>“start”: “webpack-dev-server –mode development –config ./webpack.dev.js –https –cert ./certs/server.crt –key ./certs/server.key”,</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/importantNote/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2018/06/23/JavaScript/">
         JS Note
       </a>
@@ -255,84 +354,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/05/09/NLP/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/04/29/patterns-library/">
-        设计模式
-      </a>
-    </h1>
-
-    <span class="post-date">29 Apr 2018</span>
-
-    <h2 id="0-适配器模式">0 适配器模式</h2>
-
-<p>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</p>
-
-<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
-
-<p>concrete：具体的，凝固。</p>
-
-<p>tabular：扁平的，列表的</p>
-
-<h2 id="1-工厂模式">1 工厂模式</h2>
-
-<p>客户端代码调用工厂类，让工厂类的内部方法逻辑选择判断该实例化哪个具体类。</p>
-
-<ol>
-  <li>简单工厂模式的最大优点是工厂类中包含的必要的逻辑判断，根据客户端的选择条件动态实例化相关的类，对于客户端，去除了与具体产品的依赖；</li>
-  <li>简单工厂模式是把创建对象的判断逻辑放到了工厂类的静态方法里面了，后续增加工厂功能的话，就需要改动里面的逻辑代码，不符合开闭原则。客户端代码的逻辑要上升到工厂类中去修改具体方法逻辑，这样太过耦合。</li>
-</ol>
-
-<h2 id="2-迪米特法则松耦合">2 迪米特法则（松耦合）</h2>
-<ol>
-  <li>类之间应该松耦合，耦合越弱，越有利于复用，处于弱耦合的类被修改，不会对有关系的类造成波及。</li>
-  <li>如果两类不必彼此直接通信，那这两个类就不应该发生直接的相互作用。如果一个类需要调用另一个类的某一个方法，可通过第三者转发该调用。</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/04/29/patterns-library/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/04/29/C++/">
-        C++笔记
-      </a>
-    </h1>
-
-    <span class="post-date">29 Apr 2018</span>
-
-    <h2 id="编码和二进制">编码和二进制</h2>
-
-<ol>
-  <li>十进制小数转为二进制,要不断地乘以2直到为整数：<br />
-<img src="/assets/gallery/1522118636367.png" alt="" /></li>
-  <li>3个二进制位为一个8进制位，4个二进制位为一个16进制位。</li>
-  <li><strong><em>原码</em></strong>：用0,1来表示正负号。其缺点：1.零的表示不唯一，四则运算符号位要单独处理，运算规则复杂。</li>
-  <li><strong><em>补码</em></strong>：0的表示唯一，符号位可以作为数值参与运算。一般只考虑负数的原码转换方式：
-    <ul>
-      <li>原码 -&gt; 反码 -&gt; 补码：负数的原码最高符号位不变，其他位全部取反，最后整体加1。<strong>这个过程叫做求补</strong>，补码转回原码只需要再次求补即可。</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="c-变量类型">C++ 变量类型</h2>
-<p><strong>&lt;font color=#CD5C5C&gt; 变量其实只不过是程序可操作的存储区的名称。&lt;/font&gt;</strong>C++ 中每个变量都有指定的类型，类型决定了变量存储的大小和布局，该范围内的值都可以存储在内存中，运算符可应用于变量上。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/04/29/C++/">
         <font size="5">more »</font>
       </a>
     </div>

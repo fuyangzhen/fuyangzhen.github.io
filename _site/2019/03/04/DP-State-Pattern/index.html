@@ -24,7 +24,7 @@
 
   <title>
     
-      Null Object Pattern &middot; Young
+      Strategy Pattern &middot; Young
     
   </title>
 
@@ -178,45 +178,24 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Null Object Pattern</h1>
+  <h1 class="post-title">Strategy Pattern</h1>
   <span class="post-date">04 Mar 2019</span>
-  <h2 id="空对象模式">空对象模式</h2>
+  <h2 id="状态模式">状态模式</h2>
 
-<p>一种null检查的替代。为可能出现null的类单独实现一个null的子类，为其实现所需的方法。</p>
+<p>一种行为模式。消除庞大的分支语句，通过把各种状态转移逻辑分布到state的子类之间，减少相互间依赖。</p>
 
-<p><strong>AKA</strong> Stub, Active Nothing, Active Null</p>
+<p><em>复杂的状态转换逻辑被分散到各个具体子状态对象中，然后根据context的具体需求，context上绑定的状态为其交接其他状态</em></p>
 
-<p><strong>常被实现为一个单例</strong>，没有随实例变化的行为或状态；</p>
+<p>将特定的状态相关的行为都放入一个对象内，由于所有与状态相关的代码都存在于某个ConcreteState内，所以通过定义新的子类就可以很容易地增加新的状态和转换。</p>
 
-<h4 id="目的">目的</h4>
+<h4 id="应用场景">应用场景</h4>
 
 <ol>
-  <li>摆脱null检查的逻辑；</li>
-  <li>提供无方法对象来代替null 引用；</li>
-  <li>允许方法被null对象调用，null 引用就不行。</li>
+  <li>一个对象的行为取决于它的状态，并且它必须在运行时根据状态改变它的行为时；</li>
+  <li>某项业务需要有多个状态，通常都是枚举常量，状态的变化依靠大量分支判断实现。</li>
 </ol>
 
-<h4 id="关联的模式">关联的模式</h4>
-
-<ul>
-  <li>单例模式</li>
-  <li>策略模式</li>
-  <li>命令模式</li>
-  <li>状态模式</li>
-  <li>others</li>
-</ul>
-
-<h4 id="优点">优点</h4>
-
-<ul>
-  <li>code更加干净简洁；</li>
-  <li>更少的null检查；</li>
-  <li>更少的分支，意味着更低的复杂度；</li>
-  <li>调用者无需关心到底得到的是真对象还是空对象；</li>
-  <li>必须让其他的开发人员知道某处实现了空对象。</li>
-</ul>
-
-<p><img src="/assets/gallery/null.png" alt="null" /></p>
+<p><img src="/assets/gallery/state.png" alt="state" /></p>
 
 <!--more-->
 
@@ -246,8 +225,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-State-Pattern/">
-            Strategy Pattern
+          <a href="/2019/03/04/DP-Singleton-Pattern/">
+            Singleton Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>

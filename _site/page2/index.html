@@ -181,6 +181,97 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Observer-Pattern/">
+        Observer Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="观察者模式">观察者模式</h2>
+
+<h4 id="特征">特征</h4>
+
+<ul>
+  <li>
+    <p>系统被分割成相互协作的很多类，但我们不希望为了维护相关对象间的一致性，而去使各类紧密耦合。</p>
+  </li>
+  <li>观察者模式所做的工作是解除耦合，让耦合双方依赖抽象，而非具体，从而使得各自的变化都不会影响另一方的变化。</li>
+  <li>多抽象，少具体可以降低耦合。(<strong>依赖倒转原则</strong>)</li>
+  <li>具体观察者可能并不属于同一基类，所以可以使用抽象接口来统一他们，都能实现update方法就行。</li>
+  <li>delegate可以看做是对函数的抽象，是函数的‘类’，委托的实例将代表一个具体函数。</li>
+  <li>委托所搭载的方法并不需要属于同一类，但方法接口参数要相同。</li>
+</ul>
+
+<p><img src="/assets/gallery/observer.png" alt="observer" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Observer-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Null-Object-Pattern/">
+        Null Object Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="空对象模式">空对象模式</h2>
+
+<p>一种null检查的替代。为可能出现null的类单独实现一个null的子类，为其实现所需的方法。</p>
+
+<p><strong>AKA</strong> Stub, Active Nothing, Active Null</p>
+
+<p><strong>常被实现为一个单例</strong>，没有随实例变化的行为或状态；</p>
+
+<h4 id="目的">目的</h4>
+
+<ol>
+  <li>摆脱null检查的逻辑；</li>
+  <li>提供无方法对象来代替null 引用；</li>
+  <li>允许方法被null对象调用，null 引用就不行。</li>
+</ol>
+
+<h4 id="关联的模式">关联的模式</h4>
+
+<ul>
+  <li>单例模式</li>
+  <li>策略模式</li>
+  <li>命令模式</li>
+  <li>状态模式</li>
+  <li>others</li>
+</ul>
+
+<h4 id="优点">优点</h4>
+
+<ul>
+  <li>code更加干净简洁；</li>
+  <li>更少的null检查；</li>
+  <li>更少的分支，意味着更低的复杂度；</li>
+  <li>调用者无需关心到底得到的是真对象还是空对象；</li>
+  <li>必须让其他的开发人员知道某处实现了空对象。</li>
+</ul>
+
+<p><img src="/assets/gallery/null.png" alt="null" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Null-Object-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Mediator-Pattern/">
         Mediator Pattern
       </a>
@@ -319,104 +410,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-MVP-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Flyweight-Pattern/">
-        Flyweight Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="享元模式">享元模式</h2>
-
-<p>用共享技术有效地支持大量细粒度的对象。</p>
-
-<h4 id="使用场景">使用场景</h4>
-
-<ol>
-  <li>程序使用了大量的对象，造成了很大的存储开销；</li>
-  <li>对象的大多数状态可以实现为外部状态（作为参数），这样可以从类中抽出外部状态，用相对较少的共享对象取代很多组对象（棋子的类型为内部状态，所在棋盘的位置为外部状态）</li>
-</ol>
-
-<h4 id="目的">目的</h4>
-
-<ol>
-  <li>减少大量细粒度对象存储开销；</li>
-  <li>同时共享要在多个上下文中使用的对象；</li>
-  <li>保持面向对象的粒度和灵活性；</li>
-</ol>
-
-<h4 id="关联的模式">关联的模式</h4>
-
-<ul>
-  <li>组合模式（叶节点可被实现为享元）</li>
-  <li>
-    <p>策略模式（算法可被实现为享元）</p>
-  </li>
-  <li>状态模式</li>
-</ul>
-
-<p><img src="/assets/gallery/flyweight.png" alt="flyweight" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Flyweight-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Factory-Pattern/">
-        Factory Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h3 id="tips">Tips</h3>
-
-<p><em>可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :</em></p>
-
-<pre><code class="language-C#">static IAutoFactory LoadFactory()
-{
-    string factoryName = Properties.Settings.Default.AutoFactory;
-    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
-}
-</code></pre>
-
-<h3 id="动机">动机</h3>
-
-<ol>
-  <li>不确定接口的哪个具体实现来返回</li>
-  <li>对象的创建和表达需要分开</li>
-  <li>很多if/switch 来决定创建哪个具体的class</li>
-</ol>
-
-<h3 id="目的">目的</h3>
-
-<ul>
-  <li>把对象的实际创建从对象创建的选择逻辑中分离出来</li>
-  <li>添加新的类和功能（生产工厂的类，工厂类），而不打破开闭原则</li>
-  <li>把对象选择存在程序之外（DB or config）</li>
-</ul>
-
-<h2 id="简单工厂模式">简单工厂模式</h2>
-
-<p>把类的实例化放在工厂内部的选择逻辑里。调用类知道它需要的具体工厂，直接用工厂实例的函数来返回所需的产品实例，这样就去除了客户端和具体产品的依赖。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Factory-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>
