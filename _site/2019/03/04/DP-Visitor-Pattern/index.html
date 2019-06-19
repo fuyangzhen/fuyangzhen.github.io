@@ -24,7 +24,7 @@
 
   <title>
     
-      Factory Pattern &middot; Young
+      Visotor Pattern &middot; Young
     
   </title>
 
@@ -182,83 +182,25 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Factory Pattern</h1>
+  <h1 class="post-title">Visotor Pattern</h1>
   <span class="post-date">04 Mar 2019</span>
-  <h3 id="tips">Tips</h3>
+  <h2 id="访问者模式">访问者模式</h2>
 
-<p><em>可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :</em></p>
+<p>visitor是一个作用于某对象结构中各元素的操作。该模式可以在不改变各元素的前提下定义作用于这些元素的新操作。</p>
 
-<pre><code class="language-C#">static IAutoFactory LoadFactory()
-{
-    string factoryName = Properties.Settings.Default.AutoFactory;
-    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
-}
-</code></pre>
+<p>把数据结构和对其的操作解耦，使得操作可以自由地添加。</p>
 
-<h3 id="动机">动机</h3>
+<p>ObjectStructure枚举需要被访问者操作的元素，枚举时每个element accept visitor就是在传入visitor并使其在其中调用逻辑方法。</p>
 
-<ol>
-  <li>不确定接口的哪个具体实现来返回</li>
-  <li>对象的创建和表达需要分开</li>
-  <li>很多if/switch 来决定创建哪个具体的class</li>
-</ol>
-
-<h3 id="目的">目的</h3>
-
-<ul>
-  <li>把对象的实际创建从对象创建的选择逻辑中分离出来</li>
-  <li>添加新的类和功能（生产工厂的类，工厂类），而不打破开闭原则</li>
-  <li>把对象选择存在程序之外（DB or config）</li>
-</ul>
-
-<h2 id="简单工厂模式">简单工厂模式</h2>
-
-<p>把类的实例化放在工厂内部的选择逻辑里。调用类知道它需要的具体工厂，直接用工厂实例的函数来返回所需的产品实例，这样就去除了客户端和具体产品的依赖。</p>
+<p><img src="/assets/gallery/visitor.png" alt="visitor" /></p>
 
 <!--more-->
-
-<h2 id="工厂方法模式">工厂方法模式</h2>
-
-<p>比简单工厂多了一个抽象工厂接口和更多的专职工厂。工厂方法把一个类的实例化延迟到其子类。</p>
-
-<p>工厂接口定义创建产品实例的方法，子工厂类实现这些方法。</p>
-
-<p><img src="/assets/gallery/factory1.png" alt="factory1" /></p>
-
-<h2 id="抽象工厂模式">抽象工厂模式</h2>
-
-<ul>
-  <li>当不同类别的产品需要工厂来实现时，就用另一个角度来定义具体不同的工厂类：查询操作的接口可以有db1和db2两种不同的类，插入操作也是。这时就可以根据db1和db2来定义两种工厂类，在他们的定义里聚合其各类的实例化方法。</li>
-  <li>客户端通过抽象接口操纵实例，产品的具体类名被具体工厂实现分离，不会出现在客户代码中。</li>
-  <li>辅以反射和config来把分支判断将程序由编译时转为运行时。</li>
-</ul>
-
-<p><img src="/assets/gallery/factory2.png" alt="factory2" /></p>
-
-<h3 id="相关创建型模式">相关创建型模式</h3>
-
-<ul>
-  <li>单例模式</li>
-  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Builder-Pattern/">建造者模式</a></li>
-  <li>对象池</li>
-  <li>原型模式</li>
-</ul>
-
 
 </div>
 
 <div class="related">
   <h2>Related Posts</h2>
   <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="/2019/03/04/DP-Visitor-Pattern/">
-            Visotor Pattern
-            <small>04 Mar 2019</small>
-          </a>
-        </h3>
-      </li>
     
       <li>
         <h3>
@@ -273,6 +215,15 @@
         <h3>
           <a href="/2019/03/04/DP-Strategy-Pattern/">
             Strategy Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-State-Pattern/">
+            State Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>

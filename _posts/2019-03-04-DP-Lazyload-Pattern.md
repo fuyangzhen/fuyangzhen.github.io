@@ -9,10 +9,6 @@ comments: true
 
 ## Lazyload模式  
 
-
-
-![interpreter](/assets/gallery/interpreter.png)    
-
 ##### 常见场景  
 
 1. property初始化用Lazy<T>关键字去set，get方法通过Lazy<T>对象.value去真正赋上值；  
