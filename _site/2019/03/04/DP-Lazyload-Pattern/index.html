@@ -24,7 +24,7 @@
 
   <title>
     
-      Model View  ViewModel Pattern &middot; Young
+      Lazy load Pattern &middot; Young
     
   </title>
 
@@ -178,54 +178,36 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Model View  ViewModel Pattern</h1>
+  <h1 class="post-title">Lazy load Pattern</h1>
   <span class="post-date">04 Mar 2019</span>
-  <h2 id="model-view--viewmodel模式">Model View  ViewModel模式</h2>
+  <h2 id="lazyload模式">Lazyload模式</h2>
 
-<p>需要依赖WPF/Silverlight来实现，即只适用于这两个框架。</p>
+<p><img src="/assets/gallery/interpreter.png" alt="interpreter" /></p>
 
-<p>大体上和MVP类似：</p>
-
-<p><img src="/assets/gallery/MVVM.png" alt="MVVM" /></p>
+<h5 id="常见场景">常见场景</h5>
 
 <ol>
-  <li>Model: the data;</li>
-  <li>View: Binding to ViewModel set by the DataContext;</li>
-  <li>ViewModel:
-    <ul>
-      <li>Exposes the Model as Properties or Commands</li>
-      <li>Must implement INotifyPropertyChanged</li>
-    </ul>
-  </li>
+  <li>property初始化用Lazy<T>关键字去set，get方法通过Lazy<T>对象.value去真正赋上值；</T></T></li>
+  <li>virtual proxy，就是利用1中的概念，在开销大的property真正被call的时候才去为其赋值；</li>
+  <li>value holder同理2；</li>
+  <li>ghost就是field不完全被赋值状态的对象，一旦被调用其中的某个field就：该load上value的就set上value，暂时还没必要的就set上Lazy<T>。</T></li>
 </ol>
 
-<h4 id="优缺点">优缺点</h4>
+<!--more-->
 
-<p>优点：</p>
+<h5 id="总结">总结</h5>
 
 <ul>
-  <li>减少code-Behind；</li>
-  <li>Model不需要为了支持View去更改；</li>
-  <li>前端页面设计，和后端业务逻辑分离；</li>
-  <li>减少开发时间；</li>
-  <li>Multi-targeting(project linking) : support .net multi-framework</li>
+  <li>运用lazyload可以减少非必要数据的读取调用</li>
+  <li>要避免过早优化，仅在有性能需求是使用lazyload</li>
 </ul>
 
-<p>缺点：</p>
+<h5 id="相关模式">相关模式</h5>
 
 <ul>
-  <li>创建了更多的文件；</li>
-  <li>简单的任务可能实现上也比较复杂；</li>
-  <li>缺少标准化；</li>
-  <li>特定地适用于WPF、Sliverlight平台；</li>
-</ul>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li>Model View Presenter(MVP)</li>
-  <li>Model View Controller(MCV)</li>
-  <li>Presentation Model(PM)</li>
+  <li>proxy ：virtual proxy</li>
+  <li>strategy：ValueHolder</li>
+  <li>template method : Ghost implementation</li>
 </ul>
 
 </div>

@@ -181,6 +181,46 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2018/06/23/Business-Writing/">
+        Business Writing
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="原则">原则</h2>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/Business-Writing/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/06/23/k8s/">
+        JS Note
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="原理示意图">原理示意图</h2>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/k8s/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2018/06/23/build-tf-on-win/">
         Build TF on win
       </a>
@@ -292,68 +332,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/06/23/JavaScript/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/05/10/elasticsearch/">
-        ElasticSearch Note
-      </a>
-    </h1>
-
-    <span class="post-date">10 May 2018</span>
-
-    <h2 id="score-formula">Score formula</h2>
-
-<p>ES版本跟新迭代的很快，截止到今天（2018.7.10) master的版本为6.3，打分公式一直都在微调，当前版本每个doc的对query的得分计算公式如下（就是最普通的BM25），其中n为query的term和当前doc的term的交集的大小：</p>
-
-<script type="math/tex; mode=display">score_d=\sum_{t=0}^ntfNorm_t*idf_t</script>
-
-<p>idf计算公式如下，其中docCount为index中doc总数，docFreq为曾出现当前计算的term的doc频数：</p>
-
-<script type="math/tex; mode=display">idf=log(1+\frac{docCount-docFreq+0.5}{docFreq+0.5})</script>
-
-<p>tfNorm的计算公式如下，其中fieldLength为当前doc的term的个数，avgFieldLength为index内所有doc的平均term个数，freq为当前计算的term的频数，$k_1$和b为参数，其默认值分别为1.2和0.75：</p>
-
-<script type="math/tex; mode=display">tfNorm=\frac{freq*(k_1+1)}{freq+k_1*(1-b+b*fieldLength/avgFieldLength)}</script>
-
-<p>注意：ES 为了分布式index和search的性能，<code class="highlighter-rouge">docFreq</code> , <code class="highlighter-rouge">docCount</code> and <code class="highlighter-rouge">avgFieldLength</code>are computed per shard.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/05/10/elasticsearch/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/05/09/NLP/">
-        NLP Memo Note
-      </a>
-    </h1>
-
-    <span class="post-date">09 May 2018</span>
-
-    <h2 id="nlp">NLP</h2>
-
-<h4 id="虚词">虚词</h4>
-
-<p>对短语的语义不起决定作用，对QA的查询贡献也小，这些词一般作为停用词表（stop list）</p>
-
-<p>语法词：can, go, say, he;</p>
-
-<p>功能词：介词of, about;</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/05/09/NLP/">
         <font size="5">more »</font>
       </a>
     </div>

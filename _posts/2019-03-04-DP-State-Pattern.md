@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Strategy Pattern"
+title: "State Pattern"
 tags: [Design Patterns]
 date: 2019-03-04 00:00:00
 
@@ -25,3 +25,4 @@ comments: true
 ![state](/assets/gallery/state.png)    
 
 <!--more-->  
+
