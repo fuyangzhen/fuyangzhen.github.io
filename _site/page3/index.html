@@ -185,6 +185,71 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-MVVM-Pattern/">
+        Model View  ViewModel Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="model-view--viewmodel模式">Model View  ViewModel模式</h2>
+
+<p>需要依赖WPF/Silverlight来实现，即只适用于这两个框架。</p>
+
+<p>大体上和MVP类似：</p>
+
+<p><img src="/assets/gallery/MVVM.png" alt="MVVM" /></p>
+
+<ol>
+  <li>Model: the data;</li>
+  <li>View: Binding to ViewModel set by the DataContext;</li>
+  <li>ViewModel:
+    <ul>
+      <li>Exposes the Model as Properties or Commands</li>
+      <li>Must implement INotifyPropertyChanged</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="优缺点">优缺点</h4>
+
+<p>优点：</p>
+
+<ul>
+  <li>减少code-Behind；</li>
+  <li>Model不需要为了支持View去更改；</li>
+  <li>前端页面设计，和后端业务逻辑分离；</li>
+  <li>减少开发时间；</li>
+  <li>Multi-targeting(project linking) : support .net multi-framework</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+  <li>创建了更多的文件；</li>
+  <li>简单的任务可能实现上也比较复杂；</li>
+  <li>缺少标准化；</li>
+  <li>特定地适用于WPF、Sliverlight平台；</li>
+</ul>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>Model View Presenter(MVP)</li>
+  <li>Model View Controller(MCV)</li>
+  <li>Presentation Model(PM)</li>
+</ul>
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-MVVM-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-MVP-Pattern/">
         Model View Presenter Pattern
       </a>
@@ -332,55 +397,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Flyweight-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Factory-Pattern/">
-        Factory Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h3 id="tips">Tips</h3>
-
-<p><em>可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :</em></p>
-
-<pre><code class="language-C#">static IAutoFactory LoadFactory()
-{
-    string factoryName = Properties.Settings.Default.AutoFactory;
-    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
-}
-</code></pre>
-
-<h3 id="动机">动机</h3>
-
-<ol>
-  <li>不确定接口的哪个具体实现来返回</li>
-  <li>对象的创建和表达需要分开</li>
-  <li>很多if/switch 来决定创建哪个具体的class</li>
-</ol>
-
-<h3 id="目的">目的</h3>
-
-<ul>
-  <li>把对象的实际创建从对象创建的选择逻辑中分离出来</li>
-  <li>添加新的类和功能（生产工厂的类，工厂类），而不打破开闭原则</li>
-  <li>把对象选择存在程序之外（DB or config）</li>
-</ul>
-
-<h2 id="简单工厂模式">简单工厂模式</h2>
-
-<p>把类的实例化放在工厂内部的选择逻辑里。调用类知道它需要的具体工厂，直接用工厂实例的函数来返回所需的产品实例，这样就去除了客户端和具体产品的依赖。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Factory-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

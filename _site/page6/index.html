@@ -185,6 +185,34 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/01/25/CSharp/">
+        C# Memo
+      </a>
+    </h1>
+
+    <span class="post-date">25 Jan 2019</span>
+
+    <h2 id="c">C#</h2>
+
+<h4 id="反射">反射</h4>
+
+<p>动态地获取实例的类的各种信息</p>
+
+<h4 id="匿名">匿名</h4>
+
+<p>将函数换层皮表达</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/01/25/CSharp/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2018/07/24/docker-private-registry/">
         Build a docker private registry with Harbor
       </a>
@@ -277,71 +305,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/06/23/build-tf-on-win/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/06/23/importantNote/">
-        My Memo Note
-      </a>
-    </h1>
-
-    <span class="post-date">23 Jun 2018</span>
-
-    <h2 id="c-call-restful">C# Call RESTful</h2>
-
-<pre><code class="language-C#">public class RestAPICall
-{
-    public static string MakeCall(string method, string endpoint, string content, string contentType = "application/json")
-    {
-        string result = string.Empty;
-        try
-        {
-            var request = (HttpWebRequest)WebRequest.Create(endpoint);
-            request.ContentType = contentType;
-            request.Method = method;
-            request.Headers["authorization"] = "Basic";
-            request.Headers["X-Anchormailbox"] = "ipat";
-            request.Headers["X-CallerFileNameLin"] = "mytest.cs";
-            request.Headers["X-ProcessName"] = "test.powershell.exe";
-            request.Headers["X-ClientRequestId"] = "c03b981a";
-            request.Headers["X-ActivityId"] = "c03b981a-3";
-            request.Headers["X-CallerFileNameLine"] = "Mypowershell.ps1,line 3";
-
-            //using (var streamWriter = new System.IO.StreamWriter(request.GetRequestStream()))
-            //{
-            //    string json = content;
-
-            //    streamWriter.Write(json);
-            //}
-
-            var response = (HttpWebResponse)request.GetResponse();
-            using (var streamReader = new System.IO.StreamReader(response.GetResponseStream()))
-            {
-                result = streamReader.ReadToEnd();
-            }
-        }
-        catch (Exception e)
-        {
-            return e.ToString();
-        }
-
-        return result;
-    }
-}
-</code></pre>
-
-<h2 id="tmux-操作">tmux 操作</h2>
-
-<p>“start”: “webpack-dev-server –mode development –config ./webpack.dev.js –https –cert ./certs/server.crt –key ./certs/server.key”,</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/06/23/importantNote/">
         <font size="5">more »</font>
       </a>
     </div>

@@ -185,6 +185,71 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2018/06/23/importantNote/">
+        My Memo Note
+      </a>
+    </h1>
+
+    <span class="post-date">23 Jun 2018</span>
+
+    <h2 id="c-call-restful">C# Call RESTful</h2>
+
+<pre><code class="language-C#">public class RestAPICall
+{
+    public static string MakeCall(string method, string endpoint, string content, string contentType = "application/json")
+    {
+        string result = string.Empty;
+        try
+        {
+            var request = (HttpWebRequest)WebRequest.Create(endpoint);
+            request.ContentType = contentType;
+            request.Method = method;
+            request.Headers["authorization"] = "Basic";
+            request.Headers["X-Anchormailbox"] = "ipat";
+            request.Headers["X-CallerFileNameLin"] = "mytest.cs";
+            request.Headers["X-ProcessName"] = "test.powershell.exe";
+            request.Headers["X-ClientRequestId"] = "c03b981a";
+            request.Headers["X-ActivityId"] = "c03b981a-3";
+            request.Headers["X-CallerFileNameLine"] = "Mypowershell.ps1,line 3";
+
+            //using (var streamWriter = new System.IO.StreamWriter(request.GetRequestStream()))
+            //{
+            //    string json = content;
+
+            //    streamWriter.Write(json);
+            //}
+
+            var response = (HttpWebResponse)request.GetResponse();
+            using (var streamReader = new System.IO.StreamReader(response.GetResponseStream()))
+            {
+                result = streamReader.ReadToEnd();
+            }
+        }
+        catch (Exception e)
+        {
+            return e.ToString();
+        }
+
+        return result;
+    }
+}
+</code></pre>
+
+<h2 id="tmux-操作">tmux 操作</h2>
+
+<p>“start”: “webpack-dev-server –mode development –config ./webpack.dev.js –https –cert ./certs/server.crt –key ./certs/server.key”,</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/06/23/importantNote/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2018/06/23/JavaScript/">
         JS Note
       </a>
@@ -302,41 +367,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/04/29/patterns-library/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/04/29/C++/">
-        C++笔记
-      </a>
-    </h1>
-
-    <span class="post-date">29 Apr 2018</span>
-
-    <h2 id="编码和二进制">编码和二进制</h2>
-
-<ol>
-  <li>十进制小数转为二进制,要不断地乘以2直到为整数：<br />
-<img src="/assets/gallery/1522118636367.png" alt="" /></li>
-  <li>3个二进制位为一个8进制位，4个二进制位为一个16进制位。</li>
-  <li><strong><em>原码</em></strong>：用0,1来表示正负号。其缺点：1.零的表示不唯一，四则运算符号位要单独处理，运算规则复杂。</li>
-  <li><strong><em>补码</em></strong>：0的表示唯一，符号位可以作为数值参与运算。一般只考虑负数的原码转换方式：
-    <ul>
-      <li>原码 -&gt; 反码 -&gt; 补码：负数的原码最高符号位不变，其他位全部取反，最后整体加1。<strong>这个过程叫做求补</strong>，补码转回原码只需要再次求补即可。</li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="c-变量类型">C++ 变量类型</h2>
-<p><strong>&lt;font color=#CD5C5C&gt; 变量其实只不过是程序可操作的存储区的名称。&lt;/font&gt;</strong>C++ 中每个变量都有指定的类型，类型决定了变量存储的大小和布局，该范围内的值都可以存储在内存中，运算符可应用于变量上。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/04/29/C++/">
         <font size="5">more »</font>
       </a>
     </div>

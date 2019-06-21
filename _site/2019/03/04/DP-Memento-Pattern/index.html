@@ -24,7 +24,7 @@
 
   <title>
     
-      Young &middot; Anything I do that may help others, I'll post it here.
+      Memento Pattern &middot; Young
     
   </title>
 
@@ -181,165 +181,104 @@
       </div>
 
       <div class="container content">
-        <div class="posts">
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/09/17/decision-tree-ID3/">
-        Decision tree - ID3
-      </a>
-    </h1>
+        <div class="post">
+  <h1 class="post-title">Memento Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="备忘录模式">备忘录模式</h2>
 
-    <span class="post-date">17 Sep 2016</span>
+<p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可以将该对象恢复到原先保存的状态。</p>
 
-    <h2 id="1-简介">1 简介</h2>
+<ul>
+  <li>memento对象只负责存储状态（value objects）。</li>
+  <li>caretaker负责管理memento堆栈，保存originator的状态以及供其恢复堆栈内存储的状态。</li>
+  <li>只有originator可以创建或恢复它的状态。</li>
+</ul>
 
-<blockquote>
-  <p>ID3算法（Iterative Dichotomiser 3 迭代二叉树3代)是一个由Ross Quinlan发明的用于<a href="https://zh.wikipedia.org/wiki/决策树">决策树</a>的算法。<br />
-这个算法是建立在<a href="https://zh.wikipedia.org/wiki/奥卡姆剃刀">奥卡姆剃刀</a>的基础上：越是小型的决策树越优于大的决策树（简单理论）。尽管如此，该算法也不是总是生成最小的树形结构。而是一个<a href="https://zh.wikipedia.org/wiki/启发法">启发式算法</a>。奥卡姆剃刀阐述了一个信息熵的概念：</p>
-</blockquote>
-<div align="center">
-<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/df2cbb3a4327afabc4ecca75e9a2db379a35be73" alt="1469499283270" />
+<p>把数据结构和对其的操作解耦，使得操作可以自由地添加。</p>
+
+<p>ObjectStructure枚举需要被访问者操作的元素，枚举时每个element accept visitor就是在传入visitor并使其在其中调用逻辑方法。</p>
+
+<p><img src="/assets/gallery/memento.png" alt="memento" /></p>
+
+<p><strong>注意</strong></p>
+
+<ol>
+  <li>相较于存储状态，一种变形是，存储反转操作。如：操作（+5），那就存储操作（-5）。</li>
+  <li>有些场景的反转操作并不能得到之前的结果，如：图计算，翻译。</li>
+</ol>
+
+<!--more-->
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>
+    <p>命令模式： 命令可以用备忘录来提供撤销功能</p>
+  </li>
+  <li>
+    <p>迭代器模式： 备忘录可以用来表示每次迭代的状态</p>
+  </li>
+</ul>
+
+
 </div>
-<p>这个ID3算法可以归纳为以下几点:</p>
 
-<blockquote>
-  <ul>
-    <li>使用所有没有使用的属性并计算与之相关的样本熵值</li>
-    <li>选取其中熵值最小的属性</li>
-    <li>生成包含该属性的节点</li>
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Visitor-Pattern/">
+            Visotor Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Template-Pattern/">
+            Template Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2019/03/04/DP-Strategy-Pattern/">
+            Strategy Pattern
+            <small>04 Mar 2019</small>
+          </a>
+        </h3>
+      </li>
+    
   </ul>
-</blockquote>
-
-<blockquote>
-  <p>还有其他决策树的构造算法，最流行的是CART和C4.5。关于ID3算法的实现可以参考C4.5算法，它同时也是ID3的升级版。</p>
-</blockquote>
-
-<p>以上介绍来自维基百科。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/09/17/decision-tree-ID3/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/08/01/order-list/">
-        Order list
-      </a>
-    </h1>
-
-    <span class="post-date">01 Aug 2016</span>
-
-    <blockquote>
-  <p>复现有序list小轮子,其中add方法应该把 寻找插入位置 和 插入Node 分开来,这样程序更加清晰,易读</p>
-</blockquote>
-
-<p>在有序列表中操作中，isEmpty和size仍然象无序表中一样，这是因为它们只关心数据项的个数，而不关心数据大小。<br />
-同样的，remove的操作也完全一样，只涉及前后的节点，与数据大小无关。<br />
-只有search和add方法，需要作出改变。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/08/01/order-list/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/07/26/unorder-list/">
-        Unorder list
-      </a>
-    </h1>
-
-    <span class="post-date">26 Jul 2016</span>
-
-    
-...
-    <div style="text-align:center">
-      <a href="/2016/07/26/unorder-list/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/07/26/stack/">
-        Basic data structure - stack
-      </a>
-    </h1>
-
-    <span class="post-date">26 Jul 2016</span>
-
-    <h2 id="python实现stack结构">python实现stack结构</h2>
-
-<blockquote>
-  <p>以前怎么能这么嫩…全文不改了···</p>
-</blockquote>
-<p align="right">2017.12.4</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/07/26/stack/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/02/11/example-content/">
-        Example content
-      </a>
-    </h1>
-
-    <span class="post-date">11 Feb 2016</span>
-
-    <div class="message">
-  Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
-</div>
-
-<p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. <em>Aenean eu leo quam.</em> Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-
-<blockquote>
-  <p>Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-</blockquote>
-
-<p>Etiam porta <strong>sem malesuada magna</strong> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/02/11/example-content/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-</div>
-
-<div class="pagination">
-  
-    <a class="pagination-item older" href="/page13">Older</a>
-  
-  
-    
-      <a class="pagination-item newer" href="/page11">Newer</a>
-    
-  
 </div>
 
         
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://youngfu.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 
       </div>
     </div>

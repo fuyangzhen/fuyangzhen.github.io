@@ -185,6 +185,65 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/10/24/Negative-binary-conversion/">
+        编程之美 - 负数的二进制转换
+      </a>
+    </h1>
+
+    <span class="post-date">24 Oct 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<p>int型整数有4个字节，每个字节8个bit，所以一共32位。</p>
+
+<ol>
+  <li>负十进制整数计算二进制：去掉符号，转为二进制，取反，加1</li>
+  <li>负二进制整数计算十进制：取反，加1，转为十进制</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th>二进制 &lt;–</th>
+      <th style="text-align: center">负整数</th>
+      <th style="text-align: center">正整数</th>
+      <th style="text-align: center">–&gt; 二进制</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">1111 1111 1111 1111</code></td>
+      <td style="text-align: center">-1</td>
+      <td style="text-align: center">0</td>
+      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0000</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">1111 1111 1111 1110</code></td>
+      <td style="text-align: center">-2</td>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0001</code></td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">1111 1111 1111 1101</code></td>
+      <td style="text-align: center">-3</td>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center"><code class="highlighter-rouge">0000 0000 0000 0010</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>观察上表可知，<strong><em>可将负整数去掉符号后，减去1，再计算二进制后取反</em></strong>。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/24/Negative-binary-conversion/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/10/24/hihocoder-1399/">
         hihocoder 1399 - shortening sequence
       </a>
@@ -278,42 +337,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/10/13/gradient-descent/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/12/hihocoder-1148-trie/">
-        hihocoder 1148 — trie
-      </a>
-    </h1>
-
-    <span class="post-date">12 Oct 2016</span>
-
-    <h2 id="1-trie树">1 Trie树</h2>
-<p>trie，又称前缀树或字典树。它利用字符串的公共前缀来节约存储空间。
-性质:</p>
-
-<ol>
-  <li>根节点不包含字符，除根节点外的每个节点只包含一个字符。</li>
-  <li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串。</li>
-  <li>每个节点的所有子节点包含的字符串不相同。</li>
-</ol>
-
-<p>应用:</p>
-
-<ol>
-  <li><code class="highlighter-rouge">词频统计</code>:比直接用hash节省空间</li>
-  <li><code class="highlighter-rouge">搜索提示</code>:输入前缀的时候提示可以构成的词</li>
-  <li><code class="highlighter-rouge">作为辅助结构</code>:如后缀树，AC自动机等的辅助结构</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/12/hihocoder-1148-trie/">
         <font size="5">more »</font>
       </a>
     </div>
