@@ -24,7 +24,7 @@
 
   <title>
     
-      Business Writing &middot; Young
+      Iterator Pattern &middot; Young
     
   </title>
 
@@ -182,14 +182,55 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Business Writing</h1>
-  <span class="post-date">23 Jun 2018</span>
-  <h2 id="商务英语写作范式">商务英语写作范式</h2>
+  <h1 class="post-title">Iterator Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="迭代器模式">迭代器模式</h2>
 
-<p><img src="/assets/gallery/BusinessWriting.png" alt="BusinessWriting" /></p>
+<p>当你需要遍历访问聚集对象，可以有多种遍历方式时，应该考虑使用迭代器模式。</p>
+
+<p>迭代器模式，分离了集合对象的遍历行为，抽象出一个迭代器类来负责遍历， 这样即可以做到不暴露集合内部结构，又可以让外部代码透明地访问集合内部数据。</p>
+
+<p>aggregate（collection）负责收集聚合数据，然后交给iterator去操作遍历。</p>
+
+<p><img src="/assets/gallery/iterator.png" alt="iterator" /></p>
+
+<h4 id="net的自带接口">.NET的自带接口</h4>
+
+<p>实现了这两个接口IEnumerator &amp; IEnumerable，就可以使用foreach关键字来遍历集合对象。</p>
+
+<pre><code class="language-C#">public interface IEnumerator
+{
+    object Current
+    {
+        get;
+    }
+    bool MoveNext();
+    void Reset();
+}
+
+public interface Ienumerable
+{
+    IEnumerator GetEnumerator();
+}
+</code></pre>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>工厂模式：
+    <ul>
+      <li>迭代器可以通过aggregate中的工厂方法创建</li>
+      <li>多态迭代器使用工厂方法实例化适当的迭代器子类</li>
+    </ul>
+  </li>
+  <li>组合模式：
+    <ul>
+      <li>迭代器可被用来递归遍历组合结构，如树。</li>
+    </ul>
+  </li>
+</ul>
 
 <!--more-->
-
 
 </div>
 

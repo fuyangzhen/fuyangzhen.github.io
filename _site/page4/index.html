@@ -185,6 +185,151 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Iterator-Pattern/">
+        Iterator Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="迭代器模式">迭代器模式</h2>
+
+<p>当你需要遍历访问聚集对象，可以有多种遍历方式时，应该考虑使用迭代器模式。</p>
+
+<p>迭代器模式，分离了集合对象的遍历行为，抽象出一个迭代器类来负责遍历， 这样即可以做到不暴露集合内部结构，又可以让外部代码透明地访问集合内部数据。</p>
+
+<p>aggregate（collection）负责收集聚合数据，然后交给iterator去操作遍历。</p>
+
+<p><img src="/assets/gallery/iterator.png" alt="iterator" /></p>
+
+<h4 id="net的自带接口">.NET的自带接口</h4>
+
+<p>实现了这两个接口IEnumerator &amp; IEnumerable，就可以使用foreach关键字来遍历集合对象。</p>
+
+<pre><code class="language-C#">public interface IEnumerator
+{
+    object Current
+    {
+        get;
+    }
+    bool MoveNext();
+    void Reset();
+}
+
+public interface Ienumerable
+{
+    IEnumerator GetEnumerator();
+}
+</code></pre>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>工厂模式：
+    <ul>
+      <li>迭代器可以通过aggregate中的工厂方法创建</li>
+      <li>多态迭代器使用工厂方法实例化适当的迭代器子类</li>
+    </ul>
+  </li>
+  <li>组合模式：
+    <ul>
+      <li>迭代器可被用来递归遍历组合结构，如树。</li>
+    </ul>
+  </li>
+</ul>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Iterator-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Interpreter-Pattern/">
+        Interpreter Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="解释器模式">解释器模式</h2>
+
+<p>如果一种特定类型的问题发生频率足够高，那么可能就值得将该问题的各个实例表述为一个简单语言中的句子。</p>
+
+<p><strong>当有一个语言(DSL)需要解释执行，并且你可以将该语言中的句子表示为一个抽象语法树时，可使用解释器模式。</strong>设计迷你语言，解释迷你语言。但当文法非常复杂时，使用其他的技术如语法分析程序或编译器生成器来处理。</p>
+
+<p><strong><em>简单工厂加反射可以避免对switch case的修改，从而不用修改代码。</em></strong></p>
+
+<p><img src="/assets/gallery/interpreter.png" alt="interpreter" /></p>
+
+<h5 id="相关模式">相关模式</h5>
+
+<p>组合模式</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Interpreter-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Flyweight-Pattern/">
+        Flyweight Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="享元模式">享元模式</h2>
+
+<p>用共享技术有效地支持大量细粒度的对象。</p>
+
+<h4 id="使用场景">使用场景</h4>
+
+<ol>
+  <li>程序使用了大量的对象，造成了很大的存储开销；</li>
+  <li>对象的大多数状态可以实现为外部状态（作为参数），这样可以从类中抽出外部状态，用相对较少的共享对象取代很多组对象（棋子的类型为内部状态，所在棋盘的位置为外部状态）</li>
+</ol>
+
+<h4 id="目的">目的</h4>
+
+<ol>
+  <li>减少大量细粒度对象存储开销；</li>
+  <li>同时共享要在多个上下文中使用的对象；</li>
+  <li>保持面向对象的粒度和灵活性；</li>
+</ol>
+
+<h4 id="关联的模式">关联的模式</h4>
+
+<ul>
+  <li>组合模式（叶节点可被实现为享元）</li>
+  <li>
+    <p>策略模式（算法可被实现为享元）</p>
+  </li>
+  <li>状态模式</li>
+</ul>
+
+<p><img src="/assets/gallery/flyweight.png" alt="flyweight" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Flyweight-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Factory-Pattern/">
         Factory Pattern
       </a>
@@ -265,133 +410,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Facade-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Decorator-Pattern/">
-        Decorator Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="装饰模式">装饰模式</h2>
-
-<p>去超市买塑料袋，另外又用很多花哨的塑料袋来层层包装买的塑料袋。各个包装的先后顺序可控，按需选择装饰功能包装原始对象。</p>
-
-<h4 id="目的">目的</h4>
-
-<ul>
-  <li>动态地向已有对象添加功能</li>
-  <li>替代子类化</li>
-  <li>弹性设计</li>
-  <li>支持开闭原则</li>
-</ul>
-
-<p><img src="/assets/gallery/decorator.png" alt="decorator" /></p>
-
-<p><em>Decorator类构造函数传入Component的子类给属性赋值，该属性是protected的。</em></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Decorator-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Composite-Pattern/">
-        Composite Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="组合模式">组合模式</h2>
-
-<p>将对象组合到树结构中以表示部分-整体层次结构。Composite允许客户端统一地处理单个对象和对象的组合。</p>
-
-<p><strong>抽象出枝节点和叶节点的统一的行为接口，让client端可以对他们一视同仁，简化操作。</strong></p>
-
-<h4 id="何时使用">何时使用</h4>
-
-<ol>
-  <li>需求中是体现部分和整体层次结构时;</li>
-  <li>希望用户可以忽略组合对象与单个对象的不同，统一使用组合结构中的所有对象时；</li>
-  <li>想要分发什么东西到对象时。</li>
-</ol>
-
-<h4 id="优点">优点</h4>
-
-<ol>
-  <li>基本对象可悲组合为更复杂的组合对象，用到基本对象的地方都可以使用组合对象；</li>
-  <li>用户不用关心到底是处理叶节点还是一个组合组件，也不用为定义组合而写一些判断语句。即客户可以一致地使用组合结构和单个对象。</li>
-</ol>
-
-<p><img src="/assets/gallery/composite.png" alt="composite" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Composite-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Command-Pattern/">
-        Command Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="命令模式">命令模式</h2>
-
-<h4 id="优点">优点</h4>
-
-<ul>
-  <li>
-    <p>把命令的执行抽象为类，执行命令的client 与 命令逻辑及其依赖项 解耦；</p>
-  </li>
-  <li>收集命令为队列，使命令可以延迟执行;</li>
-  <li>命令，aka 事务（transaction），行动（action）;</li>
-  <li>可方便地对命令进行日志记录，验证，撤销；</li>
-  <li>很容易添加新命令，符合开闭原则；</li>
-  <li>完全自包含，客户端不会直接传任何参数给命令，而是通过一个invoker来调用命令；</li>
-  <li>注意为了安全要有个null command；</li>
-</ul>
-
-<h3 id="何时使用">何时使用</h3>
-
-<ol>
-  <li>当需要将执行命令的client与命令逻辑及其依赖项解耦时，请求操作的对象（invoker）与知道具体如何操作的对象（command &amp; receiver ）分割开；</li>
-  <li>设计命令行工具；</li>
-  <li>真正需要实现命令的验证、撤销和恢复时。</li>
-</ol>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li>工厂模式，常用来结合到命令模式中，生产命令实例；</li>
-  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Composite-Pattern/">组合模式</a>（执行一个命令，其所有子命令全部执行）。</li>
-</ul>
-
-<p><img src="/assets/gallery/command.png" alt="command" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Command-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

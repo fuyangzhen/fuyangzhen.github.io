@@ -114,6 +114,10 @@ dotnet out/XXX.dll
 
 ## docker 相关操作
 
+##### .netcore 项目的build  
+
+dotnet publish -c Release -o out
+
 ##### build 、映射进入container内部、挂载外部文件夹
 
 - `docker build -m 262144 -t es_rescore_with_obj:v0 .`

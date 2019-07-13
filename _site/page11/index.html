@@ -185,6 +185,84 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/10/18/hihocoder-1288/">
+        hihocoder 1288 — font size
+      </a>
+    </h1>
+
+    <span class="post-date">18 Oct 2016</span>
+
+    <h2 id="1-描述">1 描述</h2>
+<p>Steven loves reading book on his phone. The book he reads now consists of N paragraphs and the i-th paragraph contains ai characters.</p>
+
+<p>Steven wants to make the characters easier to read, so he decides to increase the font size of characters. But the size of Steven’s phone screen is limited. Its width is W and height is H. As a result, if the font size of characters is S then it can only show ⌊W / S⌋ characters in a line and ⌊H / S⌋ lines in a page. (⌊x⌋ is the largest integer no more than x)</p>
+
+<p>So here’s the question, if Steven wants to control the number of pages no more than P, what’s the maximum font size he can set? Note that paragraphs must start in a new line and there is no empty line between paragraphs.</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/18/hihocoder-1288/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/16/hihocoder-1148/">
+        hihocoder 1148 — 2月29日
+      </a>
+    </h1>
+
+    <span class="post-date">16 Oct 2016</span>
+
+    <h2 id="1-描述">1 描述</h2>
+<p>给定两个日期，计算这两个日期之间有多少个2月29日（包括起始日期）。</p>
+
+<p>只有闰年有2月29日，满足以下一个条件的年份为闰年：</p>
+
+<ol>
+  <li>
+    <p>年份能被4整除但不能被100整除</p>
+  </li>
+  <li>
+    <p>年份能被400整除</p>
+  </li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/16/hihocoder-1148/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2016/10/13/gradient-descent/">
+        Gradient descent & logistic regression
+      </a>
+    </h1>
+
+    <span class="post-date">13 Oct 2016</span>
+
+    <h2 id="1-简介">1 简介</h2>
+<p>这一章的 <a href="http://www.ituring.com.cn/book/1021">机器学习实战(第5章)</a> ，唯一想说的就是里面关于梯度上升算法的细节问题。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/13/gradient-descent/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/10/12/hihocoder-1148-trie/">
         hihocoder 1148 — trie
       </a>
@@ -248,114 +326,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/10/05/binary-tree/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/10/01/classic-sort/">
-        Classic sort
-      </a>
-    </h1>
-
-    <span class="post-date">01 Oct 2016</span>
-
-    <h3 id="先上结果">先上结果</h3>
-<ul>
-  <li>插入排序</li>
-</ul>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">insertionSort1</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)):</span>
-        <span class="n">curV</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="n">i</span>
-        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">curV</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
-            <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-            <span class="n">pos</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">curV</span> <span class="c">#找到正确的位置插入</span>
-    <span class="k">return</span> <span class="n">L</span>
-</code></pre></div></div>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/10/01/classic-sort/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/09/27/naive-bayesian/">
-        Naive bayesian
-      </a>
-    </h1>
-
-    <span class="post-date">27 Sep 2016</span>
-
-    <h2 id="1-简介">1 简介</h2>
-<blockquote>
-  <p>朴素贝叶斯是一种构建分类器的简单方法。该分类器模型会给问题实例分配用特征值表示的类标签，类标签取自有限集合。它不是训练这种分类器的单一算法，而是一系列基于相同原理的算法：所有朴素贝叶斯分类器都假定样本每个特征与其他特征都不相关。举个例子，如果一种水果其具有红，圆，直径大概3英寸等特征，该水果可以被判定为是苹果。尽管这些特征相互依赖或者有些特征由其他特征决定，然而朴素贝叶斯分类器认为这些属性在判定该水果是否为苹果的概率分布上独立的。</p>
-</blockquote>
-
-<blockquote>
-  <p>对于某些类型的概率模型，在监督式学习的样本集中能获取得非常好的分类效果。在许多实际应用中，朴素贝叶斯模型参数估计使用最大似然估计方法；换而言之，在不用到贝叶斯概率或者任何贝叶斯模型的情况下，朴素贝叶斯模型也能奏效。</p>
-</blockquote>
-
-<blockquote>
-  <p>尽管是带着这些朴素思想和过于简单化的假设，但朴素贝叶斯分类器在很多复杂的现实情形中仍能够取得相当好的效果。2004年，<a href="http://www.cs.unb.ca/~hzhang/publications/FLAIRS04ZhangH.pdf">一篇分析贝叶斯分类器问题的文章</a>揭示了朴素贝叶斯分类器取得看上去不可思议的分类效果的若干理论上的原因。尽管如此，2006年有<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.122.5901&amp;rep=rep1&amp;type=pdfPDF">一篇文章</a>详细比较了各种分类方法，发现更新的方法（如提升树和随机森林）的性能超过了贝叶斯分类器。</p>
-</blockquote>
-
-<blockquote>
-  <p>朴素贝叶斯分类器的一个优势在于只需要根据少量的训练数据估计出必要的参数（变量的均值和方差）。由于变量独立假设，只需要估计各个变量的方法，而不需要确定整个协方差矩阵。</p>
-</blockquote>
-
-<p>以上来自<a href="https://zh.wikipedia.org/wiki/朴素贝叶斯分类器">wiki百科</a>。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/09/27/naive-bayesian/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/09/21/hash-map/">
-        Hash map
-      </a>
-    </h1>
-
-    <span class="post-date">21 Sep 2016</span>
-
-    <h2 id="1-简介">1 简介</h2>
-<p>字曲是python里最有用的数据集合之一。字典是一对键值-数据的组合，键值是用来查找相应的数据，我们把这种思想称为“映射”。</p>
-
-<p>映射的抽象数据类型定义如下，这是一个无序的键-值对集合，键值总是唯一的以便建立与数据的对应关系。映射的操作方法如下：<br />
-***</p>
-<ul>
-  <li><code class="highlighter-rouge">Map()</code>创建一个新的空的映射，返回一个空集合。</li>
-  <li><code class="highlighter-rouge">put(key,val)</code>在映射中增加一对新的键-值对，如果键值已经存在，用新的数据值代替原来的。</li>
-  <li><code class="highlighter-rouge">get(key)</code>根据给定的键值，返回对应的数值，找不到时返回None。</li>
-  <li><code class="highlighter-rouge">Del</code>从映射中删除键-值对，形式del map[key]</li>
-  <li><code class="highlighter-rouge">len()</code>返回映射中键-值对的数量</li>
-  <li><code class="highlighter-rouge">In</code>如果key值在映射中，key in map返回True，否则返回False</li>
-</ul>
-
-<hr />
-<p>字典的好处之一，是给一个键值可以很快返回相关的数据，为了提供这样快速查询的能力，我们需要引入一个高效的查找功能。</p>
-
-<p>可以对列表使用顺序或二分查找，但是最好是用 哈希表，因为它能提供接近<code class="highlighter-rouge">O(1)</code>的性能。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2016/09/21/hash-map/">
         <font size="5">more »</font>
       </a>
     </div>

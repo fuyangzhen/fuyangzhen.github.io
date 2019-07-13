@@ -24,7 +24,7 @@
 
   <title>
     
-      Business Writing &middot; Young
+      Unit of Work Pattern &middot; Young
     
   </title>
 
@@ -182,14 +182,70 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Business Writing</h1>
-  <span class="post-date">23 Jun 2018</span>
-  <h2 id="商务英语写作范式">商务英语写作范式</h2>
+  <h1 class="post-title">Unit of Work Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="工作单元模式">工作单元模式</h2>
 
-<p><img src="/assets/gallery/BusinessWriting.png" alt="BusinessWriting" /></p>
+<ul>
+  <li>让业务逻辑远离数据访问代码</li>
+  <li>让业务逻辑远离追踪修改</li>
+  <li>允许业务逻辑和逻辑事务一起工作</li>
+</ul>
+
+<p>迭代器模式，分离了集合对象的遍历行为，抽象出一个迭代器类来负责遍历， 这样即可以做到不暴露集合内部结构，又可以让外部代码透明地访问集合内部数据。</p>
+
+<p>aggregate负责收集聚合数据，然后交给iterator去操作遍历。</p>
+
+<h4 id="net的自带接口">.NET的自带接口</h4>
+
+<p>UnitOfWork 连接起了Controllers与Repositorys,   Controllers（业务逻辑）只需要定义各种数据操作的逻辑，然后直接利用UnitOfWork  commit change就可以了。而无需关心底层的数据库连接，追踪修改。</p>
+
+<pre><code class="language-C#">// IUnitOfWork 可供MVC里的Controllers作为构造函数参数使用
+public interface IUnitOfWork{
+    IRepository&lt;Employee&gt; Employees{get;}
+    IRepository&lt;TimeCard&gt; TimeCards{get;}
+    void Commit();
+}
+
+public class SqlUnitOfWork: IUnitOfWork{
+    public SqlUnitOfWork(){
+        // 连接数据库 _context
+    }
+    
+    public IRepository&lt;Employee&gt; Employees{
+        get{
+            if (_employees == null){
+                _employees = new SqlRepository&lt;Employee&gt;(_context);
+            }
+            return _employees;
+        }
+    }
+    
+    public void Commit(){
+        _context.SaveChanges();
+    }
+}
+
+public class SqlRepository&lt;T&gt;: ISqlRepository&lt;T&gt; where T: class, Ientity{
+    public SqlRepository(ObjectContext context){
+        _objectSet = context.CreateObjectSet&lt;T&gt;();
+    }
+    
+    public void Add(T newEntity){
+        _objectSet.AddObject(newEntity);
+    }
+    
+    // other DB operations
+}
+</code></pre>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>仓库模式</li>
+</ul>
 
 <!--more-->
-
 
 </div>
 
@@ -208,8 +264,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Unit-of-Work-Pattern/">
-            Unit of Work Pattern
+          <a href="/2019/03/04/DP-Template-Pattern/">
+            Template Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>
@@ -217,8 +273,8 @@
     
       <li>
         <h3>
-          <a href="/2019/03/04/DP-Template-Pattern/">
-            Template Pattern
+          <a href="/2019/03/04/DP-Strategy-Pattern/">
+            Strategy Pattern
             <small>04 Mar 2019</small>
           </a>
         </h3>
