@@ -24,7 +24,7 @@
 
   <title>
     
-      State Pattern &middot; Young
+      Young &middot; Anything I do that may help others, I'll post it here.
     
   </title>
 
@@ -185,87 +185,40 @@
       </div>
 
       <div class="container content">
-        <div class="post">
-  <h1 class="post-title">State Pattern</h1>
-  <span class="post-date">04 Mar 2019</span>
-  <h2 id="状态模式">状态模式</h2>
+        <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2013/05/22/sample-post-images/">
+        A post with images
+      </a>
+    </h1>
 
-<p>一种行为模式。消除庞大的分支语句，通过把各种状态转移逻辑分布到state的子类之间，减少相互间依赖。</p>
+    <span class="post-date">22 May 2013</span>
 
-<p><em>复杂的状态转换逻辑被分散到各个具体子状态对象中，然后根据context的具体需求，context上绑定的状态为其交接其他状态</em></p>
+    Examples and code for displaying images in posts....
+    <div style="text-align:center">
+      <a href="/2013/05/22/sample-post-images/">
+        <font size="5">more »</font>
+      </a>
+    </div>
 
-<p>将特定的状态相关的行为都放入一个对象内，由于所有与状态相关的代码都存在于某个ConcreteState内，所以通过定义新的子类就可以很容易地增加新的状态和转换。</p>
-
-<h4 id="应用场景">应用场景</h4>
-
-<ol>
-  <li>一个对象的行为取决于它的状态，并且它必须在运行时根据状态改变它的行为时；</li>
-  <li>某项业务需要有多个状态，通常都是枚举常量，状态的变化依靠大量分支判断实现。</li>
-</ol>
-
-<p><img src="/assets/gallery/state.png" alt="state" /></p>
-
-<!--more-->
-
-
+  </div>
+  
 </div>
 
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
+<div class="pagination">
+  
+    <span class="pagination-item older">Older</span>
+  
+  
     
-      <li>
-        <h3>
-          <a href="/2019/03/04/DP-Visitor-Pattern/">
-            Visotor Pattern
-            <small>04 Mar 2019</small>
-          </a>
-        </h3>
-      </li>
+      <a class="pagination-item newer" href="/page13">Newer</a>
     
-      <li>
-        <h3>
-          <a href="/2019/03/04/DP-Unit-of-Work-Pattern/">
-            Unit of Work Pattern
-            <small>04 Mar 2019</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/2019/03/04/DP-Template-Pattern/">
-            Template Pattern
-            <small>04 Mar 2019</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
+  
 </div>
 
         
-<div id="disqus_thread"></div>
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://youngfu.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 
       </div>
     </div>

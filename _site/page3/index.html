@@ -156,6 +156,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -182,6 +186,62 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Null-Object-Pattern/">
+        Null Object Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="空对象模式">空对象模式</h2>
+
+<p>一种null检查的替代。为可能出现null的类单独实现一个null的子类，为其实现所需的方法。</p>
+
+<p><strong>AKA</strong> Stub, Active Nothing, Active Null</p>
+
+<p><strong>常被实现为一个单例</strong>，没有随实例变化的行为或状态；</p>
+
+<h4 id="目的">目的</h4>
+
+<ol>
+  <li>摆脱null检查的逻辑；</li>
+  <li>提供无方法对象来代替null 引用；</li>
+  <li>允许方法被null对象调用，null 引用就不行。</li>
+</ol>
+
+<h4 id="关联的模式">关联的模式</h4>
+
+<ul>
+  <li>单例模式</li>
+  <li>策略模式</li>
+  <li>命令模式</li>
+  <li>状态模式</li>
+  <li>others</li>
+</ul>
+
+<h4 id="优点">优点</h4>
+
+<ul>
+  <li>code更加干净简洁；</li>
+  <li>更少的null检查；</li>
+  <li>更少的分支，意味着更低的复杂度；</li>
+  <li>调用者无需关心到底得到的是真对象还是空对象；</li>
+  <li>必须让其他的开发人员知道某处实现了空对象。</li>
+</ul>
+
+<p><img src="/assets/gallery/null.png" alt="null" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Null-Object-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -364,35 +424,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-MVP-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Lazyload-Pattern/">
-        Lazy load Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="lazyload模式">Lazyload模式</h2>
-
-<h5 id="常见场景">常见场景</h5>
-
-<ol>
-  <li>property初始化用Lazy<T>关键字去set，get方法通过Lazy<T>对象.value去真正赋上值；</T></T></li>
-  <li>virtual proxy，就是利用1中的概念，在开销大的property真正被call的时候才去为其赋值；</li>
-  <li>value holder同理2；</li>
-  <li>ghost就是field不完全被赋值状态的对象，一旦被调用其中的某个field就：该load上value的就set上value，暂时还没必要的就set上Lazy<T>。</T></li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Lazyload-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

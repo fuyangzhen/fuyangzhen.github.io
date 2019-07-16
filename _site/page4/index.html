@@ -156,6 +156,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -182,6 +186,35 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Lazyload-Pattern/">
+        Lazy load Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="lazyload模式">Lazyload模式</h2>
+
+<h5 id="常见场景">常见场景</h5>
+
+<ol>
+  <li>property初始化用Lazy<T>关键字去set，get方法通过Lazy<T>对象.value去真正赋上值；</T></T></li>
+  <li>virtual proxy，就是利用1中的概念，在开销大的property真正被call的时候才去为其赋值；</li>
+  <li>value holder同理2；</li>
+  <li>ghost就是field不完全被赋值状态的对象，一旦被调用其中的某个field就：该load上value的就set上value，暂时还没必要的就set上Lazy<T>。</T></li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Lazyload-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -371,45 +404,6 @@ public interface Ienumerable
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Factory-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Facade-Pattern/">
-        Facade Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="外观模式">外观模式</h2>
-
-<h4 id="tips">Tips</h4>
-
-<p><em>目的：解耦，使子系统间减少依赖。</em></p>
-
-<p>封装集成一些繁杂的功能为一层包装类，使客户端使用起来更加方便。</p>
-
-<ol>
-  <li>设计初期应该将不同的两个层分离，层间使用facade为复杂子系统提供简单接口。</li>
-  <li>为设计粗糙或高度复杂的遗留代码设计简单的facade接口，这样新系统就解耦地使用遗留代码。</li>
-</ol>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Adapter-Pattern/">适配器</a></li>
-  <li>flyweight</li>
-  <li>Mediator</li>
-</ul>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Facade-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

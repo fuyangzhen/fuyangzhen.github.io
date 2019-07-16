@@ -24,7 +24,7 @@
 
   <title>
     
-      OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理 &middot; Young
+      Service Locator Pattern &middot; Young
     
   </title>
 
@@ -186,77 +186,49 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">OS X + Shadowsocks环境下的Privoxy的终端和py脚本内代理</h1>
-  <span class="post-date">09 Apr 2017</span>
-  <p><strong><em>环境：OS X + Shadowsocks</em></strong><br />
-<strong><em>问题：虽然装有Shadowsocks，但是Twitter的pythonAPI仍无法使用</em></strong></p>
+  <h1 class="post-title">Service Locator Pattern</h1>
+  <span class="post-date">04 Mar 2019</span>
+  <h2 id="服务定位器模式">服务定位器模式</h2>
 
-<p>在使用Twitter的pythonAPI时，发现在Shadowsocks开启的情况下，python的爬虫无法访问使用Twitter，此处整合了几个零散方法，分别在终端内全局代理和脚本内单独代理：</p>
+<p>帮助clients找到远端服务器的服务。</p>
+
+<h4 id="创建类模式">创建类模式</h4>
+
+<ul>
+  <li>抽象工厂</li>
+  <li>建造者</li>
+  <li>工厂方法</li>
+  <li>原型</li>
+  <li>单例</li>
+</ul>
+
+<h4 id="使用场景">使用场景</h4>
+
+<ul>
+  <li>logging
+    <ul>
+      <li>使用贯穿整个app</li>
+      <li>独立于任何业务逻辑</li>
+      <li>容易为各app的简单需求独立实现</li>
+      <li>常常基于环境或者部署的需求而改变</li>
+    </ul>
+  </li>
+</ul>
+
+<p>**program在运行启动时用ServiceLocator注册所需的logger, ServiceLocator里静态的各种方法就可以在别处GetService<ILog>获得想要的logger。具体的logger类实现`ILog`的各种接口方法。**</ILog></p>
+
+<p><img src="/assets/gallery/servicelocator.png" alt="servicelocator" /></p>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>观察者模式：定位新的服务，在他们变得可用时</li>
+  <li>代理模式：总可以用一个服务定位器来讲代理和实现匹配</li>
+  <li>适配器模式：适配器模式可以将具体services适配到符合通用接口</li>
+  <li>依赖注入：在创建客户端时传入services</li>
+</ul>
 
 <!--more-->
-<h2 id="1-终端内代理">1 终端内代理</h2>
-<p>方法来自<a href="https://segmentfault.com/a/1190000008848001">Fish</a></p>
-
-<ul>
-  <li>下载安装<a href="http://www.privoxy.org">privoxy</a></li>
-  <li>修改<code class="highlighter-rouge">/usr/local/etc/privoxy/config</code>路径下的配置文件：打开config文件，直接在最末尾加上</li>
-</ul>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listen-address 0.0.0.0:8118
-forward-socks5 / 127.0.0.1:1080 .
-</code></pre></div></div>
-<blockquote>
-  <p>1080是Shadowsocks代理的端口（也不一定是1080），8118是开启http代理的端口。使用0.0.0.0即可在局域网内使用此代理，如只想本机使用，使用127.0.0.1</p>
-</blockquote>
-
-<ul>
-  <li>打开终端，启动Privoxy：<code class="highlighter-rouge">sudo /usr/local/sbin/privoxy /usr/local/etc/privoxy/config</code></li>
-  <li>验证是否成功，在终端中输入<code class="highlighter-rouge">netstat -an | grep 8118</code>，如出现如下结果表示已经成功:<code class="highlighter-rouge">tcp4 0 0 *.8118 *.* LISTEN</code></li>
-  <li>终端内执行</li>
-</ul>
-
-<blockquote>
-  <p>export http_proxy=’http://127.0.0.1:8118’<br />
-export https_proxy=’http://127.0.0.1:8118’</p>
-</blockquote>
-
-<ul>
-  <li>终端内输入<code class="highlighter-rouge"> http www.youtube.com</code>测试代理效果</li>
-  <li>用完如需关闭，方法如下：<code class="highlighter-rouge">sudo /Applications/Privoxy/stopPrivoxy.sh</code></li>
-</ul>
-
-<p>💡Ps.如果按此流程，爬虫仍然无法访问的话，可能是<code class="highlighter-rouge">config</code>配置文件仍有问题，可以点击下载 <a href="https://fuyangzhen.github.io/assets/Privoxy_config">我的config</a> 直接替换掉你电脑中上诉路径下Privoxy的<code class="highlighter-rouge">config</code>(注意:文件名字要修改保持为<code class="highlighter-rouge">config</code>不变)</p>
-<h2 id="2-py脚本内代理">2 py脚本内代理</h2>
-<p>方法来自<a href="https://segmentfault.com/q/1010000008986220">techstay</a>:</p>
-<blockquote>
-  <p>第一种方式是使用Python3的urllib标准库。第二种是利用非常好用的requests库。headers必须加，因为不加谷歌返回来的不知道什么编码，没办法用UTF8解码</p>
-</blockquote>
-
-<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">urllib.request</span> <span class="k">as</span> <span class="n">request</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-
-<span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'https'</span><span class="p">:</span> <span class="s">'https://127.0.0.1:1080'</span><span class="p">,</span>
-    <span class="s">'http'</span><span class="p">:</span> <span class="s">'http://127.0.0.1:1080'</span>
-<span class="p">}</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'user-agent'</span><span class="p">:</span> <span class="s">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36'</span>
-<span class="p">}</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">'--------------使用urllib--------------'</span><span class="p">)</span>
-<span class="n">google_url</span> <span class="o">=</span> <span class="s">'https://www.google.com'</span>
-<span class="n">opener</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">build_opener</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">ProxyHandler</span><span class="p">(</span><span class="n">proxies</span><span class="p">))</span>
-<span class="n">request</span><span class="o">.</span><span class="n">install_opener</span><span class="p">(</span><span class="n">opener</span><span class="p">)</span>
-
-<span class="n">req</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">google_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-
-<span class="k">print</span><span class="p">(</span><span class="s">'--------------使用requests--------------'</span><span class="p">)</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">google_url</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div></div>
 
 </div>
 

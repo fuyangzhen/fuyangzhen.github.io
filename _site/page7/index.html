@@ -156,6 +156,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -182,6 +186,30 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2018/07/24/docker-private-registry/">
+        Build a docker private registry with Harbor
+      </a>
+    </h1>
+
+    <span class="post-date">24 Jul 2018</span>
+
+    <p><code class="highlighter-rouge">Harbor</code> 是由 <code class="highlighter-rouge">VMware</code> 中国研发团队负责开发的开源企业级 <code class="highlighter-rouge">Docker Registry</code>，不仅解决了我们直接使用 <code class="highlighter-rouge">Docker Registry</code>的功能缺失，更解决了我们在生产使用 <code class="highlighter-rouge">Docker Registry</code> 面临的高可用、镜像仓库直接复制、镜像仓库性能等运维痛点。在安装使用<code class="highlighter-rouge">Harbor</code>前，请先安装好<code class="highlighter-rouge">python2.7</code>,<code class="highlighter-rouge">docker-CE</code>和<code class="highlighter-rouge">docker-compose</code>。</p>
+
+<ol>
+  <li>查看本机IP（inet）：<code class="highlighter-rouge">ip addr show eth0 </code>(也可以直接使用局域网内的域名，但是前提是域名要包含<code class="highlighter-rouge">.</code>，不然<code class="highlighter-rouge">docker push</code>会识别为官方的registry，即便你已经成功登录到这个private registry)</li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2018/07/24/docker-private-registry/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -318,26 +346,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/06/23/importantNote/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/06/23/JavaScript/">
-        JS Note
-      </a>
-    </h1>
-
-    <span class="post-date">23 Jun 2018</span>
-
-    <h2 id="syntax-note">Syntax Note</h2>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/06/23/JavaScript/">
         <font size="5">more »</font>
       </a>
     </div>
