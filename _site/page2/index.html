@@ -189,6 +189,28 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Specification-Pattern/">
+        Specification Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="规约模式">规约模式</h2>
+
+<p><img src="/assets/gallery/rule.png" alt="rule" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Specification-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Singleton-Pattern/">
         Singleton Pattern
       </a>
@@ -265,7 +287,7 @@
   </li>
 </ul>
 
-<p>**program在运行启动时用ServiceLocator注册所需的logger, ServiceLocator里静态的各种方法就可以在别处GetService<ILog>获得想要的logger。具体的logger类实现`ILog`的各种接口方法。**</ILog></p>
+<p>program在运行启动时用ServiceLocator注册所需的logger, ServiceLocator里静态的各种方法就可以在别处GetService<ILog>获得想要的logger。具体的logger类实现`ILog`的各种接口方法。</ILog></p>
 
 <p><img src="/assets/gallery/servicelocator.png" alt="servicelocator" /></p>
 
@@ -281,6 +303,49 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Service-Locator-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Rules-Pattern/">
+        Rules Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="规则模式">规则模式</h2>
+
+<p><em>规则模式是一种特殊的命令模式</em></p>
+
+<p>evaluator负责聚合评估规则，而每个具体规则只负责实现自己的规则和匹配。</p>
+
+<p><img src="/assets/gallery/rule.png" alt="rule" /></p>
+
+<h4 id="使用场景">使用场景</h4>
+
+<ul>
+  <li>当系统内的条件判断复杂度上升，同样性质的增量改变是可预料的</li>
+  <li>系统会考虑选择哪些操作是适用的，并执行这些操作</li>
+  <li>系统需要支持用户创建的逻辑来决定何时以及如何应用操作</li>
+</ul>
+
+<h4 id="业务规则引擎">业务规则引擎</h4>
+
+<ul>
+  <li>用于封装业务规则的软件系统</li>
+  <li>通常支持业务用户编写规则</li>
+  <li>存储在数据库或文件系统中的规则</li>
+  <li>.NET 里有 System.Workflow 包含 Rules Engine</li>
+</ul>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Rules-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>
@@ -379,92 +444,6 @@ public class CachedOrderRepository : RemoteOrderRepository
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Proxy-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Prototype-Pattern/">
-        Prototype Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="原型模式">原型模式</h2>
-
-<p>用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。</p>
-
-<p>一般在初始化的信息不发生变化的情况下，克隆是最好的办法。既可以隐藏对象创建的细节，又对性能大大提提高。</p>
-
-<ul>
-  <li>memento对象只负责存储状态（value objects）。</li>
-  <li>caretaker负责管理memento堆栈，保存originator的状态以及供其恢复堆栈内存储的状态。</li>
-  <li>只有originator可以创建或恢复它的状态。</li>
-</ul>
-
-<p>把数据结构和对其的操作解耦，使得操作可以自由地添加。</p>
-
-<p>ObjectStructure枚举需要被访问者操作的元素，枚举时每个element accept visitor就是在传入visitor并使其在其中调用逻辑方法。</p>
-
-<p><img src="/assets/gallery/prototype.png" alt="prototype.png" /></p>
-
-<h4 id="场景示例">场景示例</h4>
-
-<ol>
-  <li>构造函数实例化对象代价较高</li>
-  <li>对象内部各状态都很重要</li>
-  <li>隐藏了构造函数（internal constructor）</li>
-</ol>
-
-<p><strong>注意</strong></p>
-
-<ol>
-  <li>this.MemberwiseClone()是浅拷贝（非静态字段），引用类型只能拷贝引用。</li>
-  <li>如果要深拷贝，可以先将引用类型参数对象的类实现C#Icloneable接口，然后在引用它的对象的Clone()方法里将它clone出来，然后再一个个复制其余值类型。</li>
-</ol>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Prototype-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Observer-Pattern/">
-        Observer Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="观察者模式">观察者模式</h2>
-
-<h4 id="特征">特征</h4>
-
-<ul>
-  <li>
-    <p>系统被分割成相互协作的很多类，但我们不希望为了维护相关对象间的一致性，而去使各类紧密耦合。</p>
-  </li>
-  <li>观察者模式所做的工作是解除耦合，让耦合双方依赖抽象，而非具体，从而使得各自的变化都不会影响另一方的变化。</li>
-  <li>多抽象，少具体可以降低耦合。(<strong>依赖倒转原则</strong>)</li>
-  <li>具体观察者可能并不属于同一基类，所以可以使用抽象接口来统一他们，都能实现update方法就行。</li>
-  <li>delegate可以看做是对函数的抽象，是函数的‘类’，委托的实例将代表一个具体函数。</li>
-  <li>委托所搭载的方法并不需要属于同一类，但方法接口参数要相同。</li>
-</ul>
-
-<p><img src="/assets/gallery/observer.png" alt="observer" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Observer-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

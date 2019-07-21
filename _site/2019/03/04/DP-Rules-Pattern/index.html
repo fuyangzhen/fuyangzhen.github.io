@@ -24,7 +24,7 @@
 
   <title>
     
-      Service Locator Pattern &middot; Young
+      Rules Pattern &middot; Young
     
   </title>
 
@@ -186,46 +186,31 @@
 
       <div class="container content">
         <div class="post">
-  <h1 class="post-title">Service Locator Pattern</h1>
+  <h1 class="post-title">Rules Pattern</h1>
   <span class="post-date">04 Mar 2019</span>
-  <h2 id="服务定位器模式">服务定位器模式</h2>
+  <h2 id="规则模式">规则模式</h2>
 
-<p>帮助clients找到远端服务器的服务。</p>
+<p><em>规则模式是一种特殊的命令模式</em></p>
 
-<h4 id="创建类模式">创建类模式</h4>
+<p>evaluator负责聚合评估规则，而每个具体规则只负责实现自己的规则和匹配。</p>
 
-<ul>
-  <li>抽象工厂</li>
-  <li>建造者</li>
-  <li>工厂方法</li>
-  <li>原型</li>
-  <li>单例</li>
-</ul>
+<p><img src="/assets/gallery/rule.png" alt="rule" /></p>
 
 <h4 id="使用场景">使用场景</h4>
 
 <ul>
-  <li>logging
-    <ul>
-      <li>使用贯穿整个app</li>
-      <li>独立于任何业务逻辑</li>
-      <li>容易为各app的简单需求独立实现</li>
-      <li>常常基于环境或者部署的需求而改变</li>
-    </ul>
-  </li>
+  <li>当系统内的条件判断复杂度上升，同样性质的增量改变是可预料的</li>
+  <li>系统会考虑选择哪些操作是适用的，并执行这些操作</li>
+  <li>系统需要支持用户创建的逻辑来决定何时以及如何应用操作</li>
 </ul>
 
-<p>program在运行启动时用ServiceLocator注册所需的logger, ServiceLocator里静态的各种方法就可以在别处GetService<ILog>获得想要的logger。具体的logger类实现`ILog`的各种接口方法。</ILog></p>
-
-<p><img src="/assets/gallery/servicelocator.png" alt="servicelocator" /></p>
-
-<h4 id="相关模式">相关模式</h4>
+<h4 id="业务规则引擎">业务规则引擎</h4>
 
 <ul>
-  <li>观察者模式：定位新的服务，在他们变得可用时</li>
-  <li>代理模式：总可以用一个服务定位器来讲代理和实现匹配</li>
-  <li>适配器模式：适配器模式可以将具体services适配到符合通用接口</li>
-  <li>依赖注入：在创建客户端时传入services</li>
+  <li>用于封装业务规则的软件系统</li>
+  <li>通常支持业务用户编写规则</li>
+  <li>存储在数据库或文件系统中的规则</li>
+  <li>.NET 里有 System.Workflow 包含 Rules Engine</li>
 </ul>
 
 <!--more-->

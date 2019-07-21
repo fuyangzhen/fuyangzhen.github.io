@@ -189,6 +189,104 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Flyweight-Pattern/">
+        Flyweight Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="享元模式">享元模式</h2>
+
+<p>用共享技术有效地支持大量细粒度的对象。</p>
+
+<h4 id="使用场景">使用场景</h4>
+
+<ol>
+  <li>程序使用了大量的对象，造成了很大的存储开销；</li>
+  <li>对象的大多数状态可以实现为外部状态（作为参数），这样可以从类中抽出外部状态，用相对较少的共享对象取代很多组对象（棋子的类型为内部状态，所在棋盘的位置为外部状态）</li>
+</ol>
+
+<h4 id="目的">目的</h4>
+
+<ol>
+  <li>减少大量细粒度对象存储开销；</li>
+  <li>同时共享要在多个上下文中使用的对象；</li>
+  <li>保持面向对象的粒度和灵活性；</li>
+</ol>
+
+<h4 id="关联的模式">关联的模式</h4>
+
+<ul>
+  <li>组合模式（叶节点可被实现为享元）</li>
+  <li>
+    <p>策略模式（算法可被实现为享元）</p>
+  </li>
+  <li>状态模式</li>
+</ul>
+
+<p><img src="/assets/gallery/flyweight.png" alt="flyweight" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Flyweight-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Factory-Pattern/">
+        Factory Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h3 id="tips">Tips</h3>
+
+<p><em>可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :</em></p>
+
+<pre><code class="language-C#">static IAutoFactory LoadFactory()
+{
+    string factoryName = Properties.Settings.Default.AutoFactory;
+    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
+}
+</code></pre>
+
+<h3 id="动机">动机</h3>
+
+<ol>
+  <li>不确定接口的哪个具体实现来返回</li>
+  <li>对象的创建和表达需要分开</li>
+  <li>很多if/switch 来决定创建哪个具体的class</li>
+</ol>
+
+<h3 id="目的">目的</h3>
+
+<ul>
+  <li>把对象的实际创建从对象创建的选择逻辑中分离出来</li>
+  <li>添加新的类和功能（生产工厂的类，工厂类），而不打破开闭原则</li>
+  <li>把对象选择存在程序之外（DB or config）</li>
+</ul>
+
+<h2 id="简单工厂模式">简单工厂模式</h2>
+
+<p>把类的实例化放在工厂内部的选择逻辑里。调用类知道它需要的具体工厂，直接用工厂实例的函数来返回所需的产品实例，这样就去除了客户端和具体产品的依赖。</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Factory-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Facade-Pattern/">
         Facade Pattern
       </a>
@@ -296,102 +394,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Composite-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Command-Pattern/">
-        Command Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="命令模式">命令模式</h2>
-
-<h4 id="优点">优点</h4>
-
-<ul>
-  <li>
-    <p>把命令的执行抽象为类，执行命令的client 与 命令逻辑及其依赖项 解耦；</p>
-  </li>
-  <li>收集命令为队列，使命令可以延迟执行;</li>
-  <li>命令，aka 事务（transaction），行动（action）;</li>
-  <li>可方便地对命令进行日志记录，验证，撤销；</li>
-  <li>很容易添加新命令，符合开闭原则；</li>
-  <li>完全自包含，客户端不会直接传任何参数给命令，而是通过一个invoker来调用命令；</li>
-  <li>注意为了安全要有个null command；</li>
-</ul>
-
-<h3 id="何时使用">何时使用</h3>
-
-<ol>
-  <li>当需要将执行命令的client与命令逻辑及其依赖项解耦时，请求操作的对象（invoker）与知道具体如何操作的对象（command &amp; receiver ）分割开；</li>
-  <li>设计命令行工具；</li>
-  <li>真正需要实现命令的验证、撤销和恢复时。</li>
-</ol>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li>工厂模式，常用来结合到命令模式中，生产命令实例；</li>
-  <li><a href="https://fuyangzhen.github.io/2019/03/04/DP-Composite-Pattern/">组合模式</a>（执行一个命令，其所有子命令全部执行）。</li>
-</ul>
-
-<p><img src="/assets/gallery/command.png" alt="command" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Command-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
-        Chain of Responsibility Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="责任链模式">责任链模式</h2>
-
-<h4 id="何时使用">何时使用</h4>
-
-<ul>
-  <li>对于一条message有超过一个handler可以处理它</li>
-  <li>发送message的sender一开始并不能明确得知最终合适的handler</li>
-  <li>handler的集合可以被动态地定义（node handler用起来可以按需连接）</li>
-</ul>
-
-<h4 id="责任链优点">责任链优点</h4>
-
-<ul>
-  <li>减少耦合</li>
-  <li>动态地管理 message handlers</li>
-  <li>责任链的末尾可以适当的自定义</li>
-</ul>
-
-<h4 id="与其有关的模式">与其有关的模式</h4>
-
-<ul>
-  <li>Composite组合模式</li>
-  <li>责任树模式（也就是字面意思）</li>
-</ul>
-
-<p><img src="/assets/gallery/chain-of-responsibility.png" alt="strategy" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Chain-of-Responsibility-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

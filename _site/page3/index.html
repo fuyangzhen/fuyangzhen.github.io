@@ -189,6 +189,92 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-Prototype-Pattern/">
+        Prototype Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="原型模式">原型模式</h2>
+
+<p>用原型实例指定创建对象的种类，并通过拷贝这些原型创建新的对象。</p>
+
+<p>一般在初始化的信息不发生变化的情况下，克隆是最好的办法。既可以隐藏对象创建的细节，又对性能大大提提高。</p>
+
+<ul>
+  <li>memento对象只负责存储状态（value objects）。</li>
+  <li>caretaker负责管理memento堆栈，保存originator的状态以及供其恢复堆栈内存储的状态。</li>
+  <li>只有originator可以创建或恢复它的状态。</li>
+</ul>
+
+<p>把数据结构和对其的操作解耦，使得操作可以自由地添加。</p>
+
+<p>ObjectStructure枚举需要被访问者操作的元素，枚举时每个element accept visitor就是在传入visitor并使其在其中调用逻辑方法。</p>
+
+<p><img src="/assets/gallery/prototype.png" alt="prototype.png" /></p>
+
+<h4 id="场景示例">场景示例</h4>
+
+<ol>
+  <li>构造函数实例化对象代价较高</li>
+  <li>对象内部各状态都很重要</li>
+  <li>隐藏了构造函数（internal constructor）</li>
+</ol>
+
+<p><strong>注意</strong></p>
+
+<ol>
+  <li>this.MemberwiseClone()是浅拷贝（非静态字段），引用类型只能拷贝引用。</li>
+  <li>如果要深拷贝，可以先将引用类型参数对象的类实现C#Icloneable接口，然后在引用它的对象的Clone()方法里将它clone出来，然后再一个个复制其余值类型。</li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Prototype-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Observer-Pattern/">
+        Observer Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="观察者模式">观察者模式</h2>
+
+<h4 id="特征">特征</h4>
+
+<ul>
+  <li>
+    <p>系统被分割成相互协作的很多类，但我们不希望为了维护相关对象间的一致性，而去使各类紧密耦合。</p>
+  </li>
+  <li>观察者模式所做的工作是解除耦合，让耦合双方依赖抽象，而非具体，从而使得各自的变化都不会影响另一方的变化。</li>
+  <li>多抽象，少具体可以降低耦合。(<strong>依赖倒转原则</strong>)</li>
+  <li>具体观察者可能并不属于同一基类，所以可以使用抽象接口来统一他们，都能实现update方法就行。</li>
+  <li>delegate可以看做是对函数的抽象，是函数的‘类’，委托的实例将代表一个具体函数。</li>
+  <li>委托所搭载的方法并不需要属于同一类，但方法接口参数要相同。</li>
+</ul>
+
+<p><img src="/assets/gallery/observer.png" alt="observer" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Observer-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Null-Object-Pattern/">
         Null Object Pattern
       </a>
@@ -314,116 +400,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Mediator-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-MVVM-Pattern/">
-        Model View  ViewModel Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="model-view--viewmodel模式">Model View  ViewModel模式</h2>
-
-<p>需要依赖WPF/Silverlight来实现，即只适用于这两个框架。</p>
-
-<p>大体上和MVP类似：</p>
-
-<p><img src="/assets/gallery/MVVM.png" alt="MVVM" /></p>
-
-<ol>
-  <li>Model: the data;</li>
-  <li>View: Binding to ViewModel set by the DataContext;</li>
-  <li>ViewModel:
-    <ul>
-      <li>Exposes the Model as Properties or Commands</li>
-      <li>Must implement INotifyPropertyChanged</li>
-    </ul>
-  </li>
-</ol>
-
-<h4 id="优缺点">优缺点</h4>
-
-<p>优点：</p>
-
-<ul>
-  <li>减少code-Behind；</li>
-  <li>Model不需要为了支持View去更改；</li>
-  <li>前端页面设计，和后端业务逻辑分离；</li>
-  <li>减少开发时间；</li>
-  <li>Multi-targeting(project linking) : support .net multi-framework</li>
-</ul>
-
-<p>缺点：</p>
-
-<ul>
-  <li>创建了更多的文件；</li>
-  <li>简单的任务可能实现上也比较复杂；</li>
-  <li>缺少标准化；</li>
-  <li>特定地适用于WPF、Sliverlight平台；</li>
-</ul>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li>Model View Presenter(MVP)</li>
-  <li>Model View Controller(MCV)</li>
-  <li>Presentation Model(PM)</li>
-</ul>
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-MVVM-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-MVP-Pattern/">
-        Model View Presenter Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="model-view-presenter-模式">Model View Presenter 模式</h2>
-
-<p>view 和 presenter 相互绑定，view负责关联html内部的函数和变量。presenter 负责把view传给他的args和调用的model作为参数传入自己绑定的view 的函数中。</p>
-
-<ul>
-  <li>view 直接和html关联交互</li>
-  <li>presenter （aka controller）和view相互绑定，然后view在需要展示时传参调用presenter 的相关函数，这些函数再运用具体的逻辑去取需要的model传入view的函数去渲染展示</li>
-  <li>model只负责为presenter 提供数据</li>
-  <li>这样就形成了很好的分离解耦 ：view只负责展示，presenter只负责业务逻辑，model只负责提供数据</li>
-</ul>
-
-<h4 id="目的">目的</h4>
-
-<ul>
-  <li>职责分离
-    <ul>
-      <li>需要展示的数据 <em>Model</em></li>
-      <li>业务逻辑 <em>presenter</em></li>
-      <li>展示数据 <em>view</em></li>
-    </ul>
-  </li>
-  <li>使模式中这些合作者（MVP）能单独测试</li>
-  <li>比查找业务逻辑更具可读性和可维护性</li>
-</ul>
-
-<p><img src="/assets/gallery/MVP.png" alt="MVP" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-MVP-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>

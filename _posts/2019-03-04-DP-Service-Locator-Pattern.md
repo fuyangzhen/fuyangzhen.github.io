@@ -27,7 +27,7 @@ comments: true
   - 容易为各app的简单需求独立实现  
   - 常常基于环境或者部署的需求而改变
 
-**program在运行启动时用ServiceLocator注册所需的logger, ServiceLocator里静态的各种方法就可以在别处GetService<ILog>获得想要的logger。具体的logger类实现`ILog`的各种接口方法。**
+program在运行启动时用ServiceLocator注册所需的logger, ServiceLocator里静态的各种方法就可以在别处GetService<ILog>获得想要的logger。具体的logger类实现`ILog`的各种接口方法。
 
 ![servicelocator](/assets/gallery/servicelocator.png)   
 

@@ -189,6 +189,116 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2019/03/04/DP-MVVM-Pattern/">
+        Model View  ViewModel Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="model-view--viewmodel模式">Model View  ViewModel模式</h2>
+
+<p>需要依赖WPF/Silverlight来实现，即只适用于这两个框架。</p>
+
+<p>大体上和MVP类似：</p>
+
+<p><img src="/assets/gallery/MVVM.png" alt="MVVM" /></p>
+
+<ol>
+  <li>Model: the data;</li>
+  <li>View: Binding to ViewModel set by the DataContext;</li>
+  <li>ViewModel:
+    <ul>
+      <li>Exposes the Model as Properties or Commands</li>
+      <li>Must implement INotifyPropertyChanged</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="优缺点">优缺点</h4>
+
+<p>优点：</p>
+
+<ul>
+  <li>减少code-Behind；</li>
+  <li>Model不需要为了支持View去更改；</li>
+  <li>前端页面设计，和后端业务逻辑分离；</li>
+  <li>减少开发时间；</li>
+  <li>Multi-targeting(project linking) : support .net multi-framework</li>
+</ul>
+
+<p>缺点：</p>
+
+<ul>
+  <li>创建了更多的文件；</li>
+  <li>简单的任务可能实现上也比较复杂；</li>
+  <li>缺少标准化；</li>
+  <li>特定地适用于WPF、Sliverlight平台；</li>
+</ul>
+
+<h4 id="相关模式">相关模式</h4>
+
+<ul>
+  <li>Model View Presenter(MVP)</li>
+  <li>Model View Controller(MCV)</li>
+  <li>Presentation Model(PM)</li>
+</ul>
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-MVVM-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-MVP-Pattern/">
+        Model View Presenter Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="model-view-presenter-模式">Model View Presenter 模式</h2>
+
+<p>view 和 presenter 相互绑定，view负责关联html内部的函数和变量。presenter 负责把view传给他的args和调用的model作为参数传入自己绑定的view 的函数中。</p>
+
+<ul>
+  <li>view 直接和html关联交互</li>
+  <li>presenter （aka controller）和view相互绑定，然后view在需要展示时传参调用presenter 的相关函数，这些函数再运用具体的逻辑去取需要的model传入view的函数去渲染展示</li>
+  <li>model只负责为presenter 提供数据</li>
+  <li>这样就形成了很好的分离解耦 ：view只负责展示，presenter只负责业务逻辑，model只负责提供数据</li>
+</ul>
+
+<h4 id="目的">目的</h4>
+
+<ul>
+  <li>职责分离
+    <ul>
+      <li>需要展示的数据 <em>Model</em></li>
+      <li>业务逻辑 <em>presenter</em></li>
+      <li>展示数据 <em>view</em></li>
+    </ul>
+  </li>
+  <li>使模式中这些合作者（MVP）能单独测试</li>
+  <li>比查找业务逻辑更具可读性和可维护性</li>
+</ul>
+
+<p><img src="/assets/gallery/MVP.png" alt="MVP" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-MVP-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2019/03/04/DP-Lazyload-Pattern/">
         Lazy load Pattern
       </a>
@@ -306,104 +416,6 @@ public interface Ienumerable
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Interpreter-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Flyweight-Pattern/">
-        Flyweight Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="享元模式">享元模式</h2>
-
-<p>用共享技术有效地支持大量细粒度的对象。</p>
-
-<h4 id="使用场景">使用场景</h4>
-
-<ol>
-  <li>程序使用了大量的对象，造成了很大的存储开销；</li>
-  <li>对象的大多数状态可以实现为外部状态（作为参数），这样可以从类中抽出外部状态，用相对较少的共享对象取代很多组对象（棋子的类型为内部状态，所在棋盘的位置为外部状态）</li>
-</ol>
-
-<h4 id="目的">目的</h4>
-
-<ol>
-  <li>减少大量细粒度对象存储开销；</li>
-  <li>同时共享要在多个上下文中使用的对象；</li>
-  <li>保持面向对象的粒度和灵活性；</li>
-</ol>
-
-<h4 id="关联的模式">关联的模式</h4>
-
-<ul>
-  <li>组合模式（叶节点可被实现为享元）</li>
-  <li>
-    <p>策略模式（算法可被实现为享元）</p>
-  </li>
-  <li>状态模式</li>
-</ul>
-
-<p><img src="/assets/gallery/flyweight.png" alt="flyweight" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Flyweight-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Factory-Pattern/">
-        Factory Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h3 id="tips">Tips</h3>
-
-<p><em>可以用 反射技术+config 来去除分支判断逻辑带来的耦合 :</em></p>
-
-<pre><code class="language-C#">static IAutoFactory LoadFactory()
-{
-    string factoryName = Properties.Settings.Default.AutoFactory;
-    return (IAutoFactory)Assembly.GetExecutingAssembly().CreateInstance(factoryName);
-}
-</code></pre>
-
-<h3 id="动机">动机</h3>
-
-<ol>
-  <li>不确定接口的哪个具体实现来返回</li>
-  <li>对象的创建和表达需要分开</li>
-  <li>很多if/switch 来决定创建哪个具体的class</li>
-</ol>
-
-<h3 id="目的">目的</h3>
-
-<ul>
-  <li>把对象的实际创建从对象创建的选择逻辑中分离出来</li>
-  <li>添加新的类和功能（生产工厂的类，工厂类），而不打破开闭原则</li>
-  <li>把对象选择存在程序之外（DB or config）</li>
-</ul>
-
-<h2 id="简单工厂模式">简单工厂模式</h2>
-
-<p>把类的实例化放在工厂内部的选择逻辑里。调用类知道它需要的具体工厂，直接用工厂实例的函数来返回所需的产品实例，这样就去除了客户端和具体产品的依赖。</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Factory-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>
