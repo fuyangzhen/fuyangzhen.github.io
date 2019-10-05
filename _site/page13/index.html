@@ -189,6 +189,40 @@
   
   <div class="post">
     <h1 class="post-title">
+      <a href="/2016/10/01/classic-sort/">
+        Classic sort
+      </a>
+    </h1>
+
+    <span class="post-date">01 Oct 2016</span>
+
+    <h3 id="先上结果">先上结果</h3>
+<ul>
+  <li>插入排序</li>
+</ul>
+
+<div class="language-py highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">insertionSort1</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)):</span>
+        <span class="n">curV</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">curV</span> <span class="o">&lt;</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+            <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">pos</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">L</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">curV</span> <span class="c">#找到正确的位置插入</span>
+    <span class="k">return</span> <span class="n">L</span>
+</code></pre></div></div>
+
+...
+    <div style="text-align:center">
+      <a href="/2016/10/01/classic-sort/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
       <a href="/2016/09/27/naive-bayesian/">
         Naive bayesian
       </a>
@@ -324,25 +358,6 @@
 ...
     <div style="text-align:center">
       <a href="/2016/08/01/order-list/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2016/07/26/unorder-list/">
-        Unorder list
-      </a>
-    </h1>
-
-    <span class="post-date">26 Jul 2016</span>
-
-    
-...
-    <div style="text-align:center">
-      <a href="/2016/07/26/unorder-list/">
         <font size="5">more »</font>
       </a>
     </div>
