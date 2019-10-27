@@ -160,6 +160,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -186,6 +190,66 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Bridge-Pattern/">
+        Bridge Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="桥连模式">桥连模式</h2>
+
+<p>abstraction -&gt; abstraction  -&gt; implementation</p>
+
+<p>对象可<strong>多角度抽象出类别</strong>时，只用一种类别树来继承，耦合就太重了，会使类的定义大量增加，抽象和实现内在是一种依赖耦合关系。将不同角度单独视为一类，不同角度的类通过聚合（桥）关联起来（参见大话设计模式），这也是一种抽象之上的再次抽象。</p>
+
+<p><strong>再次抽象，是在扩展你的类的能力，将能力抽象为接口，解耦出来。这样就可为类实现各种其他的功能，而不用修改类，符合开闭原则。</strong></p>
+
+<p><img src="/assets/gallery/bridge.png" alt="Builder-Pattern" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Bridge-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Adapter-Pattern/">
+        Adapter Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="适配器模式">适配器模式</h2>
+
+<h4 id="tips">Tips</h4>
+
+<p><em>初始设计的时候类的接口应该尽可能的规范统一，而不是使用适配器去调整。适配器适用于修补和完全不同环境的代码之间的适配。</em></p>
+
+<p><strong>client -&gt; adaptor interface -&gt; adaptor class -&gt; adaptee</strong></p>
+
+<p>不要为了适应功能的interface而去继承修改，实现的耦合重不可复用，应该用adaptor来转换interface。</p>
+
+<p>常见的一种简单adapter：继承自target类，在其定义中聚合adaptee，在adapter定义中override的target的方法中使用adaptee的方法。  （参见大话设计模式）</p>
+
+<p>常见的另一种adapter：target类定义中直接聚合符合Iadapter的adapter实例，然后在target的方法中调用adapter实例的方法。这种方式是通过Iadapter接口来规范定义可接受的adapter实例方法。（参见pluralsight-patterns-library）</p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Adapter-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -238,7 +302,7 @@
 
     <span class="post-date">25 Jan 2019</span>
 
-    <h2 id="c">C</h2>
+    <h2 id="c">C#</h2>
 
 <h4 id="反射">反射</h4>
 
@@ -275,57 +339,6 @@
 ...
     <div style="text-align:center">
       <a href="/2018/07/24/docker-private-registry/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/06/23/EVA/">
-        EVA3.0
-      </a>
-    </h1>
-
-    <span class="post-date">23 Jun 2018</span>
-
-    <h2 id="eva30">EVA3.0</h2>
-
-<p><img src="/assets/gallery/EVA3.0.jpg" alt="EVA" /></p>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/06/23/EVA/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2018/06/23/Long-term-Investment/">
-        Long-term Investment
-      </a>
-    </h1>
-
-    <span class="post-date">23 Jun 2018</span>
-
-    <h2 id="长期投资">长期投资</h2>
-
-<p>将手中资金分为4类管理：</p>
-
-<ul>
-  <li>活钱管理：20%，日常支出用钱，可以放在余额宝之类的货币基金中；</li>
-  <li>稳健理财：40%，在一定期限后需要用到的钱，譬如买车旅游装修之类，可以放在稳健的定期理财里；</li>
-  <li>保险保障：10%，不可或缺的一部分，提高资金整体抗风险水平；</li>
-  <li>长期投资：30%，留给未来的钱。</li>
-</ul>
-
-...
-    <div style="text-align:center">
-      <a href="/2018/06/23/Long-term-Investment/">
         <font size="5">more »</font>
       </a>
     </div>

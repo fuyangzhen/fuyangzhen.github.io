@@ -160,6 +160,10 @@
     
     
     
+    
+    
+    
+    
 
     <!--<a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
@@ -186,6 +190,83 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Memento-Pattern/">
+        Memento Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="备忘录模式">备忘录模式</h2>
+
+<p>在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态。这样以后就可以将该对象恢复到原先保存的状态。</p>
+
+<ul>
+  <li>memento对象只负责存储状态（value objects）。</li>
+  <li>caretaker负责管理memento堆栈，保存originator的状态以及供其恢复堆栈内存储的状态。</li>
+  <li>只有originator可以创建或恢复它的状态。</li>
+</ul>
+
+<p>把数据结构和对其的操作解耦，使得操作可以自由地添加。</p>
+
+<p>ObjectStructure枚举需要被访问者操作的元素，枚举时每个element accept visitor就是在传入visitor并使其在其中调用逻辑方法。</p>
+
+<p><img src="/assets/gallery/memento.png" alt="memento" /></p>
+
+<p><strong>注意</strong></p>
+
+<ol>
+  <li>相较于存储状态，一种变形是，存储反转操作。如：操作（+5），那就存储操作（-5）。</li>
+  <li>有些场景的反转操作并不能得到之前的结果，如：图计算，翻译。</li>
+</ol>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Memento-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2019/03/04/DP-Mediator-Pattern/">
+        Mediator Pattern
+      </a>
+    </h1>
+
+    <span class="post-date">04 Mar 2019</span>
+
+    <h2 id="中介模式">中介模式</h2>
+
+<p><em>用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互作用，从而使其耦合松散，而且可以独立地改变他们间的交互。</em></p>
+
+<h5 id="优点">优点</h5>
+
+<p>Mediator的出现减少了各个Colleague的耦合，使得可以独立地改变和复用各个Colleague类和Mediator。</p>
+
+<p>把对象如何协作进行了抽象，将中介作为一个独立的概念封装在对象中，关注的对象就从对象各自本身的行为转义到他们之间的交互上来，是从一个更为宏观的角度看待系统。</p>
+
+<h5 id="缺点">缺点</h5>
+
+<p>当系统出现‘多对多’交互复杂的对象群时，不要急于使用中介者模式，而是烦死系统在设计上是否合理。</p>
+
+<p>由于ConcreteMediator控制了集中化，浴室就把交互复杂性转变为了中介者复杂性，这就使ConcreteMediator比任何一个ConcreteColleague都复杂。</p>
+
+<p><img src="/assets/gallery/mediator.png" alt="Builder-Pattern" /></p>
+
+...
+    <div style="text-align:center">
+      <a href="/2019/03/04/DP-Mediator-Pattern/">
+        <font size="5">more »</font>
+      </a>
+    </div>
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">
@@ -320,102 +401,6 @@
 ...
     <div style="text-align:center">
       <a href="/2019/03/04/DP-Lazyload-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Iterator-Pattern/">
-        Iterator Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="迭代器模式">迭代器模式</h2>
-
-<p>当你需要遍历访问聚集对象，可以有多种遍历方式时，应该考虑使用迭代器模式。</p>
-
-<p>迭代器模式，分离了集合对象的遍历行为，抽象出一个迭代器类来负责遍历， 这样即可以做到不暴露集合内部结构，又可以让外部代码透明地访问集合内部数据。</p>
-
-<p>aggregate（collection）负责收集聚合数据，然后交给iterator去操作遍历。</p>
-
-<p><img src="/assets/gallery/iterator.png" alt="iterator" /></p>
-
-<h4 id="net的自带接口">.NET的自带接口</h4>
-
-<p>实现了这两个接口IEnumerator &amp; IEnumerable，就可以使用foreach关键字来遍历集合对象。</p>
-
-<pre><code class="language-C#">public interface IEnumerator
-{
-    object Current
-    {
-        get;
-    }
-    bool MoveNext();
-    void Reset();
-}
-
-public interface Ienumerable
-{
-    IEnumerator GetEnumerator();
-}
-</code></pre>
-
-<h4 id="相关模式">相关模式</h4>
-
-<ul>
-  <li>工厂模式：
-    <ul>
-      <li>迭代器可以通过aggregate中的工厂方法创建</li>
-      <li>多态迭代器使用工厂方法实例化适当的迭代器子类</li>
-    </ul>
-  </li>
-  <li>组合模式：
-    <ul>
-      <li>迭代器可被用来递归遍历组合结构，如树。</li>
-    </ul>
-  </li>
-</ul>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Iterator-Pattern/">
-        <font size="5">more »</font>
-      </a>
-    </div>
-
-  </div>
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/2019/03/04/DP-Interpreter-Pattern/">
-        Interpreter Pattern
-      </a>
-    </h1>
-
-    <span class="post-date">04 Mar 2019</span>
-
-    <h2 id="解释器模式">解释器模式</h2>
-
-<p>如果一种特定类型的问题发生频率足够高，那么可能就值得将该问题的各个实例表述为一个简单语言中的句子。</p>
-
-<p><strong>当有一个语言(DSL)需要解释执行，并且你可以将该语言中的句子表示为一个抽象语法树时，可使用解释器模式。</strong>设计迷你语言，解释迷你语言。但当文法非常复杂时，使用其他的技术如语法分析程序或编译器生成器来处理。</p>
-
-<p><strong><em>简单工厂加反射可以避免对switch case的修改，从而不用修改代码。</em></strong></p>
-
-<p><img src="/assets/gallery/interpreter.png" alt="interpreter" /></p>
-
-<h5 id="相关模式">相关模式</h5>
-
-<p>组合模式</p>
-
-...
-    <div style="text-align:center">
-      <a href="/2019/03/04/DP-Interpreter-Pattern/">
         <font size="5">more »</font>
       </a>
     </div>
